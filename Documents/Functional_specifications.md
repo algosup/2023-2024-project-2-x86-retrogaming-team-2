@@ -107,7 +107,7 @@ Thibaud excitedly sits in front of the computer, ready to play the recreated Pac
 
 ### Alice, 17 years old, High school student:
 
-After a long day of classes, Alice decides to take a break and explore the Pac-Man project. Despite not being a regular gamer, she finds the user-friendly[^] interface and simple controls easy to navigate. The nostalgic elements of the classic game bring back childhood memories. Alice enjoys a quick gaming session, appreciating the break from her academic routine and the opportunity to explore a different aspect of technology.
+After a long day of classes, Alice decides to take a break and explore the Pac-Man project. Despite not being a regular gamer, she finds the user-friendly[^3] interface and simple controls easy to navigate. The nostalgic elements of the classic game bring back childhood memories. Alice enjoys a quick gaming session, appreciating the break from her academic routine and the opportunity to explore a different aspect of technology.
 
 ### Claire, 27 years old, Developer:
 
@@ -134,19 +134,21 @@ The project also have some out of scope objectives, there are as following:
 
 The project contains two non-functional requirements which are the following:
 
-A save system to be able to follow which score belong to the top 10 scores of a device.
+The game must react to player's action in less than a second, the player canno't be subject to input latency.
 
-And a difficulty curve that will be similar to the original game.
+The game must be understandable for young players, it shouldn't require more than ten minutes to comprehend the gameplay.
+
+The game should be playable on a x86 emulator.
 
 ## Laws and Regulations
 
-The legal landscape for a project like recreating Pac-Man in assembly x86 with DosBox[^3] involves considerations related to intellectual property[^4], copyright, and potentially other regulations. Here are some key aspects to be mindful of:
+The legal landscape for a project like recreating Pac-Man in assembly x86 with DosBox[^4] involves considerations related to intellectual property[^5], copyright, and potentially other regulations. Here are some key aspects to be mindful of:
 
 **Intellectual Property Rights:**
 - Ensure that the recreation of Pac-Man does not infringe on the intellectual property rights of the original creators, Namco (now Bandai Namco Entertainment). Pac-Man is a copyrighted game, and any reproduction or adaptation must comply with copyright laws.
 
 **Open-Source Licensing:**
-- If the project involves the use of open-source[^5] tools, libraries, or code, it's essential to comply with the licensing terms associated with those resources. Different open-source licenses have varying requirements, and adherence to these terms is crucial for legal compliance.
+- If the project involves the use of open-source[^6] tools, libraries, or code, it's essential to comply with the licensing terms associated with those resources. Different open-source licenses have varying requirements, and adherence to these terms is crucial for legal compliance.
 
 **DosBox Licensing:**
 - DosBox, being an open-source emulator, has its licensing terms. Make sure to review and comply with the DosBox license (GNU General Public License) when using the emulator in the project.
@@ -158,13 +160,13 @@ The legal landscape for a project like recreating Pac-Man in assembly x86 with D
 - If the project is accessible to users of different age groups, consider compliance with age and content rating regulations. Clearly communicate the intended audience and ensure that the content is appropriate for the specified age group.
 
 **PEGI (Pan European Game Information)**
-- The Pac-Man project should consider obtaining a PEGI[^6] age rating to communicate the appropriate age group for the game. PEGI provides age classifications that help inform users and parents about the content suitability for different age ranges.
+- The Pac-Man project should consider obtaining a PEGI[^7] age rating to communicate the appropriate age group for the game. PEGI provides age classifications that help inform users and parents about the content suitability for different age ranges.
 
 **Privacy Regulations:**
 - If the project involves the collection or processing of user data, ensure compliance with data protection and privacy regulations. Clearly outline privacy policies, and if applicable, obtain user consent for data processing activities.
 
 **Accessibility Standards:**
-- Consider accessibility standards[^7] to ensure that the project is inclusive and complies with regulations related to accessibility for individuals with disabilities. This may include providing options for different control schemes or ensuring compatibility with assistive technologies.
+- Consider accessibility standards[^8] to ensure that the project is inclusive and complies with regulations related to accessibility for individuals with disabilities. This may include providing options for different control schemes or ensuring compatibility with assistive technologies.
 
 **Consumer Protection Laws:**
 - Adhere to consumer protection laws that may apply to software or game development projects. This includes providing accurate information about the project, offering customer support, and addressing any potential issues or complaints.
@@ -186,7 +188,7 @@ Privacy considerations beyond legal requirements are crucial for building trust 
 - Adopt a minimalistic approach to data collection. Only collect data that is essential for the functioning of the game and the user experience. Avoid unnecessary data points to reduce the impact on user privacy.
 
 **Anonymous Gameplay Statistics:**
-- If gathering gameplay statistics for improvements or analytics, consider aggregating and anonymizing[^8] the data. This allows for valuable insights without compromising individual user privacy.
+- If gathering gameplay statistics for improvements or analytics, consider aggregating and anonymizing[^9] the data. This allows for valuable insights without compromising individual user privacy.
 
 **User Control over Data:**
 - Empower users with control over their data. Offer options within the game settings that allow users to manage and customize privacy preferences, including the ability to opt out of certain data collection activities.
@@ -316,21 +318,21 @@ Virtual boxes used in game development to detect collisions between objects.
 [^3]: User-Friendly:
 Design and functionality that are easy for users to understand and navigate.
 
-[^3]: DosBox :
+[^4]: DosBox :
 An emulator that allows running old games on modern computers.
 
-[^4]: Intellectual Property:
+[^5]: Intellectual Property:
 Legal rights that result from intellectual activity in industrial, scientific, literary, and artistic fields.
 
-[^5]: Open-Source:
+[^6]: Open-Source:
 Software whose source code is available to the public, allowing users to modify and distribute it.
 
-[^6]: PEGI (Pan European Game Information):
+[^7]: PEGI (Pan European Game Information):
 A European video game content rating system to inform consumers about the suitability of games for different age groups.
 
-[^7]: Accessibility Standards:
+[^8]: Accessibility Standards:
 Guidelines and standards to ensure that software and technology are accessible to individuals with disabilities.
 
-[^8]: Anonymizing Data:
+[^9]: Anonymizing Data:
 Removing personally identifiable information from data to protect user privacy.
 
