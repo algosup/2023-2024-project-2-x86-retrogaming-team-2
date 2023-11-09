@@ -223,12 +223,12 @@ The project will be considered as successful if all of these criterias have been
 
 |Name|Role|Photo|E-mail|
 |-|-|-|-|
-|Clémentine Curel|Senior software engineer|<img src="" style="height:100px">|clementine.curel@algosup.com|
-|Laurent Bouquin|Project manager|<img src="" style="height:100px">|laurent.bouquin@algosup.com|
-|Aurélien Fernandez|Program manager|<img src="" style="height:100px">|aurelien.fernandez@algosup.com|
-|Mathias Gagnepain|Junior software engineer|<img src="" style="height:100px">|mathias.gagnepain@algosup.com|
-|Gaël Malvar|Quality assurance|<img src="" style="height:100px">|gael.malvar@algosup.com|
-|Paul Nowak|Tech lead|<img src="" style="height:100px">|paul.nowak@algosup.com|
+|Clémentine Curel|Senior software engineer| <img src="https://avatars.githubusercontent.com/u/78617457?s=96&v=4">|clementine.curel@algosup.com|
+|Laurent Bouquin|Project manager|<img src="https://avatars.githubusercontent.com/u/71769489?s=96&v=4"> |laurent.bouquin@algosup.com|
+|Aurélien Fernandez|Program manager|<img src="https://avatars.githubusercontent.com/u/71769656?v=4">|aurelien.fernandez@algosup.com|
+|Mathias Gagnepain|Junior software engineer|<img src="https://ca.slack-edge.com/T064RLYME7K-U064FFWBT3N-g7986289d5c2-512">|mathias.gagnepain@algosup.com|
+|Gaël Malvar|Quality assurance|<img src="https://ca.slack-edge.com/T064RLYME7K-U0646D5HMLN-gf674ff9a01c-512">|gael.malvar@algosup.com|
+|Paul Nowak|Tech lead|<img src="https://ca.slack-edge.com/T064RLYME7K-U06522CLLD6-g3621cbd420c-512">|paul.nowak@algosup.com|
 
 ## Glossary
 
