@@ -89,15 +89,15 @@ Our project possess multiple scopes, we decided to make a list of the main featu
 
 ## Personas
 
-<img src="./Images/Persona1.png" style="height: 200px">
+<img src="Images/Persona 1.png" style="height: 400px">
 
-<img src="./Images/Persona2.png" style="height: 200px">
+<img src="./Images/Persona 2.png" style="height: 400px">
 
-<img src="./Images/Persona3.png" style="height: 200px">
+<img src="./Images/Persona 3.png" style="height: 400px">
 
-<img src="./Images/Persona4.png" style="height: 200px">
+<img src="./Images/Persona 4.png" style="height: 400px">
 
-<img src="..Images/Persona5.png" style="height: 200px">
+<img src="..Images/Persona 5.png" style="height: 400px">
 
 ## Use cases
 
