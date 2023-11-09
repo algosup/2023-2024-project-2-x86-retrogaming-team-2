@@ -8,6 +8,7 @@
   - [Overview](#overview)
     - [What is Pac-Man](#what-is-pac-man)
     - [How To play](#how-to-play)
+  - [Deliverables](#deliverables)
   - [Project Scopes](#project-scopes)
   - [Stakeholders](#stakeholders)
   - [Personas](#personas)
@@ -59,6 +60,10 @@ The player can use either a joystick or arrows on the keyboard to play. Moving t
  On each corners you can see bigger Pac-dots, they are called "Power pellets", when eating them, ghosts turns blue and will avoid Pac-Man, but if the player catches one of them, he will gain bonus points and the ghost will return in the center of the map to return to life and restart the chase.
 
  If the player achieve to get 10 thousand points, he will get an additional life, it happens for each multiple of 10 thousand.
+
+## Deliverables
+
+
 
 ## Project Scopes
 
@@ -147,7 +152,7 @@ The legal landscape for a project like recreating Pac-Man in assembly x86 with D
 - The game Pac-Man is under trademark. It means any reference or uses of its characters or the use of the source code by other companies can be declared as illegal and thus the owner of the trademark can pursue legal action against infringing company.
 
 **Age and content ratings:**
-- In adherence to age and content rating regulations, our project aligns with the PEGI 3 rating, signaling its suitability for users of all age groups. We prioritize transparency by clearly communicating the intended audience, ensuring that the content is specifically crafted to be appropriate for individuals aged three and above. This commitment extends to the design, themes, and any interactive elements within the game.<br>
+- In adherence to age and content rating regulations, our project aligns with the PEGI[^6] 3 rating, signaling its suitability for users of all age groups. We prioritize transparency by clearly communicating the intended audience, ensuring that the content is specifically crafted to be appropriate for individuals aged three and above. This commitment extends to the design, themes, and any interactive elements within the game.<br>
 By conforming to the PEGI 3 rating, we aim to provide a safe and enjoyable gaming experience for users of diverse age ranges. The clarity in age and content communication not only fulfills regulatory requirements but also assists users and parents in making informed decisions about the suitability of our game for their audience. 
 
 **Privacy regulations:**
@@ -242,15 +247,6 @@ An emulator that allows running old games on modern computers.
 [^5]: Intellectual Property:
 Legal rights that result from intellectual activity in industrial, scientific, literary, and artistic fields.
 
-[^6]: Open-Source:
-Software whose source code is available to the public, allowing users to modify and distribute it.
-
-[^7]: PEGI (Pan European Game Information):
+[^6]: PEGI (Pan European Game Information):
 A European video game content rating system to inform consumers about the suitability of games for different age groups.
-
-[^8]: Accessibility Standards:
-Guidelines and standards to ensure that software and technology are accessible to individuals with disabilities.
-
-[^9]: Anonymizing Data:
-Removing personally identifiable information from data to protect user privacy.
 
