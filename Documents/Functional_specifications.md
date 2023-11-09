@@ -97,7 +97,7 @@ Our project possess multiple scopes, we decided to make a list of the main featu
 
 <img src="./Images/Persona 4.png" style="height: 400px">
 
-<img src="..Images/Persona 5.png" style="height: 400px">
+<img src="./Images/Persona 5.png" style="height: 400px">
 
 ## Use cases
 
