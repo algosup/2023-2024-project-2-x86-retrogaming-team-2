@@ -19,8 +19,7 @@
     - [Titouan, 35 years old, Gaming Enthusiast:](#titouan-35-years-old-gaming-enthusiast)
   - [Out of Scope](#out-of-scope)
   - [Non-functional requirements](#non-functional-requirements)
-  - [Laws and Regulations](#laws-and-regulations)
-  - [Privacy](#privacy)
+  - [Laws and regulations](#laws-and-regulations)
   - [Cost analysis](#cost-analysis)
   - [Risk and assumptions](#risk-and-assumptions)
     - [Assumptions](#assumptions)
@@ -67,7 +66,7 @@ Our project possess multiple scopes, we decided to make a list of the main featu
 
 - Create and display a map,
 - Create and use an original character the player can use,
-- Create original antagonist to represent original ghosts,
+- Create original antagonists to represent original ghosts,
 - Create the controller,
 - Create collision[^2] boxes,
 - Create lives system and death event,
@@ -140,79 +139,25 @@ The game must be understandable for young players, it shouldn't require more tha
 
 The game should be playable on a x86 emulator.
 
-## Laws and Regulations
+## Laws and regulations
 
-The legal landscape for a project like recreating Pac-Man in assembly x86 with DosBox[^4] involves considerations related to intellectual property[^5], copyright, and potentially other regulations. Here are some key aspects to be mindful of:
+The legal landscape for a project like recreating Pac-Man in assembly x86 with DosBox[^4] involves considerations related to intellectual property[^5], copyright, and other regulations. Here are some key aspects we are mindful of:
 
-**Intellectual Property Rights:**
-- Ensure that the recreation of Pac-Man does not infringe on the intellectual property rights of the original creators, Namco (now Bandai Namco Entertainment). Pac-Man is a copyrighted game, and any reproduction or adaptation must comply with copyright laws.
+**Software distribution regulations:**
+- The game Pac-Man is under trademark. It means any reference or uses of its characters or the use of the source code by other companies can be declared as illegal and thus the owner of the trademark can pursue legal action against infringing company.
 
-**Open-Source Licensing:**
-- If the project involves the use of open-source[^6] tools, libraries, or code, it's essential to comply with the licensing terms associated with those resources. Different open-source licenses have varying requirements, and adherence to these terms is crucial for legal compliance.
+**Age and content ratings:**
+- In adherence to age and content rating regulations, our project aligns with the PEGI 3 rating, signaling its suitability for users of all age groups. We prioritize transparency by clearly communicating the intended audience, ensuring that the content is specifically crafted to be appropriate for individuals aged three and above. This commitment extends to the design, themes, and any interactive elements within the game.<br>
+By conforming to the PEGI 3 rating, we aim to provide a safe and enjoyable gaming experience for users of diverse age ranges. The clarity in age and content communication not only fulfills regulatory requirements but also assists users and parents in making informed decisions about the suitability of our game for their audience. 
 
-**DosBox Licensing:**
-- DosBox, being an open-source emulator, has its licensing terms. Make sure to review and comply with the DosBox license (GNU General Public License) when using the emulator in the project.
+**Privacy regulations:**
+- By processing data such as the collect of player's experience by using the "score" we should ensure players are aware of this. Consent and awareness of our users must be mandatory in case of data collection. 
 
-**Software Distribution Regulations:**
-- If the Pac-Man project involves distribution of software, be aware of the regulations related to software distribution. This includes ensuring that users are aware of the terms of use and any licensing agreements associated with the software.
+**Consumer protection laws:**
+- In our game development project, we are committed to upholding consumer protection laws to ensure a positive and transparent user experience. Our game description provides accurate and detailed information about the gameplay and any features present in the game. We prominently display terms of service and privacy policies, outlining how user data is handled and protected.
 
-**Age and Content Ratings:**
-- If the project is accessible to users of different age groups, consider compliance with age and content rating regulations. Clearly communicate the intended audience and ensure that the content is appropriate for the specified age group.
-
-**PEGI (Pan European Game Information)**
-- The Pac-Man project should consider obtaining a PEGI[^7] age rating to communicate the appropriate age group for the game. PEGI provides age classifications that help inform users and parents about the content suitability for different age ranges.
-
-**Privacy Regulations:**
-- If the project involves the collection or processing of user data, ensure compliance with data protection and privacy regulations. Clearly outline privacy policies, and if applicable, obtain user consent for data processing activities.
-
-**Accessibility Standards:**
-- Consider accessibility standards[^8] to ensure that the project is inclusive and complies with regulations related to accessibility for individuals with disabilities. This may include providing options for different control schemes or ensuring compatibility with assistive technologies.
-
-**Consumer Protection Laws:**
-- Adhere to consumer protection laws that may apply to software or game development projects. This includes providing accurate information about the project, offering customer support, and addressing any potential issues or complaints.
-
-**Contractual Agreements:**
-- If collaborating with others on the project, establish clear contractual agreements outlining the terms of collaboration, ownership of intellectual property, and any revenue-sharing arrangements.
-
-**Local and International Laws:**
-- Consider both local and international laws that may apply to the distribution and use of the Pac-Man project. This includes understanding the legal requirements in the jurisdictions where the project is made available.
-
-## Privacy
-
-Privacy considerations beyond legal requirements are crucial for building trust with users and promoting a positive user experience. Here are some additional privacy considerations for the Pac-Man project:
-
-**Clear Privacy Policy:**
-- Provide a clear and easily accessible privacy policy within the game or on the project's website. Clearly outline what data is collected, how it's used, and any third parties involved. Use simple language to make it understandable for users of all ages.
-
-**Minimization of Data Collection:**
-- Adopt a minimalistic approach to data collection. Only collect data that is essential for the functioning of the game and the user experience. Avoid unnecessary data points to reduce the impact on user privacy.
-
-**Anonymous Gameplay Statistics:**
-- If gathering gameplay statistics for improvements or analytics, consider aggregating and anonymizing[^9] the data. This allows for valuable insights without compromising individual user privacy.
-
-**User Control over Data:**
-- Empower users with control over their data. Offer options within the game settings that allow users to manage and customize privacy preferences, including the ability to opt out of certain data collection activities.
-
-**Consent for Updates:**
-- Obtain user consent before implementing significant updates or changes to the privacy policy. Keeping users informed and giving them the choice to accept or decline changes fosters a transparent and respectful relationship.
-
-**Child-Friendly Privacy Features:**
-- Implement features specifically designed for younger users, considering their unique privacy needs. For instance, incorporate parental controls, age-appropriate privacy settings, and child-friendly explanations of privacy concepts.
-
-**Educational Pop-ups:**
-- Integrate educational pop-ups or prompts within the game to inform users about privacy practices. Use engaging visuals and language that is accessible to a diverse audience, promoting awareness without causing user frustration.
-
-**Regular Privacy Audits:**
-- Conduct regular privacy audits to assess the data practices of the project. This includes reviewing data collection processes, storage security, and third-party integrations to identify and address potential privacy risks.
-
-**Secure In-Game Communication:**
-- If the Pac-Man project includes any form of in-game communication, prioritize the security of these communications. Implement encryption and moderation features to ensure a safe and private environment for users.
-
-**User-Friendly Data Deletion:**
-- Make it easy for users to delete their account and associated data. Provide a straightforward process within the game interface or website, and ensure that user data is promptly and securely deleted upon request.
-
-**Transparent Notification Practices:**
--  Notify users in a transparent manner about any changes to the privacy policy or terms of service. Clearly communicate how these changes may impact their privacy and provide ample time for users to adjust settings or opt out if necessary.
+**Minimization of data collection:**
+- Our data, being limited to player's score and being locally stored, players can safely stay anonymous.
 
 ## Cost analysis
 
@@ -226,64 +171,37 @@ Privacy considerations beyond legal requirements are crucial for building trust 
 
 ### Assumptions
 
-**Technical Expertise:**
+**Technical expertise:**
 - The development team possesses the necessary technical expertise in assembly x86, DosBox, and game development to successfully recreate Pac-Man.
 
-**Legal Compliance:**
-- The project assumes that legal considerations, including copyright clearance for Pac-Man, will be successfully navigated to ensure compliance with intellectual property laws.
+**Legal compliance:**
+- The project assumes that legal considerations, including trademark clearance for Pac-Man, will be successfully navigated to ensure compliance with intellectual property laws.
 
-**User Engagement:**
+**User engagement:**
 - There is an assumption that users will engage positively with the recreated Pac-Man game, fostering community participation and potential future enhancements.
 
-**Availability of Resources:**
-- Resources, including human resources, software, and tools, will be available as needed throughout the project timeline.
-
-**Budgetary Considerations:**
-- The budget allocated for the project is sufficient to cover development, legal, marketing, and miscellaneous costs.
-
-**Marketing Impact:**
-- Marketing efforts, including promotional materials and advertising, will effectively reach the target audience and generate interest in the Pac-Man project.
-
-**Timely Completion:**
+**Timely completion:**
 - The project assumes that it will be completed within the specified timeline, avoiding significant delays or disruptions.
 
-**Community Engagement:**
-- There is an assumption that community engagement strategies, including a community manager, will contribute positively to the project's success.
-
-**Quality Assurance:**
+**Quality assurance:**
 - The testing and quality assurance processes will effectively identify and address any bugs or issues, ensuring a polished and functional game.
 
 ### Risks
 
-**Technical Challenges:**
+**Technical challenges:**
 - Unforeseen technical challenges in implementing assembly x86, DosBox integration, or other game development aspects may lead to delays or difficulties in achieving the desired functionality.
 
-**Legal Hurdles:**
+**Legal hurdles:**
 - Legal challenges related to securing copyright clearance for Pac-Man or other legal considerations may pose obstacles to the project's progression.
 
-**User Adoption:**
-- The risk exists that user adoption may not meet expectations, impacting the overall success of the project and its potential for community engagement.
-
-**Resource Constraints:**
+**Resource constraints:**
 - Unexpected shortages or constraints in resources, including human resources or software tools, may impact the project's ability to meet deadlines or maintain quality standards.
 
-**Budget Overruns:**
-- Unforeseen expenses or budget overruns may strain financial resources, potentially affecting the project's scope or quality.
-
-**Market Saturation:**
-- The project faces the risk of being overshadowed by other gaming releases or failing to stand out in a market saturated with gaming options.
-
-**Community Management Challenges:**
-- Challenges in effectively managing the community, addressing concerns, and fostering positive engagement may lead to a less favorable reception of the project.
-
-**Unforeseen Legal Changes:**
+**Unforeseen legal changes:**
 - Changes in intellectual property or copyright laws during the project's development may introduce unforeseen legal complications.
 
-**Unpredictable Technical Issues:**
+**Unpredictable technical issues:**
 - Unpredictable technical issues, such as compatibility problems on different systems or devices, may arise during the testing phase.
-
-**Market Response:**
-- The market response may differ from expectations, affecting the project's reception and potentially requiring adjustments to marketing strategies.
 
 ## Success Criteria
 
@@ -298,14 +216,14 @@ The project will be considered as successful if all of these criterias have been
 
 ## Team Members
 
-|Name|Photo|E-mail|
-|-|-|-|
-|Clémentine Curel|<img src="" style="height:100px">|clementine.curel@algosup.com|
-|Laurent Bouquin|<img src="" style="height:100px">|laurent.bouquin@algosup.com|
-|Aurélien Fernandez|<img src="" style="height:100px">|aurelien.fernandez@algosup.com|
-|Mathias Gagnepain|<img src="" style="height:100px">|mathias.gagnepain@algosup.com|
-|Gaël Malvar|<img src="" style="height:100px">|gael.malvar@algosup.com|
-|Paul Nowak|<img src="" style="height:100px">|paul.nowak@algosup.com|
+|Name|Role|Photo|E-mail|
+|-|-|-|-|
+|Clémentine Curel|Senior software engineer|<img src="" style="height:100px">|clementine.curel@algosup.com|
+|Laurent Bouquin|Project manager|<img src="" style="height:100px">|laurent.bouquin@algosup.com|
+|Aurélien Fernandez|Program manager|<img src="" style="height:100px">|aurelien.fernandez@algosup.com|
+|Mathias Gagnepain|Junior software engineer|<img src="" style="height:100px">|mathias.gagnepain@algosup.com|
+|Gaël Malvar|Quality assurance|<img src="" style="height:100px">|gael.malvar@algosup.com|
+|Paul Nowak|Tech lead|<img src="" style="height:100px">|paul.nowak@algosup.com|
 
 ## Glossary
 
