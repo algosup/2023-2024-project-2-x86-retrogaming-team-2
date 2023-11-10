@@ -46,6 +46,16 @@ The antagonists are little ghosts, four of them can be seen in the game. Each gh
 
 <img src="./Images/Characters.jpg" width="300">
   
+Each ghost has its own behaviour:
+
+- Clyde: Chases directly after Pac-Man, but tries to head to his Scatter corner when within an 8-Dot radius of Pac-Man.
+  
+- Blinky: Follows Pac-Man directly during Chase mode, and heads to the upper-right corner during Scatter mode. He also has an "angry" mode that is triggered when there are a certain number of dots left in the maze, in this mode, Blinky will chase Pac-Man with an increased speed.
+  
+- Pinky: Chases towards the spot 2 Pac-Dots in front of Pac-Man. Due to a bug in the original game's coding, if Pac-Man faces upwards, Pinky's target will be 2 Pac-Dots in front of and 2 to the left of Pac-Man. During Scatter mode, she heads towards the upper-left corner.
+  
+- Inky: During Chase mode, his target is a bit complex. His target is relative to both Blinky and Pac-Man, where the distance Blinky is from Pinky's target is doubled to get Inky's target. He heads to the lower-right corner during Scatter mode.
+
 ### How to play
 
 The player, by controlling Pac-Man, has to eat every Pac-dots before one of the ghost catches him. If one of the ghost catches him, the player will lose a life and has to continue the level.
@@ -68,7 +78,7 @@ The player can use either a joystick or arrows on the keyboard to play. Moving t
 
 Our client, ALGOSUP, asked us to deliver documents and the final product on precise dates.
 
-|Date|Objective|
+|Date|Deliverable|
 |:-:|:-:|
 |13/11 1.30pm| Functional specification deadline|
 |27/11 1.30pm| Technical specification deadline|
@@ -79,6 +89,17 @@ Our client, ALGOSUP, asked us to deliver documents and the final product on prec
 ## Project timeline
 
 Our team has collectively decided to stick to a timeline.
+
+|Date|Objective|
+|:-:|:-:|
+|11/27/2023 - 12.30pm|Map is usable | 
+|11/27/2023 - 12.30pm|Player character can be played | 
+| 11/27/2023 - 12.30pm |ennemies & their behaviours are added |
+|12/04/2023 - 5.00pm|Power-ups can be collected |
+| 12/08/2023 - 12.30pm |Lives are implemented |
+| 12/11/2023 - 5.00pm |Difficulty is set and levels are implemented |
+| 12/14/2023 - 12.30pm|Score is calculated and displayed |
+| 12/15/2023 - 12.30pm|High Score is saved |
 
 ## Project scopes
 
