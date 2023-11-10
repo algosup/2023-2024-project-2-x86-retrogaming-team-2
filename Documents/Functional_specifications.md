@@ -27,6 +27,7 @@
     - [Risks](#risks)
     - [Assumptions](#assumptions)
   - [Success criteria](#success-criteria)
+  - [Test plan](#test-plan)
   - [Team members](#team-members)
   - [Glossary](#glossary)
 
@@ -70,7 +71,26 @@ The player can use either a joystick or arrows on the keyboard to play. Moving t
 
  On each corners you can see bigger Pac-dots, they are called "Power pellets", when eating them, ghosts turns blue and will avoid Pac-Man, but if the player catches one of them, he will gain bonus points and the ghost will return in the center of the map to return to life and restart the chase.
 
- Eating dots gives
+ Multiple elements or actions in the game provide the player with points, here is a full table of these elements:
+
+| Points        | Element/action |
+|:-------------:|:--------------:|
+| 10 Pts        | Pac-dot        |
+| 50 Pts        | Power pellet   |
+| 200 Pts       | 1st Ghost      |
+| 400 Pts       | 2nd Ghost      |
+| 800 Pts       | 3rd Ghost      |
+| 1600 Pts      | 4th Ghost      |
+| 100 Pts       | Cherry         |
+| 300 Pts       | Strawberry     |
+| 500 Pts       | Orange         |
+| 700 Pts       | Apple          |
+| 1000 Pts      | Melon          |
+| 2000 Pts      | Galaxian       |
+| 3000 Pts      | Bell           |
+| 5000 Pts      | Key            |
+
+Note: by 1st/2nd/3rd/4th ghost it means ghosts eaten by Pac-Man under the effect of a Power pellet.
 
  If the player achieve to get 10 thousand points, he will get an additional life, it happens for each multiple of 10 thousand.
 
@@ -235,7 +255,6 @@ By conforming to the PEGI 3 rating, we aim to provide a safe and enjoyable gamin
 **Quality assurance:**
 - The testing and quality assurance processes will effectively identify and address any bugs or issues, ensuring a polished and functional game.
 
-
 ## Success criteria
 
 The project will be considered as successful if all of these criterias have been met:
@@ -246,6 +265,10 @@ The project will be considered as successful if all of these criterias have been
 - The game does not return errors on launch,
 - The game does not crashes,
 - The player can loose if conditions are met.
+
+## Test plan
+
+Anything relative to this project's tests can be found in [this document](./Test_plan.md).
 
 ## Team members
 
