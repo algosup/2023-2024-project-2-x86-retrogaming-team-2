@@ -8,6 +8,9 @@
   - [Overview](#overview)
     - [What is Pac-Man](#what-is-pac-man)
     - [How to play](#how-to-play)
+  - [Game mechanics](#game-mechanics)
+    - [Map and movements mechanics](#map-and-movements-mechanics)
+    - [points and power pellets mechanics](#points-and-power-pellets-mechanics)
   - [Deliverables](#deliverables)
   - [Project timeline](#project-timeline)
   - [Project scopes](#project-scopes)
@@ -73,6 +76,8 @@ The player can use either a joystick or arrows on the keyboard to play. Moving t
 
  Multiple elements or actions in the game provide the player with points, here is a full table of these elements:
 
+<a id="point-table"></a>
+
 | Points        | Element/action |
 |:-------------:|:--------------:|
 | 10 Pts        | Pac-dot        |
@@ -93,6 +98,31 @@ The player can use either a joystick or arrows on the keyboard to play. Moving t
 Note: by 1st/2nd/3rd/4th ghost it means ghosts eaten by Pac-Man under the effect of a Power pellet.
 
  If the player achieve to get 10 thousand points, he will get an additional life, it happens for each multiple of 10 thousand.
+
+## Game mechanics
+
+The original Pac-Man game contains multiple mechanics, here is a list of them. 
+
+### Map and movements mechanics
+
+The map is composed of a maze, on the center of it there is a small "room" where ghosts are starting from. The player can't access this room.
+
+Walls are represented by blue lines. The player and the ghosts cannot pass through wall.
+
+The player and the ghost can move using four directions: up, down, left and right. Unlike more recent games the players cannot mix two directions at the same time.
+
+Finally on the left and on the right a "tunnel" can be seen, when taking it the player is teleported to the other side of the map. The ghosts can also take the tunnel but taking it will reduce their speed for one second.
+
+### points and power pellets mechanics
+
+In the original Pac-Man game fruits can be found under the "ghost's room", these fruits depends on the level and each of them gives a different amount of [points](#point-table).
+
+Each dots and power pellets are also giving a small amount points.
+
+When eating a power pellet Pac-Man can gain a short-timed bonus from 6 to 1 second depending on the level.
+Under the duration effect of a power pellet, ghosts will try to avoid Pac-Man as much as possible, when reaching a ghost, Pac-Man will eat it, making it invisible and the player will earn points. After being eaten a ghost will go straight to the ghost room. When it reaches the room, the ghost will reappear with their normal form.
+
+After reaching a multiple of 10 thousand in points, the player will be given a bonus life.
 
 ## Deliverables
 
