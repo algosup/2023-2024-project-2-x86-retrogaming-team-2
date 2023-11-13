@@ -146,9 +146,6 @@ Here is the list with the correct order of both modes when switching to the othe
 - Scatter for 5 seconds, then Chase for 20 seconds.
 - Scatter for 5 seconds, then switch to Chase mode permanently.
 
-
-
-
 ## Deliverables
 
 Our client, ALGOSUP, asked us to deliver documents and the final product on precise dates.
@@ -194,9 +191,11 @@ Our project's goal is to create a "Pac-Man" like game, this game must meet these
 
 ## Mockup designs
 
-For now we olny have mockups to replace the maze and Pac-Man
+For now we only have mockups to replace the maze and Pac-Man.
  
 ### Maze
+
+<img src="Images/NewMap.png" style="height: 200px">
 
 ### Pac-Man
 
