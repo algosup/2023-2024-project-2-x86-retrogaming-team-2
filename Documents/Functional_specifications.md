@@ -29,7 +29,7 @@
   - [Risk and assumptions](#risk-and-assumptions)
     - [Risks](#risks)
     - [Assumptions](#assumptions)
-  - [Success criteria](#success-criteria)
+  - [Success criterias](#success-criterias)
   - [Test plan](#test-plan)
   - [Team members](#team-members)
   - [Glossary](#glossary)
@@ -46,7 +46,7 @@ Pac-Man is a video game published in 1980 by the company Bandai Namco. The game 
 
 It consist on a yellow, round shaped character named "Pac-Man" eating "Pac-dots" on a 2D map.
 
-The antagonists are little ghosts, four of them can be seen in the game. Each ghost has a name related to it's color except for the orange one.
+The antagonists are little ghosts, four of them can be seen in the game. Each ghost has a name related to its color except for the orange one.
 
 <img src="./Images/Characters.jpg" width="300">
   
@@ -56,7 +56,7 @@ Each ghost has its own behaviour:
   
 - Blinky: Follows Pac-Man directly during Chase mode, and heads to the upper-right corner during Scatter mode. He also has an "angry" mode that is triggered when there are a certain number of dots left in the maze, in this mode, Blinky will chase Pac-Man with an increased speed.
   
-- Pinky: Chases towards the spot 2 Pac-Dots in front of Pac-Man. Due to a bug in the original game's coding, if Pac-Man faces upwards, Pinky's target will be 2 Pac-Dots in front of and 2 to the left of Pac-Man. During Scatter mode, she heads towards the upper-left corner.
+- Pinky: Chases towards the spot 2 Pac-dots in front of Pac-Man. Due to a bug in the original game's coding, if Pac-Man faces upwards, Pinky's target will be 2 Pac-dots in front of and 2 to the left of Pac-Man. During Scatter mode, she heads towards the upper-left corner.
   
 - Inky: During Chase mode, his target is a bit complex. His target is relative to both Blinky and Pac-Man, where the distance Blinky is from Pinky's target is doubled to get Inky's target. He heads to the lower-right corner during Scatter mode.
 
@@ -72,32 +72,30 @@ The player can use either a joystick or arrows on the keyboard to play. Moving t
 
  On the center of the leftmost and rightmost walls there is a path to teleport to the opposite side of the map, this path is commonly named "Tunnel".
 
- On each corners you can see bigger Pac-dots, they are called "Power pellets", when eating them, ghosts turns blue and will avoid Pac-Man, but if the player catches one of them, he will gain bonus points and the ghost will return in the center of the map to return to life and restart the chase.
+ On each corners you can see bigger Pac-dots, they are called "Power pellets", when eating them, ghosts turn blue and will avoid Pac-Man, but if the player catches one of them, he will gain bonus points and the ghost will return in the center of the map to return to life and restart the chase.
 
  Multiple elements or actions in the game provide the player with points, here is a full table of these elements:
 
 <a id="point-table"></a>
 
-| Points        | Element/action |
-|:-------------:|:--------------:|
-| 10 Pts        | Pac-dot        |
-| 50 Pts        | Power pellet   |
-| 200 Pts       | 1st Ghost      |
-| 400 Pts       | 2nd Ghost      |
-| 800 Pts       | 3rd Ghost      |
-| 1600 Pts      | 4th Ghost      |
-| 100 Pts       | Cherry         |
-| 300 Pts       | Strawberry     |
-| 500 Pts       | Orange         |
-| 700 Pts       | Apple          |
-| 1000 Pts      | Melon          |
-| 2000 Pts      | Galaxian       |
-| 3000 Pts      | Bell           |
-| 5000 Pts      | Key            |
+|  Points  | Element/action |
+| :------: | :------------: |
+|  10 Pts  |    Pac-dot     |
+|  50 Pts  |  Power pellet  |
+| 200 Pts  |   1st Ghost    |
+| 400 Pts  |   2nd Ghost    |
+| 800 Pts  |   3rd Ghost    |
+| 1600 Pts |   4th Ghost    |
+| 100 Pts  |     Cherry     |
+| 300 Pts  |   Strawberry   |
+| 500 Pts  |     Orange     |
+| 700 Pts  |     Apple      |
+| 1000 Pts |     Melon      |
+| 2000 Pts |    Galaxian    |
+| 3000 Pts |      Bell      |
+| 5000 Pts |      Key       |
 
 Note: by 1st/2nd/3rd/4th ghost it means ghosts eaten by Pac-Man under the effect of a Power pellet.
-
- If the player achieve to get 10 thousand points, he will get an additional life, it happens for each multiple of 10 thousand.
 
 ## Game mechanics
 
@@ -128,32 +126,32 @@ After reaching a multiple of 10 thousand in points, the player will be given a b
 
 Our client, ALGOSUP, asked us to deliver documents and the final product on precise dates.
 
-|Date|Deliverable|
-|:-:|:-:|
-|13/11 1.30pm| Functional specification deadline|
-|27/11 1.30pm| Technical specification deadline|
-|8/12 5pm| Test plan deadline|
-|11/12 5pm| Working prototype deadline|
-|21/12 5pm| Final product deadline|
+|     Date     |            Deliverable            |
+| :----------: | :-------------------------------: |
+| 13/11 1.30pm | Functional specification deadline |
+| 27/11 1.30pm | Technical specification deadline  |
+|   8/12 5pm   |        Test plan deadline         |
+|  11/12 5pm   |    Working prototype deadline     |
+|  21/12 5pm   |      Final product deadline       |
 
 ## Project timeline
 
 Our team has collectively decided to stick to a timeline.
 
-|Date|Objective|
-|:-:|:-:|
-|11/27/2023 - 12.30pm|Map is usable | 
-|11/27/2023 - 12.30pm|Player character can be played | 
-| 11/27/2023 - 12.30pm |ennemies & their behaviours are added |
-|12/04/2023 - 5.00pm|Power-ups can be collected |
-| 12/08/2023 - 12.30pm |Lives are implemented |
-| 12/11/2023 - 5.00pm |Difficulty is set and levels are implemented |
-| 12/14/2023 - 12.30pm|Score is calculated and displayed |
-| 12/15/2023 - 12.30pm|High Score is saved |
+|         Date         |                  Objective                   |
+| :------------------: | :------------------------------------------: |
+| 11/27/2023 - 12.30pm |                Map is usable                 |
+| 11/27/2023 - 12.30pm |        Player character can be played        |
+| 11/27/2023 - 12.30pm |    ennemies & their behaviours are added     |
+| 12/04/2023 - 5.00pm  |          Power-ups can be collected          |
+| 12/08/2023 - 12.30pm |            Lives are implemented             |
+| 12/11/2023 - 5.00pm  | Difficulty is set and levels are implemented |
+| 12/14/2023 - 12.30pm |      Score is calculated and displayed       |
+| 12/15/2023 - 12.30pm |             High Score is saved              |
 
 ## Project scopes
 
-Our project's goal is to create a "Pac-Man" like game, this games must meet these scopes:
+Our project's goal is to create a "Pac-Man" like game, this game must meet these scopes:
 
 - The game must have a gameplay similar to the game "Pac-Man",
 - The game must have an interface to allow users to interact with the game,
@@ -162,10 +160,10 @@ Our project's goal is to create a "Pac-Man" like game, this games must meet thes
 
 ## Stakeholders
 
-|Image|Name|
-|:-:|:-:|
-|<img src="./Images/ALGOSUP.png" style="height:50px">|ALGOSUP|
-|-|Team 2|
+|                        Image                         |  Name   |
+| :--------------------------------------------------: | :-----: |
+| <img src="./Images/ALGOSUP.png" style="height:50px"> | ALGOSUP |
+|                          -                           | Team 2  |
 
 
 ## Personas
@@ -215,11 +213,9 @@ The project also has some out of scope objectives, there are as following:
 
 The project contains non-functional requirements which are the following:
 
-The game must react to player's action in less than a second, the player cannot be subject to input latency.
+The game must react to the player's action in less than a second, the player cannot be subject to input latency.
 
 The game must be understandable for young players, it shouldn't require more than ten minutes to comprehend the gameplay.
-
-The game should be playable on a x86 emulator.
 
 ## Laws and regulations
 
@@ -285,7 +281,7 @@ By conforming to the PEGI 3 rating, we aim to provide a safe and enjoyable gamin
 **Quality assurance:**
 - The testing and quality assurance processes will effectively identify and address any bugs or issues, ensuring a polished and functional game.
 
-## Success criteria
+## Success criterias
 
 The project will be considered as successful if all of these criterias have been met:
 
@@ -302,14 +298,14 @@ Anything relative to this project's tests can be found in [this document](./Test
 
 ## Team members
 
-|Name|Role|Photo|E-mail|
-|:-:|:-:|:-:|:-:|
-|Clémentine Curel|Senior software engineer| <img src="https://avatars.githubusercontent.com/u/78617457?s=96&v=4" width="50px">|clementine.curel@algosup.com|
-|Laurent Bouquin|Project manager|<img src="https://avatars.githubusercontent.com/u/71769489?s=96&v=4" width="50px"> |laurent.bouquin@algosup.com|
-|Aurélien Fernandez|Program manager|<img src="https://avatars.githubusercontent.com/u/71769656?v=4" width="50px">|aurelien.fernandez@algosup.com|
-|Mathias Gagnepain|Junior software engineer|<img src="https://ca.slack-edge.com/T064RLYME7K-U064FFWBT3N-g7986289d5c2-512" width="50px">|mathias.gagnepain@algosup.com|
-|Gaël Malvar|Quality assurance|<img src="https://ca.slack-edge.com/T064RLYME7K-U0646D5HMLN-gf674ff9a01c-512" width="50px">|gael.malvar@algosup.com|
-|Paul Nowak|Tech lead|<img src="https://ca.slack-edge.com/T064RLYME7K-U06522CLLD6-g3621cbd420c-512" width="50px">|paul.nowak@algosup.com|
+|        Name        |           Role           |                                                                      Photo                                                                       |             E-mail             |
+| :----------------: | :----------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------: |
+|  Clémentine Curel  | Senior software engineer |   <a href="https://github.com/Clementine951" rel="some text"><img src="https://avatars.githubusercontent.com/u/78617457?v=4" width="50px"></a>   |  clementine.curel@algosup.com  |
+|  Laurent Bouquin   |     Project manager      |  <a href="https://github.com/laurentbouquin" rel="some text"><img src="https://avatars.githubusercontent.com/u/71769489?v=4" width="50px"></a>   |  laurent.bouquin@algosup.com   |
+| Aurélien Fernandez |     Program manager      | <a href="https://github.com/aurelienfernandez" rel="some text"><img src="https://avatars.githubusercontent.com/u/71769656?v=4" width="50px"></a> | aurelien.fernandez@algosup.com |
+| Mathias Gagnepain  | Junior software engineer | <a href="https://github.com/MathiasGagnepain" rel="some text"><img src="https://avatars.githubusercontent.com/u/145995367?v=4" width="50px"></a> | mathias.gagnepain@algosup.com  |
+|    Gaël Malvar     |    Quality assurance     |   <a href="https://github.com/Gael-MALVAR" rel="some text"><img src="https://avatars.githubusercontent.com/u/146000851?v=4" width="50px"></a>    |    gael.malvar@algosup.com     |
+|     Paul Nowak     |        Tech lead         |    <a href="https://github.com/PaulNowak36" rel="some text"><img src="https://avatars.githubusercontent.com/u/91249965?v=4" width="50px"></a>    |     paul.nowak@algosup.com     |
 
 ## Glossary
 
