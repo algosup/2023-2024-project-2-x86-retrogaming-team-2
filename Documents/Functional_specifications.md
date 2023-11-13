@@ -10,15 +10,19 @@
     - [How to play](#how-to-play)
   - [Game mechanics](#game-mechanics)
     - [Map and movements mechanics](#map-and-movements-mechanics)
-    - [points and power pellets mechanics](#points-and-power-pellets-mechanics)
+    - [Points and power pellets mechanics](#points-and-power-pellets-mechanics)
+    - [Ghosts behaviours mechanic](#ghosts-behaviours-mechanic)
   - [Deliverables](#deliverables)
   - [Project timeline](#project-timeline)
   - [Project scopes](#project-scopes)
   - [Stakeholders](#stakeholders)
+  - [Mockup designs](#mockup-designs)
+    - [Maze](#maze)
+    - [Pac-Man](#pac-man)
   - [Personas](#personas)
   - [Use cases](#use-cases)
-    - [Thibaud, 8 years old:](#thibaud-8-years-old)
     - [Alice, 17 years old, high school student:](#alice-17-years-old-high-school-student)
+    - [Thibaud, 8 years old:](#thibaud-8-years-old)
     - [Claire, 27 years old, developer:](#claire-27-years-old-developer)
     - [Jacques, 65 years old:](#jacques-65-years-old)
     - [Titouan, 35 years old, gaming enthusiast:](#titouan-35-years-old-gaming-enthusiast)
@@ -48,17 +52,9 @@ It consist on a yellow, round shaped character named "Pac-Man" eating "Pac-dots"
 
 The antagonists are little ghosts, four of them can be seen in the game. Each ghost has a name related to its color except for the orange one.
 
+<a id="characters"></a>
 <img src="./Images/Characters.jpg" width="300">
-  
-Each ghost has its own behaviour:
 
-- Clyde: Chases directly after Pac-Man, but tries to head to his Scatter corner when within an 8-Dot radius of Pac-Man.
-  
-- Blinky: Follows Pac-Man directly during Chase mode, and heads to the upper-right corner during Scatter mode. He also has an "angry" mode that is triggered when there are a certain number of dots left in the maze, in this mode, Blinky will chase Pac-Man with an increased speed.
-  
-- Pinky: Chases towards the spot 2 Pac-dots in front of Pac-Man. Due to a bug in the original game's coding, if Pac-Man faces upwards, Pinky's target will be 2 Pac-dots in front of and 2 to the left of Pac-Man. During Scatter mode, she heads towards the upper-left corner.
-  
-- Inky: During Chase mode, his target is a bit complex. His target is relative to both Blinky and Pac-Man, where the distance Blinky is from Pinky's target is doubled to get Inky's target. He heads to the lower-right corner during Scatter mode.
 
 ### How to play
 
@@ -72,7 +68,7 @@ The player can use either a joystick or arrows on the keyboard to play. Moving t
 
  On the center of the leftmost and rightmost walls there is a path to teleport to the opposite side of the map, this path is commonly named "Tunnel".
 
- On each corners you can see bigger Pac-dots, they are called "Power pellets", when eating them, ghosts turn blue and will avoid Pac-Man, but if the player catches one of them, he will gain bonus points and the ghost will return in the center of the map to return to life and restart the chase.
+ On each corners you can see bigger Pac-dots, they are called "Power pellets", when eating them, ghosts turn blue and will avoid Pac-Man, but if the player catches one of them, he will gain bonus points and the ghost will return in the center of the map to return to life and continue the chase.
 
  Multiple elements or actions in the game provide the player with points, here is a full table of these elements:
 
@@ -95,7 +91,8 @@ The player can use either a joystick or arrows on the keyboard to play. Moving t
 | 3000 Pts |      Bell      |
 | 5000 Pts |      Key       |
 
-Note: by 1st/2nd/3rd/4th ghost it means ghosts eaten by Pac-Man under the effect of a Power pellet.
+<font  size=1> Note: by 1st/2nd/3rd/4th ghost it means ghosts eaten by Pac-Man under the effect of a Power pellet.
+</font>
 
 ## Game mechanics
 
@@ -105,22 +102,52 @@ The original Pac-Man game contains multiple mechanics, here is a list of them.
 
 The map is composed of a maze, on the center of it there is a small "room" where ghosts are starting from. The player can't access this room.
 
-Walls are represented by blue lines. The player and the ghosts cannot pass through wall.
+Walls are represented by blue lines, the player and the ghosts cannot pass through wall.
 
 The player and the ghost can move using four directions: up, down, left and right. Unlike more recent games the players cannot mix two directions at the same time.
 
 Finally on the left and on the right a "tunnel" can be seen, when taking it the player is teleported to the other side of the map. The ghosts can also take the tunnel but taking it will reduce their speed for one second.
 
-### points and power pellets mechanics
+### Points and power pellets mechanics
 
-In the original Pac-Man game fruits can be found under the "ghost's room", these fruits depends on the level and each of them gives a different amount of [points](#point-table).
+In the original Pac-Man game fruits can be found under the "ghosts' room", these fruits depends on the level and each of them gives a different amount of [points](#point-table).
 
 Each dots and power pellets are also giving a small amount points.
 
 When eating a power pellet Pac-Man can gain a short-timed bonus from 6 to 1 second depending on the level.
-Under the duration effect of a power pellet, ghosts will try to avoid Pac-Man as much as possible, when reaching a ghost, Pac-Man will eat it, making it invisible and the player will earn points. After being eaten a ghost will go straight to the ghost room. When it reaches the room, the ghost will reappear with their normal form.
+Under the duration effect of a power pellet, ghosts will try to avoid Pac-Man as much as possible. When reaching a ghost, Pac-Man will eat it, making it invisible and the player will earn points. After being eaten a ghost will go straight to the ghosts' room. When it reaches the room, the ghost will reappear with their normal form.
+
+Each level uses it's fruit two times, the first time it appears when the player has eaten 70 dots, the second one appears when the player has eaten 170 dots.
 
 After reaching a multiple of 10 thousand in points, the player will be given a bonus life.
+
+### Ghosts behaviours mechanic
+
+Ghosts possess two modes, the first one is the "chase" mode and the second one is the "scatter" mode.
+
+During chase mode each ghosts have its own behaviour, here is the list of them:
+
+- Clyde: Chases directly after Pac-Man, but tries to head to his Scatter corner when within an 8-Dot radius of Pac-Man.
+  
+- Blinky: Follows Pac-Man directly during Chase mode, and heads to the upper-right corner during Scatter mode. He also has an "angry" mode that is triggered when there are a certain number of dots left in the maze, in this mode, Blinky will chase Pac-Man with an increased speed.
+  
+- Pinky: Chases towards the spot 2 Pac-dots in front of Pac-Man. Due to a bug in the original game's coding, if Pac-Man faces upwards, Pinky's target will be 2 Pac-dots in front of and 2 to the left of Pac-Man. During Scatter mode, she heads towards the upper-left corner.
+  
+- Inky: During Chase mode, his target is a bit complex. His target is relative to both Blinky and Pac-Man, where the distance Blinky is from Pinky's target is doubled to get Inky's target. He heads to the lower-right corner during Scatter mode.
+  
+The scatter mode consists of making the ghosts lurk in a specific corner of the map, here is the original map with the scatter zones and their specific color.
+
+<img src="./Images/scatter.png">
+
+Here is the list with the correct order of both modes when switching to the other one: 
+
+- Scatter for 7 seconds, then Chase for 20 seconds.
+- Scatter for 7 seconds, then Chase for 20 seconds.
+- Scatter for 5 seconds, then Chase for 20 seconds.
+- Scatter for 5 seconds, then switch to Chase mode permanently.
+
+
+
 
 ## Deliverables
 
@@ -165,6 +192,16 @@ Our project's goal is to create a "Pac-Man" like game, this game must meet these
 | <img src="./Images/ALGOSUP.png" style="height:50px"> | ALGOSUP |
 |                          -                           | Team 2  |
 
+## Mockup designs
+
+For now we olny have mockups to replace the maze and Pac-Man
+ 
+### Maze
+
+### Pac-Man
+
+<img src="Images/Closed-Pac.png" style="height: 200px">
+<img src="Images/Opened-Pac.png" style="height: 200px">
 
 ## Personas
 
@@ -180,13 +217,14 @@ Our project's goal is to create a "Pac-Man" like game, this game must meet these
 
 ## Use cases
 
+### Alice, 17 years old, high school student:
+
+After a long day of classes, Alice decides to take a break and explore the Pac-Man project. Despite not being a regular gamer, she finds the user-friendly[^2] interface and simple controls easy to navigate. The nostalgic elements of the classic game bring back childhood memories. Alice enjoys a quick gaming session, appreciating the break from her academic routine and the opportunity to explore a different aspect of technology.
+
 ### Thibaud, 8 years old:
 
 Thibaud excitedly sits in front of the computer, ready to play the recreated Pac-Man game. With simple controls and vibrant graphics, he navigates through the mazes, collecting pellets and avoiding ghosts. Thibaud giggles with delight as he completes each level, feeling a sense of accomplishment. The accessible gameplay and engaging visuals keep him entertained, making the Pac-Man project his new favorite game.
 
-### Alice, 17 years old, high school student:
-
-After a long day of classes, Alice decides to take a break and explore the Pac-Man project. Despite not being a regular gamer, she finds the user-friendly[^2] interface and simple controls easy to navigate. The nostalgic elements of the classic game bring back childhood memories. Alice enjoys a quick gaming session, appreciating the break from her academic routine and the opportunity to explore a different aspect of technology.
 
 ### Claire, 27 years old, developer:
 
