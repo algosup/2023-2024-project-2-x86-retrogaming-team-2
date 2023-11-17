@@ -1,0 +1,40 @@
+# Technical Specifications
+
+<details>
+<summary>Table of content</summary>
+
+- [Technical Specifications](#functional-specifications)
+  - [Overview](#overview)
+    - [What is Pac-Man](#what-is-pac-man)
+    - [How to play](#how-to-play)
+  - [Game mechanics](#game-mechanics)
+    - [Map and movements mechanics](#map-and-movements-mechanics)
+    - [Points and power pellets mechanics](#points-and-power-pellets-mechanics)
+    - [Ghosts behaviours mechanic](#ghosts-behaviours-mechanic)
+  - [Deliverables](#deliverables)
+  - [Project timeline](#project-timeline)
+  - [Project scopes](#project-scopes)
+  - [Stakeholders](#stakeholders)
+  - [Mockup designs](#mockup-designs)
+    - [Maze](#maze)
+    - [Pac-Man](#pac-man)
+  - [Personas](#personas)
+  - [Use cases](#use-cases)
+    - [Alice, 17 years old, high school student:](#alice-17-years-old-high-school-student)
+    - [Thibaud, 8 years old:](#thibaud-8-years-old)
+    - [Claire, 27 years old, developer:](#claire-27-years-old-developer)
+    - [Jacques, 65 years old:](#jacques-65-years-old)
+    - [Titouan, 35 years old, gaming enthusiast:](#titouan-35-years-old-gaming-enthusiast)
+  - [Out of scope](#out-of-scope)
+  - [Non-functional requirements](#non-functional-requirements)
+  - [Laws and regulations](#laws-and-regulations)
+  - [Cost analysis](#cost-analysis)
+  - [Risk and assumptions](#risk-and-assumptions)
+    - [Risks](#risks)
+    - [Assumptions](#assumptions)
+  - [Success criterias](#success-criterias)
+  - [Test plan](#test-plan)
+  - [Team members](#team-members)
+  - [Glossary](#glossary)
+
+</details>
