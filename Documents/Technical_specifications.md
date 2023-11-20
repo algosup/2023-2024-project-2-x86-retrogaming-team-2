@@ -20,6 +20,7 @@
     - [Demo](#demo)
   - [Technologies](#technologies)
     - [Programming language](#programming-language)
+    - [x86 Microprocessor](#x86-microprocessor)
     - [Processus of installation](#processus-of-installation)
     - [Dependencies](#dependencies)
     - [Problems encountered](#problems-encountered)
@@ -137,6 +138,12 @@ Futhermore, the language requires less memory and execution time, and will be mo
 Now, our team is stick to use the x86 Assembly version due to DosBox being a x86 emulator.
 
 
+
+### x86 Microprocessor
+
+Franck told us to use the 16-bit microprocessor Intel 8086 for making our game. 
+
+can work on modern machine
 
 ### Processus of installation
 AAA
