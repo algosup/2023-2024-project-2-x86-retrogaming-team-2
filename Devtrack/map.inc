@@ -40,9 +40,6 @@ drawMaze:
         add bx, 8                               ; increament bx by 8
         cmp bx, window_width                    ; campare bx to the window width
         jb .drawingloop                         ; loop drawing loop if the width is not reached
-        jmp .drawcol                            ; jump to drawcol if the width is reached
-
-    .drawcol:
         add di, window_width*7      ; add window width multiply by the sprite height
         xor bx, bx                  ; reset bx
         jmp .drawingloop            ; go back in the loop drawingloop

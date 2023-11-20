@@ -17,7 +17,6 @@ _start:
 
     ; Return to text mode and exit
     mov ax, 0xA000
-    int 0x10       ; Set destination index to 0 (start of video memory)
 
     ;call move_player
 
