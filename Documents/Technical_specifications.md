@@ -14,8 +14,8 @@
     - [Out of scope](#out-of-scopes)
   - [Gameplay](#gameplay)
     - [Game screen](#game-screen)
-    - [Game rules](#game-rules)
-    - [Game mechanics](#game-mechanics)
+    - [Controls](#controls)
+    - [Mechanics and rules](#mechanics-and-rules)
     - [Sprites gallery](#sprites-gallery)
     - [Demo](#demo)
   - [Technologies used](#technologies-used)
@@ -49,7 +49,9 @@ However, we are required to use the Assembly programming language which include 
 The goal
 
 ### Proposed solution
-Our solution is a 1-player maze action game that is close to the original's game's aspect and gameplay. However, our version will propose a different map and different sprites for the characters involved.
+Our solution is a game named "Dev Track": it's a 1-player maze action game that is close to the original's game's aspect and gameplay. 
+
+However, our version will propose a different map and different sprites for the characters involved. Furthermore, this game will be played on PC and ran on the DosBox virtual machine.
 
 When making that game, we want to trigger to the player a feeling of challenge, because the game tends to be harder at each level, and a feeling of achievement after he managed to succeed.
 
@@ -86,13 +88,22 @@ Then, we didn't want to add sound and music in our game. Indeed, we prefered to 
 The goal
 
 ### Game screen
+This is how the game screen looks like in our game:
+
+
+Dev Track's maze occupies most of the entire screen, while upper-top band hows a black area containing the actual score, the high score and the number of Pac-Man's remaining lives.
+
+### Controls
+For controling our hungry red ball, we use the keyboard touches to move the character from a x-z plane fixed camera movement.
+
+Indeed, we can either used the arrows keys to move our hero, or for the left-handed players, we can use the WASD keys.
+
+Moving through the maze will be the only thing the player could do with our character, as the latter will automatically interact with the other game systems (enemies, pac-dots..;) when entering in collision with them.
+
+### Mechanics and rules
 AAA
 
-### Game rules
-AAA
 
-### Game mechanics
-AAA
 
 events
 
