@@ -13,6 +13,8 @@
     - [Performance Testing](#performance-testing)
   - [Schedule](#schedule)
   - [Tools](#tools)
+    - [Hardware](#hardware)
+    - [Software](#software)
 
 </details>
 
@@ -30,7 +32,7 @@ The strategy that will be used to test the game is to test it manually. The test
 
 #### Functionality Test
 
-| Test | Description |
+| Name of the test | Description |
 | --- | --- |
 | Movement and Controls | Test if the controls are working properly. |
 | Foes Behavior | Ensure that the behavior of the foes works as expected for each of them. |
@@ -60,4 +62,37 @@ The strategy that will be used to test the game is to test it manually. The test
 
 ### Schedule
 
+_We do not yet have a playable version of the game and therefore cannot yet plan a schedule_
+
 ### Tools
+
+In order to test the game, we will use several tools.
+
+#### Hardware
+
+We will run and test the game on different machines, we have 2 at our disposal : 
+
+Lenovo ThinkBook :
+  - ThinkBook 14 G4 IAP
+    - **Processor** : 12th Gen Intel(R) Core(TM) i7-1255U   1.70 GHz
+    - **RAM** : 16.0 GB
+    - **System** : 64-bit operating system, x64-based processor
+    - **Operating system** : Windows 11 Pro ( Version : 22H2 ) 
+  
+MacBook Air : 
+  - MacBook Air 13″
+    - Apple **M1** chip
+    - **RAM** : 8.0 GB
+    - **Operating system** : macOS Ventura*
+
+
+#### Software
+
+We will use different software to run the game, test it, report different bugs and resolve them.
+
+- **DOSBox** to run the game and test it on our different Hardware.
+  - DOSBox **0.74-3** for Windows
+  - DOSBox **0.74-3** for macOS
+- **NASM** to compile the assembly language.
+- **GitHub** to report bugs.
+- **Visual Studio Code** to develop the game and fix bugs.
