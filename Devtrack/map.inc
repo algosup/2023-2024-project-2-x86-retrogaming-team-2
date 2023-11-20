@@ -43,6 +43,6 @@ drawMaze:
         jmp .drawcol                            ; jump to drawcol if the width is reached
 
     .drawcol:
-        add di, window_width*8      ; add window width multiply by the sprite height
+        add di, window_width*7      ; add window width multiply by the sprite height
         xor bx, bx                  ; reset bx
         jmp .drawingloop            ; go back in the loop drawingloop

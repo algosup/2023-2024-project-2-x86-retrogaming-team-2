@@ -8,7 +8,6 @@ section .data
 
 section .text
     global _start
-
 _start:
     xor sp, sp        ; Reset Stack Pointer
     ; Initialize graphics mode
