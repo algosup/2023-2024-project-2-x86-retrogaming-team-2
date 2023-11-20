@@ -32,7 +32,7 @@
 ## Overview
 
 ### Short presentation
-Pac-Man (originally named Puckman in english) is a 1980 arcade game developped by the japanese video game company called Bandai Namco Entertainment Inc.
+Pac-Man (originally named Puckman in english) is a 1980 arcade game developped by the japanese video game company called Bandai Namco Entertainment Inc and designed by Toru Iwatani.
 
 First released in Japan, it became a massive success in the United States where more than 100 000 units were sold in 1 year.
 
@@ -49,7 +49,10 @@ However, we are required to use the Assembly programming language which include 
 The goal
 
 ### Proposed solution
-AAA
+Our solution is a 1-player maze action game that is close to the original's game's aspect and gameplay. However, our version will propose a different map and different sprites for the characters involved.
+
+When making that game, we want to trigger to the player a feeling of challenge, because the game tends to be harder at each level, and a feeling of achievement after he managed to succeed.
+
 
 ### Decisions taken
 During the planning phase of our game, several critical choices must have been done in order to avoid a catastrophic phase of development:
@@ -60,6 +63,15 @@ To anticipate the different kinds of player who are right-handed or left-handed,
 So, we plan to incorporate several variables that have several keyboard keys assigned to them (Ex: "Go UP" variable connected to Up Arrow key or W Key).
 
 Furthermore, the key handler must detect the same scancode regardless if it's uppercase or lowercase.
+
+#### Screen resolution
+Originally, we planned to have a screen resolution of 640*800 pixels, for a total of 307 000 pixels. The problem is that our game is limited to a 16-bit game can only support up to 65 536 pixels, which isn't enough to provide such a screen quality.
+
+So, we had decided to opt for a 320*200 pixels resolution, with a total of 64 000 pixels.
+
+In addition, we had to reduce the sprites' size from 16*16 to 8*8 pixels.
+
+
 
 ### Other solutions
 
@@ -81,6 +93,8 @@ AAA
 
 ### Game mechanics
 AAA
+
+events
 
 ### Sprites gallery
 AAA
@@ -111,3 +125,5 @@ AAA
 
 ## Glossary
 The goal
+
+maze game
