@@ -10,6 +10,8 @@
   - [Technical requirements](#technical-requirements)
     - [Proposed solution](#proposed-solution)
     - [Decisions taken](#decisions-taken)
+      - [Key Handler](#key-handler)
+      - [Screen Resolution](#screen-resolution)
     - [Other solutions](#other-solutions)
     - [Out of scope](#out-of-scopes)
   - [Gameplay](#gameplay)
@@ -17,6 +19,9 @@
     - [Controls](#controls)
     - [Mechanics and rules](#mechanics-and-rules)
     - [Sprites gallery](#sprites-gallery)
+      - [Hero](#hero)
+      - [Ghosts](#ghosts)
+      - [Others](#others)
     - [Demo](#demo)
   - [Technologies](#technologies)
     - [Programming language](#programming-language)
@@ -68,7 +73,7 @@ So, we plan to incorporate several variables that have several keyboard keys ass
 
 Furthermore, the key handler must detect the same scancode regardless if it's uppercase or lowercase.
 
-#### Screen resolution
+#### Screen Resolution
 Originally, we planned to have a screen resolution of 640*800 pixels, for a total of 307 000 pixels. The problem is that our game is limited to a 16-bit game can only support up to 65 536 pixels, which isn't enough to provide such a screen quality.
 
 So, we had decided to opt for a 320*200 pixels resolution, with a total of 64 000 pixels.
@@ -79,7 +84,12 @@ In addition, we had to reduce the sprites' size from 16*16 to 8*8 pixels.
 
 ### Other solutions
 
-The plan of our maze was originally much bigger and would take most of the screen size. However, we expected to experiment graphics issues in case we have to reduce the scren size, and we also needed to include the score.
+The plan of our maze was originally much bigger and would take most of the screen size. However, we expected to experiment graphics issues in case we have to reduce the screen resolution, and we also needed to include the score.
+
+Here are some concepts of maze that were considered during the project's development:
+
+CONCEPTS
+
 
 ### Out of scope
 First of all, we have decided to exclude the bonus fruits in our game due to time constraints. We believed that it was the less important feature to implement, and we would have replaced them with other kinds of food (Soda, etc...) if we had time.
@@ -122,8 +132,22 @@ events
 ### Sprites gallery
 AAA
 
+#### Hero
+
+The hero's sprite is based on the ALGOSUP's logo.
+
+#### Ghosts
+We created new sprites for enemies, with different designs and different names.
+
+#### Others
+AAA
+
+
 ### Demo
 Here's a (upcoming) demo of our game:
+
+
+
 
 ## Technologies 
 The goal
@@ -213,12 +237,17 @@ We click enter and the drive C will be mounted as a local directory.
 
 Photo dosbox path
 
+Now that the command prompt will be set up, we will be able to compile and run .asm files.
+
 
 
 
 
 ### Gimp
-AAA
+For creating the concepts of our maze and sprites, we used Gimp as a designing tool.
+
+It's an high quality framework for scripted image manipulation that provides us sophisticated tools to create, modify and enhances images.
+
 
 ## Glossary
 The goal
@@ -228,6 +257,8 @@ maze game
 microprocessor
 
 virtual machine
+
+drive
 
 sprite
 
