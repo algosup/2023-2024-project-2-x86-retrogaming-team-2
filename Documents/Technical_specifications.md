@@ -191,10 +191,31 @@ AAA
 The goal
 
 ### DosBox
-AAA
+We were required to use the virtual machine DosBox: it's an emulator recreating the MS-DOS environment that can run many classic MS-DOS games as long as they aren't modified.
 
-### Virtual Machine configuration
-AAA
+DosBox logo
+
+First, we download and install the emulator's latest version: DosBox 0.74-3.
+
+However, it needs some location to emulate a virtual Hard Drive while the computer's hard drive is much larger than the ones used when MS-DOS was commercially available. When we open the emulator, we are welcomed with a terminal that reads Z:\>. Though, users cannot write data here as it only exists for DosBox purposes.
+
+Dosbox prompt
+
+To remedy the issue, we have to create a realistic and safe path environment in order to run our DOS software. For that, we should define a path somewhere in our hard disk that will be treated like a virtual hard disk.
+
+Then, we need to mount a drive: mount is a command inside DosBox that can connect physical folders and drives to virtual drives. For that, we select a folder (a sub-folder of the target folder is recommanded) as a drive where the DOS files will be stored and have DOSBox fool its games/applications into thinking that is the C: drive.
+
+Once we found our target path, we enter this command:
+
+  - mount c "Target Path"
+
+We click enter and the drive C will be mounted as a local directory.
+
+Photo dosbox path
+
+
+
+
 
 ### Gimp
 AAA
