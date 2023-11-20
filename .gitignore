@@ -210,3 +210,5 @@ build/
 *~
 node_modules
 template\ assembly
+devtrack\TD.exe
+*.com
