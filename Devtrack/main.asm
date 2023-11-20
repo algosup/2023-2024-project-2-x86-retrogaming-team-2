@@ -1,15 +1,26 @@
 cpu 8086
 org 100h
 
-section .data
 
-    ; add variables for all keys
+
+section .data
+    ; KeyBind
+    key_up db 'z'
+    key_up2 db 'i'
+    key_down db 's'
+    key_down2 db 'k'
+    key_left db 'q'
+    key_left2 db 'j'
+    key_right db 'd'
+    key_right2 db 'l'
+    key_exit db 27
+    key_menu db 'p'
+
     charValue db 'X$'
 
 section .text
     global _start
 _start:
-    xor sp, sp        ; Reset Stack Pointer
     ; Initialize graphics mode
     mov ah, 00h ; set video mode requirement
     mov al, 13h ; set video mode option o 320 x 200 256 colors
@@ -18,32 +29,7 @@ _start:
     ; Return to text mode and exit
     mov ax, 0xA000
 
-    ;call move_player
-
     call drawMaze
-    ; mov si, sprite
-    ; mov di, 0
-    ; call draw_sprite
-
-    ; mov si, blinky
-    ; mov di, 32
-    ; call draw_sprite
-
-    ; mov si, inky
-    ; mov di, 48
-    ; call draw_sprite
-
-    ; mov si, clyde
-    ; mov di, 64
-    ; call draw_sprite
-
-    ; mov si, pinky
-    ; mov di, 80
-    ; call draw_sprite
-
-    ; mov si, wall
-    ; mov di, 96
-    ; call draw_sprite
 
     .spawn_entities:
         ; call move_player
@@ -51,39 +37,49 @@ _start:
     .awaitKey:
         call keyHandler
         mov [charValue], al
-        cmp al ,27  ; Escape ??
+        cmp al , [key_exit]
         je .exit
-        cmp al ,'z'
+        cmp al , [key_menu]
+        je .menu
+        cmp al , [key_up]
         je .moveUp
-        cmp al ,'s'
+        cmp al , [key_down]
         je .moveDn
-        cmp al ,'d'
+        cmp al , [key_right]
         je .moveRg
-        cmp al ,'q'
+        cmp al , [key_left]
+        je .moveLf
+        cmp al , [key_up2]
+        je .moveUp
+        cmp al , [key_down2]
+        je .moveDn
+        cmp al , [key_right2]
+        je .moveRg
+        cmp al , [key_left2]
         je .moveLf
         jmp .awaitKey
 
     .moveUp:
-        ;move up
         call moveup
     .moveDn:
-        ;move down
         call movedown
     .moveRg:
-        ;move right
         call moveright
     .moveLf:
-        ;move left
         call moveleft
     .exit:
         mov ah, 4ch
         xor al, al
         int 21h
+    .menu:
+        jmp _start.awaitKey
 
 keyHandler:
     xor ax, ax
     int 16h
     ret
 
-%include "map.inc"
-%include "sprite.inc"
+; includes
+%include "Sprites_List.inc"
+%include "Map.inc"
+%include "Sprite.inc"
