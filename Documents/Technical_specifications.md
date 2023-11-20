@@ -18,13 +18,14 @@
     - [Mechanics and rules](#mechanics-and-rules)
     - [Sprites gallery](#sprites-gallery)
     - [Demo](#demo)
-  - [Technologies used](#technologies-used)
+  - [Technologies](#technologies)
     - [Programming language](#programming-language)
-    - [DOSBOX](#dosbox)
     - [Processus of installation](#processus-of-installation)
     - [Dependencies](#dependencies)
-    - [Virtual Machine configuration](#virtual-machine-configuration)
     - [Problems encountered](#problems-encountered)
+  - [Tools used](#tools-used)
+    - [DosBox](#dosbox)
+    - [Gimp](#gimp)
   - [Glossary](#glossary)
 
 </details>
@@ -103,6 +104,16 @@ Moving through the maze will be the only thing the player could do with our char
 ### Mechanics and rules
 AAA
 
+FPS
+
+Character speed
+
+Character hitboxes
+
+Ghost speed and hitboxes
+
+Ghost speed increase when we eat a certain number of pellets
+
 
 
 events
@@ -113,14 +124,19 @@ AAA
 ### Demo
 Here's a (upcoming) demo of our game:
 
-## Technologies used
+## Technologies 
 The goal
 
 ### Programming language
-AAA
+The Algosup School imposed us the use of the Assembly language, more particularly x86 Assembly.
 
-### DOSBOX
-AAA
+Assembly is the lowest language available of software programming that is the closest of the machine language. Indeed, it allow us to access to all of what is possible to do with our computer, as it's important to understand how a machine works for the programming complexity.
+
+Futhermore, the language requires less memory and execution time, and will be more suitable for hardware-specific complex tasks.
+
+Now, our team is stick to use the x86 Assembly version due to DosBox being a x86 emulator.
+
+
 
 ### Processus of installation
 AAA
@@ -128,10 +144,20 @@ AAA
 ### Dependencies
 AAA
 
+### Problems encountered
+AAA
+
+
+## Tools Used 
+The goal
+
+### DosBox
+AAA
+
 ### Virtual Machine configuration
 AAA
 
-### Problems encountered
+### Gimp
 AAA
 
 ## Glossary
