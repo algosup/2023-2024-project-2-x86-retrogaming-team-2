@@ -8,6 +8,12 @@ xVelocity dw 1
 desired_x_coordinate equ 1
 desired_y_coordinate equ 1
 
+; Bugs Positions
+bug1_pos dw 32160
+bug2_pos dw 0
+bug3_pos dw 0
+bug4_pos dw 0
+
 
 section .text
 
@@ -58,6 +64,29 @@ move_player:
        cmp word [xPos], 0
        je change_velocity
        jmp move_player
+
+
+spawn_bugs:
+       call move_bug1
+
+       ret
+
+
+move_bug1:
+       mov si, bug1_sprite
+       mov di, [bug1_pos]
+       call draw_sprite
+
+       ; call calc_bug1_pos
+       
+       ; jmp move_bug1
+       ret
+
+calc_bug1_pos:
+       xor bx, bx
+       add bx, 2
+       mov [bug1_pos], bx
+       ret
 
 change_velocity:
        neg word [xVelocity]

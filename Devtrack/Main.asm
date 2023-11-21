@@ -29,10 +29,11 @@ _start:
     ; Return to text mode and exit
     mov ax, 0xA000
 
-    call drawMaze
+    ; call drawMaze
 
     .spawn_entities:
         ; call move_player
+        call spawn_bugs
 
     .awaitKey:
         call keyHandler
