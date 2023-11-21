@@ -150,7 +150,6 @@ STATE DIAGRAM
 
 
 ### Sprites gallery
-AAA
 
 #### Hero
 
@@ -158,8 +157,8 @@ The hero's sprite is based on the ALGOSUP's logo.
 
 |         Sprite         |                  Name                   |  Size  |               Details              |
 | :------------------: | :------------------------------------------: | :------------------: | :------------------: |  
-| <img src="Images/Opened-Pac.png" style="height: 200px"> |   Ranky-opened mouth    |  8*8  | Fixed animation when Ranky is in his idle animation, but also used alternatively during moving animation. |
-| <img src="Images/Closed-Pac.png" style="height: 200px"> |   Ranky-closed mouth    |  8*8  | Used alternatively during moving animation. |    
+| <img src="Images/Opened-Pac.png" style="height: 200px; width: 200px"> |   Ranky-opened mouth    |  8*8  | Fixed animation when Ranky is in his idle animation, but also used alternatively during moving animation. |
+| <img src="Images/Closed-Pac.png" style="height: 200px; width: 200px"> |   Ranky-closed mouth    |  8*8  | Used alternatively during moving animation. |    
 
 #### Ghosts
 We created new sprites for enemies, with different designs and different names.
