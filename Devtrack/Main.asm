@@ -29,10 +29,10 @@ _start:
     ; Return to text mode and exit
     mov ax, 0xA000
 
-    ; call drawMaze
+    call drawMaze
 
     .spawn_entities:
-        ; call move_player
+        ;call move_player
         call spawn_bugs
 
     .awaitKey:
@@ -61,33 +61,13 @@ _start:
         jmp .awaitKey
 
     .moveUp:
-        mov ax, [desired_y_coordinate]
-        sub ax, 1
-        mov [desired_y_coordinate], ax
-        xor si, si
         call moveup
-        call draw_sprite
     .moveDn:
-        mov ax, [desired_y_coordinate]
-        add ax, 1
-        mov [desired_y_coordinate], ax
-        xor si, si
         call movedown
-        call draw_sprite
     .moveRg:
-        mov ax, [desired_x_coordinate]
-        add ax, 1
-        mov [desired_x_coordinate], ax
-        xor si, si
         call moveright
-        call draw_sprite
     .moveLf:
-        mov ax, [desired_x_coordinate]
-        sub ax, 1
-        mov [desired_x_coordinate], ax
-        xor si, si
         call moveleft
-        call draw_sprite
     .exit:
         mov ah, 4ch
         xor al, al
@@ -99,6 +79,13 @@ keyHandler:
     xor ax, ax
     int 16h
     ret
+
+; game_loop:
+;     mov cx, 20000 
+;     .waitloop:
+;     loop .waitloop
+;     call move_bug1
+;     jmp _start.awaitKey
 
 ; includes
 %include "Sprites_List.inc"

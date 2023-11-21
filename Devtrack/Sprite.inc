@@ -17,12 +17,13 @@ bug4_pos dw 0
 
 section .text
 
-; draw sprite in 16x16 pixels
+
+
+; draw sprite in 16x16 pixels*
 draw_sprite:
        mov ax, 0xA000
        mov es, ax
        mov dx, 16
-       mov di, desired_x_coordinate + window_width * desired_y_coordinate
               .eachLine:
               mov cx, 16
               rep movsb
@@ -67,26 +68,25 @@ move_player:
 
 
 spawn_bugs:
-       call move_bug1
-
+       jmp move_bug1
        ret
 
 
 move_bug1:
-       mov si, bug1_sprite
        mov di, [bug1_pos]
+       mov si, bug1_sprite
        call draw_sprite
 
-       ; call calc_bug1_pos
-       
-       ; jmp move_bug1
-       ret
+       mov cx, 20000 
+       .waitloop:
+       loop .waitloop
 
-calc_bug1_pos:
        xor bx, bx
-       add bx, 2
+       add bx, 1
+       add bx, [bug1_pos]
        mov [bug1_pos], bx
-       ret
+       
+       jmp move_bug1
 
 change_velocity:
        neg word [xVelocity]
