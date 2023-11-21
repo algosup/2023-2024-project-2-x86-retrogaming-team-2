@@ -15,6 +15,8 @@
   - [Tools](#tools)
     - [Hardware](#hardware)
     - [Software](#software)
+  - [Issues Report](#issues-report)
+
 
 </details>
 
@@ -29,6 +31,7 @@ The purpose of these tests is to verify that the game works as expected and is p
 ### Strategy
 
 The strategy that will be used to test the game is to test it manually. The tester will have to test the game throughout the development phase and also afterwards in order to prevent the appearance of bugs and to be able to resolve them if there are any.
+
 
 #### Functionality Test
 
@@ -45,12 +48,14 @@ The strategy that will be used to test the game is to test it manually. The test
 | Live | The number of lives should decrease when the player is eaten. |
 | Score | The score should increase when the player eats a dot, a pellet, or an enemy. |
 
+
 #### Compatibility Testing
 
 | Test | Description |
 | --- | --- |
 |Cross-platform compatibility | Test the game on various platforms and devices and ensure that the game is responsive. |
 | Peripheral devices | Test the game with different peripherals such as keyboards and controllers. |
+
 
 ####  Performance Testing
 
@@ -60,9 +65,13 @@ The strategy that will be used to test the game is to test it manually. The test
 | Load Testing | Evaluate the time it takes for the game to initially load as well as the loading time between levels to ensure a smooth experience. |
 | Stress Testing | Push the game to its limits to identify any breaking points, such as excessive collisions or power-ups. |
 
+---
+
 ### Schedule
 
 _We do not yet have a playable version of the game and therefore cannot yet plan a schedule_
+
+---
 
 ### Tools
 
@@ -81,9 +90,10 @@ Lenovo ThinkBook :
   
 MacBook Air : 
   - MacBook Air 13″
-    - Apple **M1** chip
+    - **Apple M1** chip
     - **RAM** : 8.0 GB
-    - **Operating system** : macOS Ventura*
+    - **Operating system** : macOS Ventura
+
 
 
 #### Software
@@ -95,4 +105,32 @@ We will use different software to run the game, test it, report different bugs a
   - DOSBox **0.74-3** for macOS
 - **NASM** to compile the assembly language.
 - **GitHub** to report bugs.
-- **Visual Studio Code** to develop the game and fix bugs.
+- **Visual Studio Code** ( version 1.84.2 ) to develop the game and fix bugs.
+
+---
+
+### Issues Report
+
+**Issue n°X**
+
+**Date**
+
+MM/DD/YYYY
+
+**Description :**
+
+**Actions performed :**
+
+Actions performed to reproduce the bug
+
+**Expected result :**
+
+What should happen when the program works as expected
+
+**Actual result :**
+
+What actually happened
+
+**Screenshot :**
+
+(if it gives additional informations)
