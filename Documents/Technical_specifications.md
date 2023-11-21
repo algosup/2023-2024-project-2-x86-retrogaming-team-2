@@ -105,6 +105,12 @@ This is how the game screen looks like in our game:
 
 Dev Track's maze occupies most of the entire screen, while upper-top band hows a black area containing the actual score, the high score and the number of Pac-Man's remaining lives.
 
+To display the maze, we use the "SCREEN MODE" in order to display each walls, setting up the tunnels where the characters are allowed to roam in, and displaying external content.
+
+
+
+
+
 ### Controls
 For controling our hungry red ball, we use the keyboard touches to move the character from a x-z plane fixed camera movement.
 
@@ -125,9 +131,23 @@ Ghost speed and hitboxes
 
 Ghost speed increase when we eat a certain number of pellets
 
-
-
 events
+
+The number of power-pellet eaten
+
+
+
+Each of the ghosts possesses a different AI when following Ranky, but we have chosen to not create our own AI for time constraints. So, we decided to retrieve the original game's respective AIs for programming the ghosts by adapting them to our game.
+
+In this game, the ghost's velocity will only increase depending on the level played.
+
+
+
+Both Ranky and the ghosts have different states depending on the situation, so here's a state diagram to illustrate them:
+
+STATE DIAGRAM
+
+
 
 ### Sprites gallery
 AAA
@@ -135,6 +155,11 @@ AAA
 #### Hero
 
 The hero's sprite is based on the ALGOSUP's logo.
+
+|         Sprite         |                  Name                   |  Size  |               Details              |
+| :------------------: | :------------------------------------------: | :------------------: | :------------------: |  
+| <img src="Images/Opened-Pac.png" style="height: 200px"> |   Ranky-opened mouth    |  8*8  | Fixed animation when Ranky is in his idle animation, but also used alternatively during moving animation. |
+| <img src="Images/Closed-Pac.png" style="height: 200px"> |   Ranky-closed mouth    |  8*8  | Used alternatively during moving animation. |    
 
 #### Ghosts
 We created new sprites for enemies, with different designs and different names.
@@ -163,7 +188,7 @@ Now, our team is stick to use the x86 Assembly version due to DosBox being a x86
 
 
 
-### x86 Microprocessor
+### x86 Microprocessor REGISTERS ARE ENOUGH
 
 To simulate the technical limitations of MS-DOS, Franck told us to use the 16-bit microprocessor Intel 8086 for making our game which can also work on a modern machine. It's a 40-pin DIL-shaped integrated circuit as shown in the following figure:
 
