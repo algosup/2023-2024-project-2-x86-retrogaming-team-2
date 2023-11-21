@@ -102,6 +102,8 @@ The goal
 ### Game screen
 This is how the game screen looks like in our game:
 
+<img src="./Images/Map_New.png" width="500">
+
 
 Dev Track's maze occupies most of the entire screen, while upper-top band hows a black area containing the actual score, the high score and the number of Pac-Man's remaining lives.
 
@@ -157,8 +159,8 @@ The hero's sprite is based on the ALGOSUP's logo.
 
 |         Sprite         |                  Name                   |  Size  |               Details              |
 | :------------------: | :------------------------------------------: | :------------------: | :------------------: |  
-| <img src="Images/Opened-Pac.png" style="height: 200px" width= 200px>|   Ranky-opened mouth    |  8*8  | Fixed animation when Ranky is in his idle animation, but also used alternatively during moving animation. |
-| <img src="Images/Closed-Pac.png" style="height: 200px" width= 200px> |   Ranky-closed mouth    |  8*8  | Used alternatively during moving animation. |    
+| <img src="Images/Opened-Pac.png" style="height: 200px" width= 200px>|   Ranky-opened mouth    |  16*16  | Fixed animation when Ranky is in his idle animation, but also used alternatively during moving animation. |
+| <img src="Images/Closed-Pac.png" style="height: 200px" width= 200px> |   Ranky-closed mouth    |  16*16  | Used alternatively during moving animation. |    
 
 #### Ghosts
 We created new sprites for enemies, with different designs and different names.
@@ -178,6 +180,8 @@ The goal
 
 ### Programming language
 The Algosup School imposed us the use of the Assembly language, more particularly x86 Assembly.
+
+<img src="./Images/ASMLogo.png" width="300">
 
 Assembly is the lowest language available of software programming that is the closest of the machine language. Indeed, it allow us to access to all of what is possible to do with our computer, as it's important to understand how a machine works for the programming complexity.
 
@@ -217,11 +221,15 @@ These 8 registers are separated into 2 groups:
 
   - 4 data 16-bit registers that can be separated into 2 8-bit registers.
 
+  <img src="./Images/DataRegisters.jpg" width="500">
+
 https://www.technologuepro.com/microprocesseur/chap2_microprocesseur_fichiers/Image2.jpg
 
   - 4 16-bit registers used for pointers and indexes, more specifically adapted to the processing of elements in memory. They generally have increment and decrement properties.
 
 https://www.technologuepro.com/microprocesseur/chap2_microprocesseur_fichiers/Image3.jpg
+
+<img src="./Images/DataRegisters.jpg" width="500">
 
 
 
@@ -269,6 +277,8 @@ Now that the command prompt will be set up, we will be able to compile and run .
 
 ### Gimp
 For creating the concepts of our maze and sprites, we used Gimp as a designing tool.
+
+<img src="./Images/gimpLogo.png" width="300">
 
 It's an high quality framework for scripted image manipulation that provides us sophisticated tools to create, modify and enhances images.
 
