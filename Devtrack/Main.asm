@@ -101,5 +101,7 @@ keyHandler:
 
 ; includes
 %include "Sprites_List.inc"
+%include "Animations/Ranky_Anims.inc"
+%include "Animations/Bugs_Anims.inc"
 %include "Map.inc"
 %include "Sprite.inc"
