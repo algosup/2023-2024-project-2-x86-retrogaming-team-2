@@ -210,3 +210,4 @@ build/
 *~
 node_modules
 template\ assembly
+*.com
