@@ -1,21 +1,18 @@
 cpu 8086
 org 100h
 
-
-
 section .data
     ; KeyBind
     key_up db 'z'
-    key_up2 db 'i'
+    key_up2 db 48h
     key_down db 's'
-    key_down2 db 'k'
+    key_down2 db 50h
     key_left db 'q'
-    key_left2 db 'j'
+    key_left2 db 4BH
     key_right db 'd'
-    key_right2 db 'l'
+    key_right2 db 4DH
     key_exit db 27
     key_menu db 'p'
-
     charValue db 'X$'
 
 section .text
@@ -23,16 +20,17 @@ section .text
 _start:
     ; Initialize graphics mode
     mov ah, 00h ; set video mode requirement
-    mov al, 13h ; set video mode option o 320 x 200 256 colors
+    mov al, 13h ; set video mode option 320 x 200 256 colors
     int 10h
 
     ; Return to text mode and exit
     mov ax, 0xA000
-
-    call drawMaze
+    call draw_sprite
+    ; call drawMaze
 
     .spawn_entities:
         ; call move_player
+        ; call draw_sprite
 
     .awaitKey:
         call keyHandler
@@ -49,44 +47,24 @@ _start:
         je .moveRg
         cmp al , [key_left]
         je .moveLf
-        cmp al , [key_up2]
+        cmp ah , [key_up2]
         je .moveUp
-        cmp al , [key_down2]
+        cmp ah , [key_down2]
         je .moveDn
-        cmp al , [key_right2]
+        cmp ah , [key_right2]
         je .moveRg
-        cmp al , [key_left2]
+        cmp ah , [key_left2]
         je .moveLf
         jmp .awaitKey
 
     .moveUp:
-        mov ax, [desired_y_coordinate]
-        sub ax, 1
-        mov [desired_y_coordinate], ax
-        xor si, si
         call moveup
-        call draw_sprite
     .moveDn:
-        mov ax, [desired_y_coordinate]
-        add ax, 1
-        mov [desired_y_coordinate], ax
-        xor si, si
         call movedown
-        call draw_sprite
     .moveRg:
-        mov ax, [desired_x_coordinate]
-        add ax, 1
-        mov [desired_x_coordinate], ax
-        xor si, si
         call moveright
-        call draw_sprite
     .moveLf:
-        mov ax, [desired_x_coordinate]
-        sub ax, 1
-        mov [desired_x_coordinate], ax
-        xor si, si
         call moveleft
-        call draw_sprite
     .exit:
         mov ah, 4ch
         xor al, al
