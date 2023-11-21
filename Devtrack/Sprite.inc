@@ -4,6 +4,11 @@ section .data
 
 xPos dw 0
 xVelocity dw 1
+
+desired_x_coordinate equ 1
+desired_y_coordinate equ 1
+
+
 section .text
 
 ; draw sprite in 16x16 pixels
@@ -11,6 +16,7 @@ draw_sprite:
        mov ax, 0xA000
        mov es, ax
        mov dx, 16
+       mov di, desired_x_coordinate + window_width * desired_y_coordinate
               .eachLine:
               mov cx, 16
               rep movsb
