@@ -12,7 +12,7 @@ section .data
 ; This section host code.
 section .text
 
-mov eax, 0b100100100   ; init byte
+mov eax, 0b10010010   ; init byte
 mov bx,  0b00000000 
 mov cl,9 ;counter
 
