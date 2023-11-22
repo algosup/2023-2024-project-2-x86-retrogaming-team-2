@@ -49,7 +49,7 @@ draw_tile:
 move_player:
        ;TO check collision, just check color of the next tile and to a jmp if it's not the wall color
 
-       mov si, sprite
+       mov si, right_closed
        mov di, [xPos]
        call draw_sprite
        mov cx, 20000 
