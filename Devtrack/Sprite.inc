@@ -66,30 +66,39 @@ moveup:
 	sub ax, window_width
     mov [xPos], ax
 	mov di, [xPos]
-	mov si, mouth_opened
-	call draw_sprite
+	call changeboucle
     jmp _start.awaitKey
 movedown:
     mov ax, [xPos]
     add ax, window_width
     mov [xPos], ax
 	mov di, [xPos]
-	mov si, mouth_opened
-	call draw_sprite
+	call changeboucle
     jmp _start.awaitKey
 moveleft:
     mov ax, [xPos]
 	sub ax, [xVelocity]
 	mov [xPos], ax
 	mov di, [xPos]
-	mov si, mouth_opened
-	call draw_sprite
+	call changeboucle
     jmp _start.awaitKey
 moveright:
     mov ax, [xPos]
 	add ax, [xVelocity] 
 	mov [xPos], ax
 	mov di, [xPos]
-	mov si, mouth_opened
-	call draw_sprite
+	call changeboucle
     jmp _start.awaitKey
+
+changeboucle:
+	cmp si, sprite
+	jne pacmanopend
+	jmp pacmanclosed
+
+pacmanopend:
+    mov si, sprite
+	ret
+
+pacmanclosed:
+    mov si, mouth_opened
+	ret
