@@ -197,7 +197,7 @@ Ranky's sprite (Pac-Man's long lost cousin ?) is based on the ALGOSUP's logo.
 #### Bugs
 We created new sprites for enemies, now called bugs, with different designs and different names.
 
-Size  |               Details              |
+|         Sprite         |                  Name                   |  Size  |               Details              |
 | :------------------: | :------------------------------------------: | :------------------: | :------------------: |  
 | <img src="Images/Opened-Pac.png" style="height: 200px" width= 200px>|   Ranky-opened mouth    |  16*16  | Fixed animation when Ranky is in his idle animation, but also used alternatively during moving animation. |
 | <img src="Images/Closed-Pac.png" style="height: 200px" width= 200px> |   Ranky-closed mouth    |  16*16  | Used alternatively during moving animation. |    
@@ -205,7 +205,7 @@ Size  |               Details              |
 #### Others
 We created new sprites for the pac-dots now called "candies", the power-up named "checks", and the maze's wall blocks.
 
-Size  |               Details              |
+|         Sprite         |                  Name                   |  Size  |               Details              |
 | :------------------: | :------------------------------------------: | :------------------: | :------------------: |  
 | <img src="Images/Opened-Pac.png" style="height: 200px" width= 200px>|   Ranky-opened mouth    |  16*16  | Fixed animation when Ranky is in his idle animation, but also used alternatively during moving animation. |
 | <img src="Images/Closed-Pac.png" style="height: 200px" width= 200px> |   Ranky-closed mouth    |  16*16  | Used alternatively during moving animation. |   
@@ -234,25 +234,18 @@ Now, our team is stick to use the x86 Assembly version due to DosBox being a x86
 
 To simulate the technical limitations of MS-DOS, Franck told us to use the 16-bit microprocessor Intel 8086 for making our game which can also work on a modern machine. It's a 40-pin DIL-shaped integrated circuit as shown in the following figure:
 
-https://www.technologuepro.com/microprocesseur/chap2_microprocesseur_fichiers/Image0.jpg
+<img src="./Images/Intel8086.jpg" width="500">
 
 
 Mostly used for desktop computers and launched in 1978, this processor has a clock speed from 5 to 10 MHz, a cache memory of 64 KB and a maximum memory capacity of 1 MB. 
 
 Here's the intern architecture of the device:
 
-https://www.technologuepro.com/microprocesseur/chap2_microprocesseur_fichiers/Image1.jpg
+<img src="./Images/architecture.jpg" width="500">
 
 As you can see, there are 2 intern units:
   - the Bus Interfaccing Unit (BIU) , which retrieves and stores the data to be processed, and establish transmissions with the system buses.
   - the Execution Unit (EU), that executes the instructions which are transmitted by the BIU.
-
-First of all, when the execution of an instruction is completed, the Execution Unit remains idle for a short time, while the Bus Interfacing Unit fetches the next instruction. However, a 6-byte prefetch queue for pipeline processing has been introduced in the 8086/8088.
-
-Then, while the EU executes the information transmitted to it, the next instruction is loaded into the BIU. The instructions that follow are placed in the queue.
-
-After the EU has finished processing an instruction,  the BIU instantly transmits the next instruction to it, and loads the third instruction in order to transmit it to the continuously active EU. 
-
 
 Within the EU, 16-bit registers can be used in all arithmetic and logical operations that the programmer inserts into the code.
 
@@ -262,11 +255,7 @@ These 8 registers are separated into 2 groups:
 
   <img src="./Images/DataRegisters.jpg" width="500">
 
-https://www.technologuepro.com/microprocesseur/chap2_microprocesseur_fichiers/Image2.jpg
-
   - 4 16-bit registers used for pointers and indexes, more specifically adapted to the processing of elements in memory. They generally have increment and decrement properties.
-
-https://www.technologuepro.com/microprocesseur/chap2_microprocesseur_fichiers/Image3.jpg
 
 <img src="./Images/DataRegisters.jpg" width="500">
 
@@ -287,17 +276,17 @@ AAA
 ### DosBox
 We were required to use the virtual machine DosBox: it's an emulator recreating the MS-DOS environment that can run many classic MS-DOS games as long as they aren't modified.
 
-DosBox logo
+<img src="./Images/DOSBox_icon.png" width="300">
 
 First, we download and install the emulator's latest version: DosBox 0.74-3.
 
 However, it needs some location to emulate a virtual Hard Drive while the computer's hard drive is much larger than the ones used when MS-DOS was commercially available. When we open the emulator, we are welcomed with a terminal that reads Z:\>. Though, users cannot write data here as it only exists for DosBox purposes.
 
-Dosbox prompt
-
 To remedy the issue, we have to create a realistic and safe path environment in order to run our DOS software. For that, we should define a path somewhere in our hard disk that will be treated like a virtual hard disk.
 
-Then, we need to mount a drive: mount is a command inside DosBox that can connect physical folders and drives to virtual drives. For that, we select a folder (a sub-folder of the target folder is recommanded) as a drive where the DOS files will be stored and have DOSBox fool its games/applications into thinking that is the C: drive.
+Then, we need to mount a drive: mount is a command inside DosBox that can connect physical folders and drives to virtual drives. 
+
+For that, we select a folder (a sub-folder of the target folder is recommanded) as a drive where the DOS files will be stored and have DOSBox fool its games/applications into thinking that is the C: drive.
 
 Once we found our target path, we enter this command:
 
@@ -305,7 +294,7 @@ Once we found our target path, we enter this command:
 
 We click enter and the drive C will be mounted as a local directory.
 
-Photo dosbox path
+<img src="./Images/dosbox.png" width="500">
 
 Now that the command prompt will be set up, we will be able to compile and run .asm files.
 
@@ -324,16 +313,19 @@ It's an high quality framework for scripted image manipulation that provides us 
 ## Glossary
 The goal
 
-maze game
+|         Term         |                  Definition                   |  
+| :------------------: | :------------------------------------------: | 
+| Maze Game |   Ranky-opened mouth    |
+| Microprocessor |   Ranky-opened mouth    |
+| virtual machine |   Ranky-opened mouth    |
+| drive |   Ranky-opened mouth    |
+| sprite |   Ranky-opened mouth    |
+| Register |   Ranky-opened mouth    |
+| Emulator |   Ranky-opened mouth    |
+| Animation |   Ranky-opened mouth    |
+| A.I. |   Ranky-opened mouth    |
+| Collision |   Ranky-opened mouth    |
+| Interrupt |   Ranky-opened mouth    |
+| Key Handler |   Ranky-opened mouth    |
+| Resolution |   Ranky-opened mouth    |
 
-microprocessor
-
-virtual machine
-
-drive
-
-sprite
-
-prefetch queue
-
-pipeline processing
