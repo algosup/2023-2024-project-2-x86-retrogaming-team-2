@@ -2,7 +2,7 @@ org 100h
 
 section .data
 
-xPos dw 0
+xPos dw window_width*80+(window_width-16)/2
 xVelocity dw 1
 
 desired_x equ 0

@@ -26,10 +26,13 @@ _start:
     mov di, 0
     ; Return to text mode and exit
     mov ax, 0xA000
+    ; call draw_sprite
+    call drawMaze
 
     .spawn_entities:
+        mov di, [xPos]
         ; call move_player
-         ;call draw_sprite
+        ;call draw_sprite
 
     .awaitKey:
         call changeloop
