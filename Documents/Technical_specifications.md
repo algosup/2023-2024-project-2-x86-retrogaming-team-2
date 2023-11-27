@@ -12,7 +12,7 @@
     - [Decisions taken](#decisions-taken)
       - [Key Handler](#key-handler)
       - [Screen Resolution](#screen-resolution)
-    - [Other solutions](#other-solutions)
+    - [Other solution](#other-solution)
     - [Out of scope](#out-of-scopes)
   - [Gameplay](#gameplay)
     - [Game screen](#game-screen)
@@ -44,7 +44,7 @@
 ## Overview
 
 ### Short presentation
-Pac-Man (originally named Puckman in english) is a 1980 arcade game developped by the japanese video game company called Bandai Namco Entertainment Inc and designed by Toru Iwatani.
+Pac-Man (originally named Puckman in english) is a 1980 arcade game developed by the japanese video game company called Bandai Namco Entertainment Inc and designed by Toru Iwatani.
 
 First released in Japan, it became a massive success in the United States where more than 100 000 units were sold in 1 year.
 
@@ -80,17 +80,13 @@ Furthermore, the key handler must detect the same scancode regardless if it's up
 #### Screen Resolution
 Originally, we planned to have a screen resolution of 640*800 pixels, for a total of 307 000 pixels. The problem is that our game is limited to a 16-bit game can only support up to 65 536 pixels, which isn't enough to provide such a screen quality.
 
-So, we had decided to opt for a 320*200 pixels resolution, with a total of 64 000 pixels.
+So, we had decided to opt for a 320x200 pixels resolution, with a total of 64 000 pixels.
 
-In addition, we had to reduce the sprites' size from 16*16 to 8*8 pixels.
+In addition, we had to reduce the sprites' size from 16x16 to 8x8 pixels.
 
-### Other solutions
+### Other solution
 
 The plan of our maze was originally much bigger and would take most of the screen size. However, we expected to experiment graphics issues in case we have to reduce the screen resolution, and we also needed to include the score.
-
-Here are some concepts of maze that were considered during the project's development:
-
-CONCEPTS
 
 ### Out of scope
 First of all, we have decided to exclude the bonus fruits in our game due to time constraints. We believed that it was the less important feature to implement, and we would have replaced them with other kinds of food (Soda, etc...) if we had time.
@@ -113,7 +109,7 @@ Dev Track's maze occupies most of the entire screen, while upper-top band hows a
 
 To display the maze, we use the "SVGA/MCGA/ATI VIP" video mode in order to display each walls, setting up the tunnels where the characters are allowed to roam in, and displaying external content.
 
-For that, we need to enter the interrupt "10h" that will allow us to use a 320*200 definition.
+For that, we need to enter the interrupt "10h" that will allow us to use a 320x200 definition.
 
 ### Controls
 For controling our hungry red ball, we use the keyboard touches to move the character from a x-z plane fixed camera movement.
@@ -164,14 +160,15 @@ Effectively, we need to program a collision detection for Ranky and the bugs and
 
 Both Ranky and the ghosts have different states depending on the situation, so here's a state diagram to illustrate them:
 
-STATE DIAGRAM
-
+<img src="./Images/StateDiagram.png" width="500">
 
 As you can see, Ranky as a normal state when he is vulnerable to his enemies, and also a "hungry" mode after he eats a check where he can eats bugs for a short while.
 
 Concerning the bugs, they will start to follow their specific AI patterns in their "attack mode". However, they will eventually go in their "scatter mode" where each monster will wander in the 4 different corners of the maze.
 
 The event will happen several times before the enemies stay definitely in "attack mode" as long as the level/game isn't over.
+
+Also, if Ranky eats a Check, the enemies will go in "Scared mode", where they try to avoid Ranky until his power-up is over. If they are caught, they quickly return to their home before leaving and returning in their attack mode.
 
 ### Score and HighScore
 To calculate the score after each items and enemies eaten we have to create a function that calls a points database and detect how many times Ranky ate a snack. 
@@ -209,22 +206,21 @@ Although, there was a difficulty to work on this language because some of us wer
 
 ### Microprocessor 
 
-To simulate the technical limitations of MS-DOS, Franck told us to use the 16-bit microprocessor Intel 8086 for making our game which can also work on a modern machine. It's a 40-pin DIL-shaped integrated circuit as shown in the following figure:
+To simulate the technical limitations of MS-DOS, Franck told us to use the  generic 32-bit Intel 80486 microprocessor  for making our game which can also work on a modern machine. It's a 40-pin DIL-shaped integrated circuit as shown in the following figure:
 
-<img src="./Images/Intel8086.jpg" width="500">
+<img src="./Images/80486-Microprocessor.jpg" width="500">
 
-
-Mostly used for desktop computers and launched in 1978, this processor has a clock speed from 5 to 10 MHz, a cache memory of 64 KB and a maximum memory capacity of 1 MB. 
+Mostly used for desktop computers and launched in 1989, this processor has a clock speed from 16 to 100 MHz, a cache memory of 16 KB and a maximum memory capacity of 4 GB. 
 
 Here's the intern architecture of the device:
 
-<img src="./Images/architecture.jpg" width="500">
+<img src="./Images/architecture-Z.png" width="500">
 
-As you can see, there are 2 intern units:
-  - the Bus Interfaccing Unit (BIU) , which retrieves and stores the data to be processed, and establish transmissions with the system buses.
-  - the Execution Unit (EU), that executes the instructions which are transmitted by the BIU.
+In order to use it in our program, we just need to provide the line "cpu 80486" at the beginning of our nasm file.
 
-Within the EU, 16-bit registers can be used in all arithmetic and logical operations that the programmer inserts into the code.
+However, we decided to use operations, commands and functions that we could use for the Intel 8086 microprocessor.
+
+Indeed, 16-bit registers can be used in all arithmetic and logical operations that the programmer inserts into the code.
 
 These 8 registers are separated into 2 groups:
 
@@ -235,8 +231,6 @@ These 8 registers are separated into 2 groups:
   - 4 16-bit registers used for pointers and indexes, more specifically adapted to the processing of elements in memory. They generally have increment and decrement properties.
 
 <img src="./Images/DataRegisters.jpg" width="500">
-
-In order to use it in our program, we just need to provide the line "cpu 8086" at the beginning of our nasm file.
 
 
 ## Tools Used 
@@ -258,7 +252,9 @@ For that, we select a folder (a sub-folder of the target folder is recommanded) 
 
 Once we found our target path, we enter this command:
 
-  - mount c "Target Path"
+```
+mount c "Target Path"
+```
 
 We click enter and the drive C will be mounted as a local directory.
 
@@ -303,12 +299,11 @@ We created new sprites for enemies, now called bugs, with different designs and 
 
 |         Sprite         |                  Name                   |  Size  |               Details              |
 | :------------------: | :------------------------------------------: | :------------------: | :------------------: |  
-| <img src="Images/Bug_1.png" style="height: 200px, width= 200px">|   Bug 1    |  16*16  | Main sprite of Bug 1 and used alternatively during moving animation. |
-| <img src="Images/Bug_2.png" style="height: 200px, width= 200px"> |   Bug 2   |  16*16  | Main sprite of Bug 2 and used alternatively during moving animation. |
-| <img src="Images/Bug_3.png" style="height: 200px, width= 200px">|   Bug 3   |  16*16  | Main sprite of Bug 3 and used alternatively during moving animation. |
-| <img src="Images/Bug_4.png" style="height: 200px, width= 200px"> |   Bug 4   |  16*16  | Main sprite of Bug 4 and used alternatively during moving animation. |
-| <img src="Images/Bug_4-2.png" style="height: 200px, width= 200px"> |   Bug 4-glitch1   |  16*16  | 1st Glitching sprite of Bug 4 which is used alternatively during moving animation. |
-| <img src="Images/Bug_4-3.png" style="height: 200px, width= 200px"> |   Bug 4-glitch2    |  16*16  | 2nd Glitching sprite of Bug 4 which is used alternatively during moving animation.  |
+| <img src="Images/Bug_1_Z.png" style="height: 200px, width= 200px">|   Bug 1    |  16*16  | Main sprite of Bug 1 and used alternatively during moving animation. |
+| <img src="Images/Bug_2_Z.png" style="height: 200px, width= 200px"> |   Bug 2   |  16*16  | Main sprite of Bug 2 and used alternatively during moving animation. |
+| <img src="Images/Bug_3_Z.png" style="height: 200px, width= 200px">|   Bug 3   |  16*16  | Main sprite of Bug 3 and used alternatively during moving animation. |
+| <img src="Images/Bug_4_Z.png" style="height: 200px, width= 200px"> |   Bug 4   |  16*16  | Main sprite of Bug 4 and used alternatively during moving animation. |
+
 
 ### Others
 We created new sprites for the pac-dots now called "candies", the power-up named "checks", and the maze's wall blocks.
@@ -342,7 +337,7 @@ We provided a glossary showcasing some technical terms:
 Here are the source links used to complete this technical
 - https://creately.com/diagram/example/ip9qo3le/pacman-uml
 - https://www.tutorialspoint.com/assembly_programming/assembly_introduction.htm
-- https://fr.gadgetversus.com/processeur/intel-8086-fiche-technique/
+- https://fr.gadgetversus.com/processeur/intel-80486-fiche-technique/
 - https://www.dosbox.com/
 - https://dictionary.cambridge.org/
 - https://medium.com/@niitwork0921/what-is-collision-detection-in-games-69e9dbcd7a13
