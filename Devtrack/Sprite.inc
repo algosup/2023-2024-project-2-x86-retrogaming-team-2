@@ -9,6 +9,8 @@ desired_x equ 0
 desired_y equ 0
 
 
+
+
 section .text
 
 ; draw sprite in 16x16 pixels
@@ -66,65 +68,40 @@ moveup:
 	sub ax, window_width
     mov [xPos], ax
 	mov di, [xPos]
-	call changeboucle
+	call changeloop
     jmp _start.awaitKey
 movedown:
     mov ax, [xPos]
     add ax, window_width
     mov [xPos], ax
 	mov di, [xPos]
-	call changeboucle
+	call changeloop
     jmp _start.awaitKey
 moveleft:
     mov ax, [xPos]
 	sub ax, [xVelocity]
 	mov [xPos], ax
 	mov di, [xPos]
-	call changeleft
+	call changeloop
     jmp _start.awaitKey
 moveright:
     mov ax, [xPos]
 	add ax, [xVelocity] 
 	mov [xPos], ax
 	mov di, [xPos]
-	call changeboucle
+	call changeloop
     jmp _start.awaitKey
 
-changeboucle:
-	; cmp si, left_opened
-	; jne pacmanclosed
-    ; cmp si, left_closed
-	; jne pacmanopend
-
+changeloop:
     cmp si, rightop
 	jne pacmanclosed
     cmp si, right
 	jne pacmanopend
 
 pacmanopend:
-    ; mov si, left_closed
     mov si, right
 	ret
 
 pacmanclosed:
-    ; mov si, left_opened
     mov si, rightop
-	ret
-
-changeleft:
-    ; cmp si, right
-    ; je leftrankyop
-    ; cmp si, rightop
-    ; je leftrankycl
-    cmp si, leftopened
-	jne leftrankycl
-    cmp si, leftclosed
-	jne leftrankyop
-
-leftrankyop:
-    mov si, leftclosed
-	ret
-
-leftrankycl:
-    mov si, leftopened
 	ret
