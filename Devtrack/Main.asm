@@ -27,6 +27,7 @@ _start:
     mov ax, 0xA000
     ; call draw_sprite
     ; call drawMaze
+    mov di, 0
 
     .spawn_entities:
         ; call move_player

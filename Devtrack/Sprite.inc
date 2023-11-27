@@ -37,29 +37,6 @@ draw_tile:
         jnz .eachLine
     ret
 
-move_player:
-
-    mov si, sprite
-    mov di, [xPos]
-    call draw_sprite
-    mov cx, 20000 
-    waitloop:
-    loop waitloop
-
-	mov bx, [xPos]
-	add bx, [xVelocity]
-	mov word [xPos], bx
-
-	cmp word [xPos], window_width-16
-	je change_velocity
-	cmp word [xPos], 0
-	je change_velocity
-	jmp move_player
-
-change_velocity:
-	neg word [xVelocity]
-    jmp move_player
-
 
 moveup:
 	mov ax, [xPos]
