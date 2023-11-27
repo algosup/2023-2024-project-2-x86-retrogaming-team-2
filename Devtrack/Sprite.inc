@@ -39,7 +39,7 @@ draw_tile:
 
 move_player:
 
-    mov si, sprite
+    mov si, right
     mov di, [xPos]
     call draw_sprite
     mov cx, 20000 
@@ -80,7 +80,7 @@ moveleft:
 	sub ax, [xVelocity]
 	mov [xPos], ax
 	mov di, [xPos]
-	call changeboucle
+	call changeleft
     jmp _start.awaitKey
 moveright:
     mov ax, [xPos]
@@ -91,15 +91,40 @@ moveright:
     jmp _start.awaitKey
 
 changeboucle:
-	cmp si, mouth_opened
+	; cmp si, left_opened
+	; jne pacmanclosed
+    ; cmp si, left_closed
+	; jne pacmanopend
+
+    cmp si, rightop
 	jne pacmanclosed
-    cmp si, sprite
+    cmp si, right
 	jne pacmanopend
 
 pacmanopend:
-    mov si, sprite
+    ; mov si, left_closed
+    mov si, right
 	ret
 
 pacmanclosed:
-    mov si, mouth_opened
+    ; mov si, left_opened
+    mov si, rightop
+	ret
+
+changeleft:
+    ; cmp si, right
+    ; je leftrankyop
+    ; cmp si, rightop
+    ; je leftrankycl
+    cmp si, leftopened
+	jne leftrankycl
+    cmp si, leftclosed
+	jne leftrankyop
+
+leftrankyop:
+    mov si, leftclosed
+	ret
+
+leftrankycl:
+    mov si, leftopened
 	ret

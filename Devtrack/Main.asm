@@ -23,6 +23,7 @@ _start:
     mov al, 13h ; set video mode option 320 x 200 256 colors
     int 10h
 
+    mov di, 0
     ; Return to text mode and exit
     mov ax, 0xA000
     ; call draw_sprite
