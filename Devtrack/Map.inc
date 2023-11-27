@@ -5,7 +5,7 @@ game_stats_height equ 24
 nb_tile equ 0
 
 section .data
-    ; maze blueprint (not implemented yet)
+    ; maze blueprint
     maze:   db 0b1111_1111,0b1111_1111,0b1110_0111,0b1111_1111,0b1111_1111,
             db 0b1000_0000,0b0000_0000,0b0010_0100,0b0000_0000,0b0000_0001,
             db 0b1000_0000,0b0000_0000,0b0010_0100,0b0000_0000,0b0000_0001,
