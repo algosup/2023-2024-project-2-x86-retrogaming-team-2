@@ -320,7 +320,7 @@ We created new sprites for the pac-dots now called "candies", the power-up named
 | TO BE COMPLETED    |   Wall block    |  16*16  | Wall block that complete the maze. |   
 
 ## Glossary
-The goal
+We provided a glossary showcasing some technical terms:
 
 |         Term         |                  Definition                   |  
 | :------------------: | :------------------------------------------: | 
@@ -330,14 +330,13 @@ The goal
 | Drive |   Device for storing computer information   |
 | Emulator |   Computer system that is designed to behave in the same way as a different system    |
 | Interrupt |   In Assembly, special routine that is defined on a per-system basis   |
-| Key Handler |   Ranky-opened mouth    |
-| Maze Game |   Ranky-opened mouth    |
-| Microprocessor |   Ranky-opened mouth    |
-| Regex |   Ranky-opened mouth    |
-| Register |   Ranky-opened mouth    |
-| Resolution |   Ranky-opened mouth    |
-| Sprite |   Ranky-opened mouth    |
-| Virtual Machine |   Ranky-opened mouth    |
+| Key Handler |   System that handle keyboard inputs and process their related events    |
+| Maze Game |   Video game genre taking place in a field called maze. Quick player action is required to escape monsters, outrace an opponent, or navigate the maze within a time limit.     |
+| Microprocessor |   Part of a computer that controls its main operations    |
+| Regex |   Regular Expression, sequence of characters that specifies a match pattern in text    |
+| Register |  Internal memory storage locations used in numbers by the processor in Assembly  |
+| Resolution |   Ability of a television or computer screen, to show things clearly and with a lot of detail  |
+| Sprite |   Icon in a computer game which can be manoeuvred around the screen by means of a joystick, etc    |
 
 ## Sources
 Here are the source links used to complete this technical
@@ -348,8 +347,8 @@ Here are the source links used to complete this technical
 - https://dictionary.cambridge.org/
 - https://medium.com/@niitwork0921/what-is-collision-detection-in-games-69e9dbcd7a13
 - https://en.wikibooks.org/wiki/X86_Assembly/X86_Interrupts
--
--
--
+- https://ultimatepopculture.fandom.com/wiki/Maze_game
+- https://en.wikipedia.org/wiki/Regular_expression
+- https://www.collinsdictionary.com/dictionary/english/sprite
 -
 
