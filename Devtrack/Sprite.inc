@@ -16,7 +16,6 @@ draw_sprite:
     mov ax, 0xA000
     mov es, ax
     mov dx, 16
-	mov si, sprite
             .eachLine:
             mov cx, 16
             rep movsb
@@ -61,6 +60,7 @@ change_velocity:
 	neg word [xVelocity]
     jmp move_player
 
+
 moveup:
 	mov ax, [xPos]
 	sub ax, window_width
@@ -91,9 +91,10 @@ moveright:
     jmp _start.awaitKey
 
 changeboucle:
-	cmp si, sprite
+	cmp si, mouth_opened
+	jne pacmanclosed
+    cmp si, sprite
 	jne pacmanopend
-	jmp pacmanclosed
 
 pacmanopend:
     mov si, sprite
