@@ -138,7 +138,11 @@ Furthermore, a velocity variable will be created for speed variations. These var
 For moving through the maze, every characters will be able to move in 4 directions: LEFT, RIGHT, UP and DOWN.
 
 Indeed, we have to create a function that will make the character moves while
-having different parameters depending on the characters' intended direction. While the player's direction will depend on the keyboard inputs, the bugs's movement will be calculated by AI.
+having different parameters depending on the characters' intended direction.
+
+In assembly, we can only calculate the screen position with one value. For example, with a screen with a width of 320 pixels, if we want our characters to go down, we will increment their position by 320.
+
+While the player's direction will depend on the keyboard inputs, the bugs's movement will be calculated by AI.
 
 Each of the bugs possesses a different AI when following Ranky, but we have chosen to not create our own AI for time constraints. So, we decided to retrieve the original game's respective AIs for programming the ghosts by adapting them to our game.
 
@@ -181,7 +185,7 @@ Each time a new player will launch the game, it will read all the existing highs
 ### Class diagram
 Finally, here's a view on the different classes the game will need:
 
-CLASS DIAGRAM
+<img src="./Images/ClassDiagram.png" width="500">
 
 ### Sprites gallery
 
@@ -299,9 +303,6 @@ We click enter and the drive C will be mounted as a local directory.
 Now that the command prompt will be set up, we will be able to compile and run .asm files.
 
 
-
-
-
 ### Gimp
 For creating the concepts of our maze and sprites, we used Gimp as a designing tool.
 
@@ -315,17 +316,17 @@ The goal
 
 |         Term         |                  Definition                   |  
 | :------------------: | :------------------------------------------: | 
-| Maze Game |   Ranky-opened mouth    |
-| Microprocessor |   Ranky-opened mouth    |
-| virtual machine |   Ranky-opened mouth    |
-| drive |   Ranky-opened mouth    |
-| sprite |   Ranky-opened mouth    |
-| Register |   Ranky-opened mouth    |
-| Emulator |   Ranky-opened mouth    |
-| Animation |   Ranky-opened mouth    |
 | A.I. |   Ranky-opened mouth    |
+| Animation |   Ranky-opened mouth    |
 | Collision |   Ranky-opened mouth    |
+| Drive |   Ranky-opened mouth    |
+| Emulator |   Ranky-opened mouth    |
 | Interrupt |   Ranky-opened mouth    |
 | Key Handler |   Ranky-opened mouth    |
+| Maze Game |   Ranky-opened mouth    |
+| Microprocessor |   Ranky-opened mouth    |
+| Register |   Ranky-opened mouth    |
 | Resolution |   Ranky-opened mouth    |
+| Sprite |   Ranky-opened mouth    |
+| Virtual Machine |   Ranky-opened mouth    |
 
