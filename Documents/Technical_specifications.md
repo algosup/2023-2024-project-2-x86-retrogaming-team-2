@@ -17,21 +17,26 @@
   - [Gameplay](#gameplay)
     - [Game screen](#game-screen)
     - [Controls](#controls)
-    - [Mechanics and rules](#mechanics-and-rules)
-    - [Sprites gallery](#sprites-gallery)
-      - [Hero](#hero)
-      - [Ghosts](#ghosts)
-      - [Others](#others)
-    - [Demo](#demo)
-  - [Technologies](#technologies)
-    - [Programming language](#programming-language)
-    - [x86 Microprocessor](#x86-microprocessor)
-    - [Processus of installation](#processus-of-installation)
-    - [Dependencies](#dependencies)
-    - [Problems encountered](#problems-encountered)
+    - [Game Physics](#game-physics)
+      - [Characters Speed](#characters-speed)
+      - [Characters Movement](#characters-movement)
+      - [Collision Detection](#collision-detection)
+      - [Characters States](#characters-states)
+      - [Collision Detection](#collision-detection)
+    - [Score and HighScore](#score-and-highscore)
+    - [Class Diagram](#class-diagram)
+  - [Demo](#demo)
+  - [Technologies used](#technologies)
+    - [x86 Assembly](#x86-assembly)
+    - [Microprocessor](#microprocessor)
   - [Tools used](#tools-used)
     - [DosBox](#dosbox)
     - [Gimp](#gimp)
+    - [Highlight](#highlight)
+  - [Sprites gallery](#sprites-gallery)
+    - [Ranky](#ranky)
+    - [Bugs](#bugs)
+    - [Others](#others)
   - [Glossary](#glossary)
 
 </details>
@@ -79,8 +84,6 @@ So, we had decided to opt for a 320*200 pixels resolution, with a total of 64 00
 
 In addition, we had to reduce the sprites' size from 16*16 to 8*8 pixels.
 
-
-
 ### Other solutions
 
 The plan of our maze was originally much bigger and would take most of the screen size. However, we expected to experiment graphics issues in case we have to reduce the screen resolution, and we also needed to include the score.
@@ -88,7 +91,6 @@ The plan of our maze was originally much bigger and would take most of the scree
 Here are some concepts of maze that were considered during the project's development:
 
 CONCEPTS
-
 
 ### Out of scope
 First of all, we have decided to exclude the bonus fruits in our game due to time constraints. We believed that it was the less important feature to implement, and we would have replaced them with other kinds of food (Soda, etc...) if we had time.
@@ -113,7 +115,6 @@ To display the maze, we use the "SVGA/MCGA/ATI VIP" video mode in order to displ
 
 For that, we need to enter the interrupt "10h" that will allow us to use a 320*200 definition.
 
-
 ### Controls
 For controling our hungry red ball, we use the keyboard touches to move the character from a x-z plane fixed camera movement.
 
@@ -123,7 +124,7 @@ Moving through the maze will be the only thing the player could do with our char
 
 ### Game Physics
 
-#### Characters speed
+#### Characters Speed
 
 To set up the character's speed, for either Ranky or the bugs, we will move them with a velocity of of a certain pixels per second.
 
@@ -133,7 +134,7 @@ Furthermore, a velocity variable will be created for speed variations. These var
   - Ranky will eat a check (power-up), which will increase his speed and reduce the bug's speed for a short while.
   - At each level, everyone will have a boost of speed to increase the game's difficulty.
 
-#### Characters movement
+#### Characters Movement
 
 For moving through the maze, every characters will be able to move in 4 directions: LEFT, RIGHT, UP and DOWN.
 
@@ -150,7 +151,7 @@ For that, we plan to make the code set up the path they need to take depending o
 
 And at last, the characters should be able to go in the opposite direction instantly at any moment.
 
-#### Collision detection
+#### Collision Detection
 
 We need to avoid making the characters cross walls, items or enemies.
 
@@ -160,7 +161,7 @@ Effectively, we need to program a collision detection for Ranky and the bugs and
   - If Ranky eats a candy or a check, he will detect the item from 5 pixels around his center point.
   - If a bug runs into another bug with 2 pixels of distance separing them, they will both split and go in opposite direction.
 
-#### Characters states
+#### Characters States
 
 Both Ranky and the ghosts have different states depending on the situation, so here's a state diagram to illustrate them:
 
@@ -187,41 +188,14 @@ Finally, here's a view on the different classes the game will need:
 
 <img src="./Images/ClassDiagram.png" width="500">
 
-### Sprites gallery
-
-#### Ranky
-
-Ranky's sprite (Pac-Man's long lost cousin ?) is based on the ALGOSUP's logo.
-
-|         Sprite         |                  Name                   |  Size  |               Details              |
-| :------------------: | :------------------------------------------: | :------------------: | :------------------: |  
-| <img src="Images/Opened-Pac.png" style="height: 200px" width= 200px>|   Ranky-opened mouth    |  16*16  | Fixed animation when Ranky is in his idle animation, but also used alternatively during moving animation. |
-| <img src="Images/Closed-Pac.png" style="height: 200px" width= 200px> |   Ranky-closed mouth    |  16*16  | Used alternatively during moving animation. |    
-
-#### Bugs
-We created new sprites for enemies, now called bugs, with different designs and different names.
-
-|         Sprite         |                  Name                   |  Size  |               Details              |
-| :------------------: | :------------------------------------------: | :------------------: | :------------------: |  
-| <img src="Images/Opened-Pac.png" style="height: 200px" width= 200px>|   Ranky-opened mouth    |  16*16  | Fixed animation when Ranky is in his idle animation, but also used alternatively during moving animation. |
-| <img src="Images/Closed-Pac.png" style="height: 200px" width= 200px> |   Ranky-closed mouth    |  16*16  | Used alternatively during moving animation. |    
-
-#### Others
-We created new sprites for the pac-dots now called "candies", the power-up named "checks", and the maze's wall blocks.
-
-|         Sprite         |                  Name                   |  Size  |               Details              |
-| :------------------: | :------------------------------------------: | :------------------: | :------------------: |  
-| <img src="Images/Opened-Pac.png" style="height: 200px" width= 200px>|   Ranky-opened mouth    |  16*16  | Fixed animation when Ranky is in his idle animation, but also used alternatively during moving animation. |
-| <img src="Images/Closed-Pac.png" style="height: 200px" width= 200px> |   Ranky-closed mouth    |  16*16  | Used alternatively during moving animation. |   
-
-### Demo
+## Demo
 Here's a (upcoming) demo of our game:
 
 UPCOMING DEMO
 
-## Technologies 
+## Technologies used
 
-### Programming language
+### X86 Assembly
 The Algosup School imposed us the use of the Assembly language, more particularly x86 Assembly.
 
 <img src="./Images/ASMLogo.png" width="300">
@@ -232,9 +206,9 @@ Futhermore, the language requires less memory and execution time, and will be mo
 
 Now, our team is stick to use the x86 Assembly version due to DosBox being a x86 emulator.
 
+Although, there was a difficulty to work on this language because some of us were just introduced to it, and need more time to understand how it worked.
 
-
-### x86 Microprocessor REGISTERS ARE ENOUGH
+### Microprocessor 
 
 To simulate the technical limitations of MS-DOS, Franck told us to use the 16-bit microprocessor Intel 8086 for making our game which can also work on a modern machine. It's a 40-pin DIL-shaped integrated circuit as shown in the following figure:
 
@@ -263,16 +237,7 @@ These 8 registers are separated into 2 groups:
 
 <img src="./Images/DataRegisters.jpg" width="500">
 
-
-
-### Processus of installation
-AAA
-
-### Dependencies
-AAA
-
-### Problems encountered
-AAA
+In order to use it in our program, we just need to provide the line "cpu 8086" at the beginning of our nasm file.
 
 
 ## Tools Used 
@@ -302,7 +267,6 @@ We click enter and the drive C will be mounted as a local directory.
 
 Now that the command prompt will be set up, we will be able to compile and run .asm files.
 
-
 ### Gimp
 For creating the concepts of our maze and sprites, we used Gimp as a designing tool.
 
@@ -310,6 +274,52 @@ For creating the concepts of our maze and sprites, we used Gimp as a designing t
 
 It's an high quality framework for scripted image manipulation that provides us sophisticated tools to create, modify and enhances images.
 
+### Highlight
+To color the pixels of our sprites, we used the extension Highlight that can be found on Visual Studio Code.
+
+It provides us an advanced text highlighter based on regexes: it a useful that highlight an hexadecimal color with the related color.
+
+Here's an example with the black color:
+
+```
+"(0x00)": [ // A regex will be created from this string, don't forget to double escape it
+		{ "backgroundColor": "#000000", "color": "#000000" }, // Decoration options to apply to the first capturing group, in this case "0x00"
+	  ],
+
+```
+
+
+## Sprites gallery
+
+### Ranky
+
+Ranky's sprite (Pac-Man's long lost cousin ?) is based on the ALGOSUP's logo.
+
+|         Sprite         |                  Name                   |  Size  |               Details              |
+| :------------------: | :------------------------------------------: | :------------------: | :------------------: |  
+| <img src="Images/Opened-Pac.png" style="height: 200px" width= 200px>|   Ranky-opened mouth    |  16*16  | Fixed sprite when Ranky is in his idle animation, but also used alternatively during moving animation. |
+| <img src="Images/Closed-Pac.png" style="height: 200px" width= 200px> |   Ranky-closed mouth    |  16*16  | Used alternatively during moving animation. |    
+
+### Bugs
+We created new sprites for enemies, now called bugs, with different designs and different names.
+
+|         Sprite         |                  Name                   |  Size  |               Details              |
+| :------------------: | :------------------------------------------: | :------------------: | :------------------: |  
+| <img src="Images/Bug_1.png" style="height: 400px" width= 400px>|   Bug 1    |  16*16  | Main sprite of Bug 1 and used alternatively during moving animation. |
+| <img src="Images/Bug_2.png" style="height: 400px" width= 400px> |   Bug 2   |  16*16  | Main sprite of Bug 2 and used alternatively during moving animation. |
+| <img src="Images/Bug_3.png" style="height: 400px" width= 400px>|   Bug 3   |  16*16  | Main sprite of Bug 3 and used alternatively during moving animation. |
+| <img src="Images/Bug_4.png" style="height: 400px" width= 400px> |   Bug 4   |  16*16  | Main sprite of Bug 4 and used alternatively during moving animation. |
+| <img src="Images/Bug_4-2.png" style="height: 400px" width= 400px> |   Bug 4-glitch1   |  16*16  | 1st Glitching sprite of Bug 4 which is used alternatively during moving animation. |
+| <img src="Images/Bug_4-3.png" style="height: 400px" width= 400px> |   Bug 4-glitch2    |  16*16  | 2nd Glitching sprite of Bug 4 which is used alternatively during moving animation.  |
+
+### Others
+We created new sprites for the pac-dots now called "candies", the power-up named "checks", and the maze's wall blocks.
+
+|         Sprite         |                  Name                   |  Size  |               Details              |
+| :------------------: | :------------------------------------------: | :------------------: | :------------------: |  
+| TO BE COMPLETED    |   Candy    |  2*2  | Candy that Ranky must eat. |
+| <img src="Images/Check.png" style="height: 200px" width= 200px> |   Check   |  8*8  | Check that gives Ranky a powerful power-up when eaten. |
+| TO BE COMPLETED    |   Wall block    |  16*16  | Wall block that complete the maze. |   
 
 ## Glossary
 The goal
@@ -325,6 +335,7 @@ The goal
 | Key Handler |   Ranky-opened mouth    |
 | Maze Game |   Ranky-opened mouth    |
 | Microprocessor |   Ranky-opened mouth    |
+| Regex |   Ranky-opened mouth    |
 | Register |   Ranky-opened mouth    |
 | Resolution |   Ranky-opened mouth    |
 | Sprite |   Ranky-opened mouth    |
