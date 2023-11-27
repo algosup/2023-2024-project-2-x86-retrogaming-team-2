@@ -138,12 +138,11 @@ Furthermore, a velocity variable will be created for speed variations. These var
 
 For moving through the maze, every characters will be able to move in 4 directions: LEFT, RIGHT, UP and DOWN.
 
-Indeed, we have to create a function that will make the character moves while
-having different parameters depending on the characters' intended direction.
+Indeed, we have to create a function that will make the character moves while having different parameters depending on the characters' intended direction.
 
 In assembly, we can only calculate the screen position with one value. For example, with a screen with a width of 320 pixels, if we want our characters to go down, we will increment their position by 320.
 
-While the player's direction will depend on the keyboard inputs, the bugs's movement will be calculated by AI.
+While the player's direction will depend on the keyboard inputs (programmed through the interrupt int 16h), the bugs's movement will be calculated by AI.
 
 Each of the bugs possesses a different AI when following Ranky, but we have chosen to not create our own AI for time constraints. So, we decided to retrieve the original game's respective AIs for programming the ghosts by adapting them to our game.
 
@@ -288,7 +287,6 @@ Here's an example with the black color:
 
 ```
 
-
 ## Sprites gallery
 
 ### Ranky
@@ -305,12 +303,12 @@ We created new sprites for enemies, now called bugs, with different designs and 
 
 |         Sprite         |                  Name                   |  Size  |               Details              |
 | :------------------: | :------------------------------------------: | :------------------: | :------------------: |  
-| <img src="Images/Bug_1.png" style="height: 400px" width= 400px>|   Bug 1    |  16*16  | Main sprite of Bug 1 and used alternatively during moving animation. |
-| <img src="Images/Bug_2.png" style="height: 400px" width= 400px> |   Bug 2   |  16*16  | Main sprite of Bug 2 and used alternatively during moving animation. |
-| <img src="Images/Bug_3.png" style="height: 400px" width= 400px>|   Bug 3   |  16*16  | Main sprite of Bug 3 and used alternatively during moving animation. |
-| <img src="Images/Bug_4.png" style="height: 400px" width= 400px> |   Bug 4   |  16*16  | Main sprite of Bug 4 and used alternatively during moving animation. |
-| <img src="Images/Bug_4-2.png" style="height: 400px" width= 400px> |   Bug 4-glitch1   |  16*16  | 1st Glitching sprite of Bug 4 which is used alternatively during moving animation. |
-| <img src="Images/Bug_4-3.png" style="height: 400px" width= 400px> |   Bug 4-glitch2    |  16*16  | 2nd Glitching sprite of Bug 4 which is used alternatively during moving animation.  |
+| <img src="Images/Bug_1.png" style="height: 200px" width= 200px>|   Bug 1    |  16*16  | Main sprite of Bug 1 and used alternatively during moving animation. |
+| <img src="Images/Bug_2.png" style="height: 200px" width= 200px> |   Bug 2   |  16*16  | Main sprite of Bug 2 and used alternatively during moving animation. |
+| <img src="Images/Bug_3.png" style="height: 200px" width= 200px>|   Bug 3   |  16*16  | Main sprite of Bug 3 and used alternatively during moving animation. |
+| <img src="Images/Bug_4.png" style="height: 200px" width= 200px> |   Bug 4   |  16*16  | Main sprite of Bug 4 and used alternatively during moving animation. |
+| <img src="Images/Bug_4-2.png" style="height: 200px" width= 200px> |   Bug 4-glitch1   |  16*16  | 1st Glitching sprite of Bug 4 which is used alternatively during moving animation. |
+| <img src="Images/Bug_4-3.png" style="height: 200px" width= 200px> |   Bug 4-glitch2    |  16*16  | 2nd Glitching sprite of Bug 4 which is used alternatively during moving animation.  |
 
 ### Others
 We created new sprites for the pac-dots now called "candies", the power-up named "checks", and the maze's wall blocks.
@@ -326,12 +324,12 @@ The goal
 
 |         Term         |                  Definition                   |  
 | :------------------: | :------------------------------------------: | 
-| A.I. |   Ranky-opened mouth    |
-| Animation |   Ranky-opened mouth    |
-| Collision |   Ranky-opened mouth    |
-| Drive |   Ranky-opened mouth    |
-| Emulator |   Ranky-opened mouth    |
-| Interrupt |   Ranky-opened mouth    |
+| A.I. |   Artificial Intelligence, use or study of computer systems or machines that copies the qualities that the human brain has, such as interpreting and producing language in a way that seems human, recognize or create images, solve problems, and learn from data supplied to them    |
+| Animation |   Moving images created from Pixel   |
+| Collision |   Event when two or more items come into contact with each other    |
+| Drive |   Device for storing computer information   |
+| Emulator |   Computer system that is designed to behave in the same way as a different system    |
+| Interrupt |   In Assembly, special routine that is defined on a per-system basis   |
 | Key Handler |   Ranky-opened mouth    |
 | Maze Game |   Ranky-opened mouth    |
 | Microprocessor |   Ranky-opened mouth    |
@@ -340,4 +338,18 @@ The goal
 | Resolution |   Ranky-opened mouth    |
 | Sprite |   Ranky-opened mouth    |
 | Virtual Machine |   Ranky-opened mouth    |
+
+## Sources
+Here are the source links used to complete this technical
+- https://creately.com/diagram/example/ip9qo3le/pacman-uml
+- https://www.tutorialspoint.com/assembly_programming/assembly_introduction.htm
+- https://fr.gadgetversus.com/processeur/intel-8086-fiche-technique/
+- https://www.dosbox.com/
+- https://dictionary.cambridge.org/
+- https://medium.com/@niitwork0921/what-is-collision-detection-in-games-69e9dbcd7a13
+- https://en.wikibooks.org/wiki/X86_Assembly/X86_Interrupts
+-
+-
+-
+-
 
