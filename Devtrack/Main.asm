@@ -6,13 +6,13 @@ org 100h
 section .data
     ; KeyBind
     key_up db 'z'
-    key_up2 db 'i'
+    key_up2 db 48h
     key_down db 's'
-    key_down2 db 'k'
+    key_down2 db 50h
     key_left db 'q'
-    key_left2 db 'j'
+    key_left2 db 4BH
     key_right db 'd'
-    key_right2 db 'l'
+    key_right2 db 4DH
     key_exit db 27
     key_menu db 'p'
 
@@ -28,14 +28,16 @@ _start:
 
     ; Return to text mode and exit
     mov ax, 0xA000
-
-    call drawMaze
-
+    mov di, 0
+    ; call drawMaze
+    ; call move_player
     .spawn_entities:
         ;call move_player
-        call spawn_bugs
+        ; call spawn_bugs
 
     .awaitKey:
+        call changeboucle
+        call draw_sprite
         call keyHandler
         mov [charValue], al
         cmp al , [key_exit]
@@ -50,13 +52,13 @@ _start:
         je .moveRg
         cmp al , [key_left]
         je .moveLf
-        cmp al , [key_up2]
+        cmp ah , [key_up2]
         je .moveUp
-        cmp al , [key_down2]
+        cmp ah , [key_down2]
         je .moveDn
-        cmp al , [key_right2]
+        cmp ah , [key_right2]
         je .moveRg
-        cmp al , [key_left2]
+        cmp ah , [key_left2]
         je .moveLf
         jmp .awaitKey
 
