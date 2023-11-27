@@ -31,11 +31,12 @@ _start:
 
     .spawn_entities:
         ; call move_player
-         ;call draw_sprite
+        ; call draw_sprite
 
     .awaitKey:
         call changeboucle
         call draw_sprite
+        call comp_color
         call keyHandler
         mov [charValue], al
         cmp al , [key_exit]

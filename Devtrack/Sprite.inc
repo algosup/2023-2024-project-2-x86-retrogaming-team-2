@@ -8,6 +8,9 @@ xVelocity dw 1
 desired_x equ 0
 desired_y equ 0
 
+truem db '1',13,10,'$'   ; true and false message.
+falsem db '0',13,10,'$'
+
 
 section .text
 
@@ -80,3 +83,47 @@ pacmanopend:
 pacmanclosed:
     mov si, mouth_opened
 	ret
+
+
+comp_color:
+    push ax
+    push bx
+    push cx
+    push dx
+
+    mov dx, 8
+    mov bx, 8
+
+    mov ax, 0xA000 
+    mul dx          
+    add ax, bx    
+    mov di, ax   
+
+    
+    mov al, [di]  
+
+    
+    cmp al, 0x27
+    je .true
+
+    .false:
+        mov ah, 9
+        mov dx, falsem
+        int 21h
+
+        pop dx
+        pop cx
+        pop bx
+        pop ax
+        ret
+
+    .true:
+        mov ah, 9
+        mov dx, truem
+        int 21h
+
+        pop dx
+        pop cx
+        pop bx
+        pop ax
+        ret
