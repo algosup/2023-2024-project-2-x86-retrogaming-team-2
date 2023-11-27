@@ -91,7 +91,7 @@ moveup:
     sub ax, window_width
     mov [xPos], ax
     mov di, [xPos]
-    call changeboucle
+    ; call changeboucle
     jmp _start.awaitKey
 
 movedown:
@@ -99,7 +99,7 @@ movedown:
     add ax, window_width
     mov [xPos], ax
     mov di, [xPos]
-    call changeboucle
+    ; call changeboucle
     jmp _start.awaitKey
 
 moveleft:
@@ -107,7 +107,7 @@ moveleft:
     sub ax, [xVelocity]
     mov [xPos], ax
     mov di, [xPos]
-    call changeboucle
+    ; call changeboucle
     jmp _start.awaitKey
 
 moveright:
@@ -115,19 +115,19 @@ moveright:
     add ax, [xVelocity] 
     mov [xPos], ax
     mov di, [xPos]
-    call changeboucle
+    ; call changeboucle
     jmp _start.awaitKey
 
 changeboucle:    
-    cmp si, right_closed
-	jne pacmanopend
     cmp si, right_opened
-	jne pacmanclosed
+	je pacmanopend
+    cmp si, right_closed
+    je pacmanclosed
 
 pacmanopend:
-    mov si, right_opened
+    mov si, right_closed
     ret
 
 pacmanclosed:
-    mov si, right_closed
+    mov si, right_opened
     ret
