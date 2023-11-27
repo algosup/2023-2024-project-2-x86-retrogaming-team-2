@@ -25,18 +25,16 @@ _start:
 
     ; Return to text mode and exit
     mov ax, 0xA000
-    ; call draw_sprite
-    ; call drawMaze
-    mov di, 0
+    call drawMaze
 
     .spawn_entities:
         ; call move_player
-        ; call draw_sprite
+        mov di, 0
 
     .awaitKey:
-        call changeboucle
+        call anim_loop
         call draw_sprite
-        call comp_color
+        ; call comp_color
         call keyHandler
         mov [charValue], al
         cmp al , [key_exit]

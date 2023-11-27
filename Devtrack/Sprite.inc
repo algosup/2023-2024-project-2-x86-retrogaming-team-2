@@ -46,42 +46,42 @@ moveup:
 	sub ax, window_width
     mov [xPos], ax
 	mov di, [xPos]
-	call changeboucle
+	call anim_loop
     jmp _start.awaitKey
 movedown:
     mov ax, [xPos]
     add ax, window_width
     mov [xPos], ax
 	mov di, [xPos]
-	call changeboucle
+	call anim_loop
     jmp _start.awaitKey
 moveleft:
     mov ax, [xPos]
 	sub ax, [xVelocity]
 	mov [xPos], ax
 	mov di, [xPos]
-	call changeboucle
+	call anim_loop
     jmp _start.awaitKey
 moveright:
     mov ax, [xPos]
 	add ax, [xVelocity] 
 	mov [xPos], ax
 	mov di, [xPos]
-	call changeboucle
+	call anim_loop
     jmp _start.awaitKey
 
-changeboucle:
-	cmp si, mouth_opened
-	jne pacmanclosed
-    cmp si, sprite
-	jne pacmanopend
+anim_loop:
+	cmp si, right_opened    ; compare if the mouth is opened
+	je pacmanopened
+    cmp si, right_closed    ; compare if the mouth is closed
+	je pacmanclosed 
 
-pacmanopend:
-    mov si, sprite
+pacmanopened:
+    mov si, right_closed    ; close the mouth if it's opened
 	ret
 
 pacmanclosed:
-    mov si, mouth_opened
+    mov si, right_opened ; open the mouth if it's closed
 	ret
 
 
@@ -90,12 +90,12 @@ comp_color:
     push bx
     push cx
     push dx
+    push di
 
     mov dx, 8
     mov bx, 8
 
-    mov ax, 0xA000 
-    mul dx          
+    mov ax, 0xA000           
     add ax, bx    
     mov di, ax   
 
@@ -111,6 +111,7 @@ comp_color:
         mov dx, falsem
         int 21h
 
+        pop di
         pop dx
         pop cx
         pop bx
@@ -122,6 +123,7 @@ comp_color:
         mov dx, truem
         int 21h
 
+        pop di
         pop dx
         pop cx
         pop bx
