@@ -1,5 +1,5 @@
 ; Config Area
-%define window_width  320
+window_width equ 320
 %define window_height  200
 %define game_stats_height  24
 
@@ -38,6 +38,22 @@ drawMaze:
     mov al,[si]   ; set al as the current byte of si's array
     
     mov di, window_width*game_stats_height    ; set the start of the maze
+
+    xor bx, bx 
+
+    ; sub di, window_width
+    .drawBorder:
+
+        inc bx
+        mov ah, 0Ch
+        mov al, 08h
+        mov dx, 23
+        mov cx, bx
+        int 10h
+        
+        cmp bx, window_width
+        jb .drawBorder
+
     xor bx, bx   
     drawingloop:
 

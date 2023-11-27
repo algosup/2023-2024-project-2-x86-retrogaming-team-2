@@ -29,12 +29,13 @@ _start:
     call drawMaze
 
     .spawn_entities:
+        mov di, [xPos]
         ; call move_player
-         ;call draw_sprite
+        ;call draw_sprite
 
     .awaitKey:
-        ; call changeboucle
-        ; call draw_sprite
+        call changeboucle
+        call draw_sprite
         call keyHandler
         mov [charValue], al
         cmp al , [key_exit]
