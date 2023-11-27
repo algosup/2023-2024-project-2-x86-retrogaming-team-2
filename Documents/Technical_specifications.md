@@ -295,20 +295,20 @@ Ranky's sprite (Pac-Man's long lost cousin ?) is based on the ALGOSUP's logo.
 
 |         Sprite         |                  Name                   |  Size  |               Details              |
 | :------------------: | :------------------------------------------: | :------------------: | :------------------: |  
-| <img src="Images/Opened-Pac.png" style="height: 200px" width= 200px>|   Ranky-opened mouth    |  16*16  | Fixed sprite when Ranky is in his idle animation, but also used alternatively during moving animation. |
-| <img src="Images/Closed-Pac.png" style="height: 200px" width= 200px> |   Ranky-closed mouth    |  16*16  | Used alternatively during moving animation. |    
+| <img src="Images/Opened-Pac.png" style="height: 200px, width= 200px">|   Ranky-opened mouth    |  16*16  | Fixed sprite when Ranky is in his idle animation, but also used alternatively during moving animation. |
+| <img src="Images/Closed-Pac.png" style="height: 200px, width= 200px"> |   Ranky-closed mouth    |  16*16  | Used alternatively during moving animation. |    
 
 ### Bugs
 We created new sprites for enemies, now called bugs, with different designs and different names.
 
 |         Sprite         |                  Name                   |  Size  |               Details              |
 | :------------------: | :------------------------------------------: | :------------------: | :------------------: |  
-| <img src="Images/Bug_1.png" style="height: 200px" width= 200px>|   Bug 1    |  16*16  | Main sprite of Bug 1 and used alternatively during moving animation. |
-| <img src="Images/Bug_2.png" style="height: 200px" width= 200px> |   Bug 2   |  16*16  | Main sprite of Bug 2 and used alternatively during moving animation. |
-| <img src="Images/Bug_3.png" style="height: 200px" width= 200px>|   Bug 3   |  16*16  | Main sprite of Bug 3 and used alternatively during moving animation. |
-| <img src="Images/Bug_4.png" style="height: 200px" width= 200px> |   Bug 4   |  16*16  | Main sprite of Bug 4 and used alternatively during moving animation. |
-| <img src="Images/Bug_4-2.png" style="height: 200px" width= 200px> |   Bug 4-glitch1   |  16*16  | 1st Glitching sprite of Bug 4 which is used alternatively during moving animation. |
-| <img src="Images/Bug_4-3.png" style="height: 200px" width= 200px> |   Bug 4-glitch2    |  16*16  | 2nd Glitching sprite of Bug 4 which is used alternatively during moving animation.  |
+| <img src="Images/Bug_1.png" style="height: 200px, width= 200px">|   Bug 1    |  16*16  | Main sprite of Bug 1 and used alternatively during moving animation. |
+| <img src="Images/Bug_2.png" style="height: 200px, width= 200px"> |   Bug 2   |  16*16  | Main sprite of Bug 2 and used alternatively during moving animation. |
+| <img src="Images/Bug_3.png" style="height: 200px, width= 200px">|   Bug 3   |  16*16  | Main sprite of Bug 3 and used alternatively during moving animation. |
+| <img src="Images/Bug_4.png" style="height: 200px, width= 200px"> |   Bug 4   |  16*16  | Main sprite of Bug 4 and used alternatively during moving animation. |
+| <img src="Images/Bug_4-2.png" style="height: 200px, width= 200px"> |   Bug 4-glitch1   |  16*16  | 1st Glitching sprite of Bug 4 which is used alternatively during moving animation. |
+| <img src="Images/Bug_4-3.png" style="height: 200px, width= 200px"> |   Bug 4-glitch2    |  16*16  | 2nd Glitching sprite of Bug 4 which is used alternatively during moving animation.  |
 
 ### Others
 We created new sprites for the pac-dots now called "candies", the power-up named "checks", and the maze's wall blocks.
@@ -316,7 +316,7 @@ We created new sprites for the pac-dots now called "candies", the power-up named
 |         Sprite         |                  Name                   |  Size  |               Details              |
 | :------------------: | :------------------------------------------: | :------------------: | :------------------: |  
 | TO BE COMPLETED    |   Candy    |  2*2  | Candy that Ranky must eat. |
-| <img src="Images/Check.png" style="height: 200px" width= 200px> |   Check   |  8*8  | Check that gives Ranky a powerful power-up when eaten. |
+| <img src="Images/Check.png" style="height: 200px, width= 200px"> |   Check   |  8*8  | Check that gives Ranky a powerful power-up when eaten. |
 | TO BE COMPLETED    |   Wall block    |  16*16  | Wall block that complete the maze. |   
 
 ## Glossary
