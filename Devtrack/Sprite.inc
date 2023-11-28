@@ -61,18 +61,18 @@ move_bug1:
        
     jmp move_bug1
 
-moveup:
-    mov ax, [xPos]
-    sub ax, window_width
-    mov [xPos], ax
-    mov di, [xPos]
-    call changeboucle
-        mov cx, 8
-        rep movsb
-        add di, window_width-8
-        dec dx
-        jnz .eachLine
-    ret
+; moveup:
+;     mov ax, [xPos]
+;     sub ax, window_width
+;     mov [xPos], ax
+;     mov di, [xPos]
+;     call changeboucle
+;         mov cx, 8
+;         rep movsb
+;         add di, window_width-8
+;         dec dx
+;         jnz .eachLine
+;     ret
 
 moveup:
 	mov ax, [xPos]
@@ -107,15 +107,15 @@ moveright:
     jmp _start.awaitKey
 
 changeloop:
-    cmp si, rightop
+    cmp si, right_opened
 	jne pacmanclosed
-    cmp si, right
+    cmp si, right_closed
 	jne pacmanopend
 
 pacmanopend:
-    mov si, right
+    mov si, right_closed
 	ret
 
 pacmanclosed:
-    mov si, rightop
+    mov si, right_opened
 	ret
