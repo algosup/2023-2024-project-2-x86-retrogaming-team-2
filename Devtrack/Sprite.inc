@@ -6,10 +6,10 @@ xPos dw window_width*80+(window_width-16)/2
 xVelocity dw 1
 
 ; Bugs Positions
-bug1_pos dw 32160
-bug2_pos dw 0
-bug3_pos dw 0
-bug4_pos dw 0
+bug1_pos dw window_width*136+(window_width-16)/2            ; Outside of the house
+bug2_pos dw window_width*108+(window_width-16)/2            ; Center in the house
+bug3_pos dw window_width*108+((window_width-16)/2 - 24)     ; Left in the house
+bug4_pos dw window_width*108+((window_width-16)/2 + 24)     ; Right in the house
 
 
 section .text
@@ -50,16 +50,11 @@ move_bug1:
     mov si, bug1_sprite
     call draw_sprite
 
-    mov cx, 20000 
-    .waitloop:
-    loop .waitloop
-
     xor bx, bx
     add bx, 1
     add bx, [bug1_pos]
     mov [bug1_pos], bx
-       
-    jmp move_bug1
+    ret
 
 ; moveup:
 ;     mov ax, [xPos]

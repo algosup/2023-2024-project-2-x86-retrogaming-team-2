@@ -29,6 +29,22 @@ _start:
     call drawMaze
 
     .spawn_entities:
+        mov si, bug1_sprite
+        mov di, [bug1_pos]
+        call draw_sprite
+
+        mov si, bug2_sprite
+        mov di, [bug2_pos]
+        call draw_sprite
+
+        mov si, bug3_sprite
+        mov di, [bug3_pos]
+        call draw_sprite
+
+        mov si, bug4_sprite
+        mov di, [bug4_pos]
+        call draw_sprite
+
         mov di, [xPos]
 
     .awaitKey:
@@ -91,3 +107,4 @@ keyHandler:
 %include "Animations/Bugs_Anims.inc"
 %include "Map.inc"
 %include "Sprite.inc"
+%include "Scoreboard.inc"

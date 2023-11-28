@@ -40,18 +40,7 @@ drawMaze:
 
     xor bx, bx 
 
-    ; sub di, window_width
-    .drawBorder:
-
-        inc bx
-        mov ah, 0Ch
-        mov al, 08h
-        mov dx, 23
-        mov cx, bx
-        int 10h
-        
-        cmp bx, window_width
-        jb .drawBorder
+    call draw_scoreboard
 
     xor bx, bx   
     drawingloop:
