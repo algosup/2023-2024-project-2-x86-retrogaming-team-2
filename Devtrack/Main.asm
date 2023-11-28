@@ -1,8 +1,6 @@
 cpu 8086
 org 100h
 
-
-
 section .data
     ; KeyBind
     key_up db 'z'
@@ -15,7 +13,6 @@ section .data
     key_right2 db 4DH
     key_exit db 27
     key_menu db 'p'
-
     charValue db 'X$'
 
 section .text
@@ -23,20 +20,19 @@ section .text
 _start:
     ; Initialize graphics mode
     mov ah, 00h ; set video mode requirement
-    mov al, 13h ; set video mode option o 320 x 200 256 colors
+    mov al, 13h ; set video mode option 320 x 200 256 colors
     int 10h
 
+    mov di, 0
     ; Return to text mode and exit
     mov ax, 0xA000
-    mov di, 0
-    ; call drawMaze
-    ; call move_player
+    call drawMaze
+
     .spawn_entities:
-        ;call move_player
-        ; call spawn_bugs
+        mov di, [xPos]
 
     .awaitKey:
-        call changeboucle
+        call changeloop
         call draw_sprite
         call keyHandler
         mov [charValue], al
