@@ -5,12 +5,6 @@ section .data
 xPos dw window_width*80+(window_width-16)/2
 xVelocity dw 1
 
-desired_x equ 0
-desired_y equ 0
-
-
-
-
 section .text
 
 ; draw sprite in 16x16 pixels
@@ -38,30 +32,6 @@ draw_tile:
         dec dx
         jnz .eachLine
     ret
-
-move_player:
-
-    mov si, right
-    mov di, [xPos]
-    call draw_sprite
-    mov cx, 20000 
-    waitloop:
-    loop waitloop
-
-	mov bx, [xPos]
-	add bx, [xVelocity]
-	mov word [xPos], bx
-
-	cmp word [xPos], window_width-16
-	je change_velocity
-	cmp word [xPos], 0
-	je change_velocity
-	jmp move_player
-
-change_velocity:
-	neg word [xVelocity]
-    jmp move_player
-
 
 moveup:
 	mov ax, [xPos]
