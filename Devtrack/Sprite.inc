@@ -41,6 +41,18 @@ draw_tile:
     ret
 
 
+draw_letter:
+    mov ax, 0xA000
+    mov es, ax
+    mov dx, 7
+        .eachLine:
+            mov cx, 7
+            rep movsb
+            add di, window_width-7
+            dec dx
+            jnz .eachLine
+    ret
+
 spawn_bugs:
     jmp move_bug1
     ret
@@ -114,3 +126,7 @@ pacmanopend:
 pacmanclosed:
     mov si, right_opened
 	ret
+
+
+
+; get_letter:

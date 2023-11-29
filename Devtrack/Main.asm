@@ -14,7 +14,7 @@ section .data
     key_exit db 27
     key_menu db 'p'
     charValue db 'X$'
-
+    
 section .text
     global _start
 _start:
@@ -29,6 +29,10 @@ _start:
     call drawMaze
 
     .spawn_entities:
+        call draw_score
+        call draw_highscore
+        call draw_life
+
         mov si, bug1_sprite
         mov di, [bug1_pos]
         call draw_sprite
