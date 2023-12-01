@@ -51,9 +51,11 @@ _start:
 
         mov di, [xPos]
 
-    .awaitKey:
-        call changeloop
+        mov si, right_closed
         call draw_sprite
+
+    .awaitKey:
+        
         call keyHandler
         mov [charValue], al
         cmp al , [key_exit]
