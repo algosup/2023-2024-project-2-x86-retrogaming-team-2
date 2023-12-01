@@ -1,5 +1,6 @@
-cpu 8086
+bits 16
 org 100h
+
 
 section .data
     ; KeyBind
@@ -29,6 +30,7 @@ _start:
     call drawMaze
 
     .spawn_dots:
+        call DrawCheckMark
         call drawDot
 
     .spawn_entities:
@@ -117,4 +119,4 @@ keyHandler:
 %include "Map.inc"
 %include "Sprite.inc"
 %include "Scoreboard.inc"
-%include "Dots.inc"
+%include "Items.inc"

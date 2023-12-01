@@ -1,5 +1,3 @@
-org 100h
-
 %define firstLine 40*window_width+16
 %define secondLine firstLine+(320*8)
 %define thirdLine firstLine+(320*16)
@@ -15,10 +13,10 @@ org 100h
 %define thirteenthLine firstLine+(320*96)
 %define fourteenthLine firstLine+(320*104)
 %define fifteenthLine firstLine+(320*112)
-%define sixteenth firstLine+(320*120)
-%define seventeenth firstLine+(320*128)
-%define eighteenth firstLine+(320*136)
-%define nineteenth firstLine+(320*144)
+%define sixteenthLine firstLine+(320*120)
+%define seventeenthLine firstLine+(320*128)
+%define eighteenthLine firstLine+(320*136)
+%define nineteenthLine firstLine+(320*144)
 
 section .dina
 
@@ -64,19 +62,20 @@ section .dina
                 ; 15th line
                 dw fifteenthLine, fifteenthLine+ 40, fifteenthLine+ 96, fifteenthLine+ 120,fifteenthLine+ 168, fifteenthLine+ 192, fifteenthLine+ 248, fifteenthLine+ 288
                 ; 16th line
-                dw sixteenth, sixteenth+ 24, sixteenth+ 32, sixteenth+ 40, sixteenth+ 48, sixteenth+ 56, sixteenth+ 64, sixteenth+ 72, sixteenth+ 80, sixteenth+ 88
-                dw sixteenth+ 96, sixteenth+ 120, sixteenth+ 168, sixteenth+ 192, sixteenth+ 200, sixteenth+ 208, sixteenth+ 216, sixteenth+ 224, sixteenth+ 232
-                dw sixteenth+ 240, sixteenth+ 248, sixteenth+ 256, sixteenth+ 264, sixteenth+ 288
+                dw sixteenthLine, sixteenthLine+ 24, sixteenthLine+ 32, sixteenthLine+ 40, sixteenthLine+ 48, sixteenthLine+ 56, sixteenthLine+ 64, sixteenthLine+ 72, sixteenthLine+ 80, sixteenthLine+ 88
+                dw sixteenthLine+ 96, sixteenthLine+ 120, sixteenthLine+ 168, sixteenthLine+ 192, sixteenthLine+ 200, sixteenthLine+ 208, sixteenthLine+ 216, sixteenthLine+ 224, sixteenthLine+ 232
+                dw sixteenthLine+ 240, sixteenthLine+ 248, sixteenthLine+ 256, sixteenthLine+ 264, sixteenthLine+ 288
                 ; 17th line
-                dw seventeenth, seventeenth+ 48, seventeenth+ 120,seventeenth+ 128,seventeenth+ 136,seventeenth+ 144,seventeenth+ 152,seventeenth+ 160, seventeenth+ 168, seventeenth+ 240, seventeenth+ 288
+                dw seventeenthLine, seventeenthLine+ 48, seventeenthLine+ 120,seventeenthLine+ 128,seventeenthLine+ 136,seventeenthLine+ 144,seventeenthLine+ 152,seventeenthLine+ 160, seventeenthLine+ 168, seventeenthLine+ 240, seventeenthLine+ 288
                 ; 18th line
-                dw eighteenth, eighteenth+ 48, eighteenth+ 120, eighteenth+ 168, eighteenth+ 240, eighteenth+ 288
+                dw eighteenthLine, eighteenthLine+ 48, eighteenthLine+ 120, eighteenthLine+ 168, eighteenthLine+ 240, eighteenthLine+ 288
                 ; 19th line
-                dw nineteenth, nineteenth+ 8, nineteenth+ 16, nineteenth+ 24, nineteenth+ 40, nineteenth+ 48, nineteenth+ 56 
-                dw nineteenth+ 64, nineteenth+ 72, nineteenth+ 80, nineteenth+ 88, nineteenth+ 96, nineteenth+ 104, nineteenth+ 112, nineteenth+ 120 
-                dw nineteenth+ 168, nineteenth+ 176, nineteenth+ 184, nineteenth+ 192, nineteenth+ 200, nineteenth+ 208, nineteenth+ 216, nineteenth+ 224
-                dw nineteenth+ 232, nineteenth+ 240, nineteenth+ 248, nineteenth+ 264, nineteenth+ 272, nineteenth+ 280, nineteenth+ 288 
+                dw nineteenthLine, nineteenthLine+ 8, nineteenthLine+ 16, nineteenthLine+ 24, nineteenthLine+ 40, nineteenthLine+ 48, nineteenthLine+ 56 
+                dw nineteenthLine+ 64, nineteenthLine+ 72, nineteenthLine+ 80, nineteenthLine+ 88, nineteenthLine+ 96, nineteenthLine+ 104, nineteenthLine+ 112, nineteenthLine+ 120 
+                dw nineteenthLine+ 168, nineteenthLine+ 176, nineteenthLine+ 184, nineteenthLine+ 192, nineteenthLine+ 200, nineteenthLine+ 208, nineteenthLine+ 216, nineteenthLine+ 224
+                dw nineteenthLine+ 232, nineteenthLine+ 240, nineteenthLine+ 248, nineteenthLine+ 264, nineteenthLine+ 272, nineteenthLine+ 280, nineteenthLine+ 288 
 
+    checkMarkPos dw fourthLine+13-(320*3), fourthLine+269-(320*3),nineteenthLine+29-(320*3),nineteenthLine+253-(320*3)
 
 
 
@@ -96,23 +95,16 @@ section .text:
         inc di
         mov [es:di], al
         
-
-
         call .newLine
 
         add si,2 ; add 2 because idk why index need to be multiplied by 2
         mov di, [si]
 
-
         inc cx
         cmp cx,270
         jb DrawDotLoop
-   
-
-
 
     jmp _start.spawn_entities
-
 
     .newLine:
         add di, window_width
@@ -120,4 +112,32 @@ section .text:
         mov [es:di], al
         inc di
         mov [es:di], al
+        ret
+
+
+    DrawCheckMark:
+        mov ax, 0xA000
+        mov cx,0
+        mov si, checkMarkPos
+        mov es,ax
+        
+        CheckMarkLoop:
+            mov di,[si]
+            push si
+            push cx
+            push ax
+
+            mov si, check_mark
+            call draw_tile
+        
+            pop ax
+            pop cx
+            pop si
+
+            inc si
+            inc si
+            inc cx
+            cmp cx, 4
+            jb CheckMarkLoop
+        
         ret
