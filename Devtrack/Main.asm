@@ -28,6 +28,9 @@ _start:
     mov ax, 0xA000
     call drawMaze
 
+    .spawn_dots:
+        call drawDot
+
     .spawn_entities:
         call draw_score
         call draw_highscore
@@ -114,3 +117,4 @@ keyHandler:
 %include "Map.inc"
 %include "Sprite.inc"
 %include "Scoreboard.inc"
+%include "Dots.inc"
