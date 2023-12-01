@@ -38,9 +38,9 @@ The strategy that will be used to test the game is to test it manually. The test
 | Name of the test | Description |
 | --- | --- |
 | Movement and Controls | Test if the controls are working properly. |
-| Foes Behavior | Ensure that the behavior of the foes works as expected for each of them. |
-| Maze Navigation | Verify that the player can navigate the maze, consume pellets, and escape from enemies. |
 | Collision | The player should not be able to walk through walls. |
+| Maze Navigation | Verify that the player can navigate the maze, be able to use the tunnels, consume pellets, and escape from enemies. |
+| Foes Behavior | Ensure that the behavior of the foes works as expected for each of them. |
 | Game Levels | Check if the game progresses through levels correctly. The game should change level when the player eats all the dots. |
 | Exit | The game should exit when the user clicks on the exit button. |
 | Win | The game should end when the player wins all levels. |
@@ -90,7 +90,7 @@ Lenovo ThinkBook :
   
 MacBook Air : 
   - MacBook Air 13″
-    - **Apple M1** chip
+    - **Processor** : Apple M1 chip
     - **RAM** : 8.0 GB
     - **Operating system** : macOS Ventura
 
