@@ -29,9 +29,12 @@ _start:
     call drawMaze
 
     .spawn_entities:
-        call draw_score
-        call draw_highscore
-        call draw_life
+
+        push bx
+        mov bx, 10
+        call add_score
+        pop bx
+        call update_score
 
         mov si, bug1_sprite
         mov di, [bug1_pos]
@@ -51,9 +54,10 @@ _start:
 
         mov di, [xPos]
 
-    .awaitKey:
-        call changeloop
+        mov si, right_closed
         call draw_sprite
+
+    .awaitKey:
         call keyHandler
         mov [charValue], al
         cmp al , [key_exit]
@@ -99,7 +103,7 @@ keyHandler:
     ret
 
 ; game_loop:
-;     mov cx, 20000 
+;     mov cx, 64000 
 ;     .waitloop:
 ;     loop .waitloop
 ;     call move_bug1

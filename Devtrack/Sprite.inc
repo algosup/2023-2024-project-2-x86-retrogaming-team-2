@@ -68,25 +68,13 @@ move_bug1:
     mov [bug1_pos], bx
     ret
 
-; moveup:
-;     mov ax, [xPos]
-;     sub ax, window_width
-;     mov [xPos], ax
-;     mov di, [xPos]
-;     call changeboucle
-;         mov cx, 8
-;         rep movsb
-;         add di, window_width-8
-;         dec dx
-;         jnz .eachLine
-;     ret
-
 moveup:
 	mov ax, [xPos]
 	sub ax, window_width
     mov [xPos], ax
 	mov di, [xPos]
 	call changeloop
+    call draw_sprite
     jmp _start.awaitKey
 
 movedown:
@@ -95,6 +83,7 @@ movedown:
     mov [xPos], ax
 	mov di, [xPos]
 	call changeloop
+    call draw_sprite
     jmp _start.awaitKey
 
 moveleft:
@@ -103,6 +92,7 @@ moveleft:
 	mov [xPos], ax
 	mov di, [xPos]
 	call changeloop
+    call draw_sprite
     jmp _start.awaitKey
 
 moveright:
@@ -111,6 +101,7 @@ moveright:
 	mov [xPos], ax
 	mov di, [xPos]
 	call changeloop
+    call draw_sprite
     jmp _start.awaitKey
 
 changeloop:
@@ -126,7 +117,3 @@ pacmanopend:
 pacmanclosed:
     mov si, right_opened
 	ret
-
-
-
-; get_letter:
