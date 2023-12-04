@@ -142,4 +142,5 @@ game_loop:
 %include "Map.inc"
 %include "Sprite.inc"
 %include "Scoreboard.inc"
-%include "Collision.inc"%include "Items.inc"
+%include "Collision.inc"
+%include "Items.inc"
