@@ -2,7 +2,8 @@ org 100h
 
 section .data
 
-    colorWall dw 0x06                        ; color of the walls
+    colorWall dw 0xff                        ; color of the walls
+    candyColor dw 0x0f
 
 section .text
 
@@ -16,11 +17,24 @@ getColor:
     mov ah, 0DH                             ; AH = 0Dh for "Read Dot" function
     int 0x10
 
+    mov bx, 0
+
     ; color of the pixel in al
     cmp al, [colorWall]
-    je blockRanky 
+    je .end 
 
-    ret
+    mov bx, 1
+
+    cmp al, [candyColor]
+    je .candy
+    jmp .end
+   
+
+    .candy:
+        mov bx, 2
+
+    .end:
+        ret
 
 ; checkColor:
 ;     ; Check the top pixel

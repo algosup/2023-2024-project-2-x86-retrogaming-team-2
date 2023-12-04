@@ -6,6 +6,8 @@ xPos dw window_width*80+(window_width-16)/2                 ; 25 752
 yPos dw 0
 xVelocity dw 1
 
+oldPos dw 0
+
 ; Bugs Positions
 bug1_pos dw window_width*136+(window_width-16)/2            ; Outside of the house
 bug2_pos dw window_width*108+(window_width-16)/2            ; Center in the house
@@ -73,83 +75,285 @@ move_bug1:
     ret
 
 moveup:
-    call getColor
 	mov ax, [xPos]
+    mov [oldPos], ax
 	sub ax, window_width
     mov [xPos], ax
-    mov ax, [xPos]
-    mov cx, window_width
-    xor dx, dx
-    div cx
-    mov [yPos], dl
-    sub ax, 1
-    mov cx, [yPos]    
-    add word [yPos], 1                            
-    mov dx, ax                          
-    call getColor 
-	mov di, [xPos]
-	call changeloop
-    call draw_sprite
-    jmp _start.awaitKey
+
+
+    .check_col_left:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        sub ax, 1
+        mov cx, [yPos]                           
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+    
+    .check_col_right:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        sub ax, 1
+        add word [yPos], 15
+        mov cx, [yPos]                             
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+
+    .check_col_middle:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        sub ax, 1
+        add word [yPos], 8
+        mov cx, [yPos]                             
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+        cmp bx, 2
+        je .remove_candy
+
+    .remove_candy:
+        ; Remove candy
+
+
+    .moving:
+        mov di, [xPos]
+        call changeloop
+        call draw_sprite
+        jmp _start.awaitKey
+
+    .end:
+        mov bx, [oldPos]
+        mov [xPos], bx
+        mov di, [xPos]
+        call changeloop
+        call draw_sprite
+        jmp _start.awaitKey
 
 movedown:
     mov ax, [xPos]
-    add ax, window_width
+    mov [oldPos], ax
+	add ax, window_width
     mov [xPos], ax
-    mov ax, [xPos]
-    mov cx, window_width
-    xor dx, dx
-    div cx
-    mov [yPos], dl
-    add ax, 16
-    mov cx, [yPos]                               
-    mov dx, ax                          
-    call getColor 
-	mov di, [xPos]
-	call changeloop
-    call draw_sprite
-    jmp _start.awaitKey
+
+    .check_col_left:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        add ax, 16
+        mov cx, [yPos]                           
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+    
+    .check_col_right:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        add ax, 16
+        add word [yPos], 15
+        mov cx, [yPos]                             
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+
+    .check_col_middle:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        add ax, 16
+        add word [yPos], 8
+        mov cx, [yPos]                             
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+        cmp bx, 2
+        je .remove_candy
+
+    .remove_candy:
+        ; Remove candy
+
+
+    .moving:
+        mov di, [xPos]
+        call changeloop
+        call draw_sprite
+        jmp _start.awaitKey
+
+    .end:
+        mov bx, [oldPos]
+        mov [xPos], bx
+        mov di, [xPos]
+        call changeloop
+        call draw_sprite
+        jmp _start.awaitKey
 
 moveleft:
-    call getColor
     mov ax, [xPos]
+    mov [oldPos], ax
 	sub ax, [xVelocity]
-	mov [xPos], ax
-    mov ax, [xPos]
-    mov cx, window_width
-    xor dx, dx
-    div cx
-    mov [yPos], dl
-    add ax, 1
-    sub word [yPos], 1
-    mov cx, [yPos]                               
-    mov dx, ax                          
-    call getColor 
-	mov di, [xPos]
-	call changeloop
-    call draw_sprite
-    jmp _start.awaitKey
+    mov [xPos], ax
+
+    .check_col_top:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        sub word [yPos], 1
+        mov cx, [yPos]                           
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+    
+    .check_col_down:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        add ax, 15
+        sub word [yPos], 1
+        mov cx, [yPos]                             
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+
+    .check_col_middle:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        add ax, 8
+        sub word [yPos], 1
+        mov cx, [yPos]                             
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+        cmp bx, 2
+        je .remove_candy
+
+    .remove_candy:
+        ; Remove candy
+
+
+    .moving:
+        mov di, [xPos]
+        call changeloop
+        call draw_sprite
+        jmp _start.awaitKey
+
+    .end:
+        mov bx, [oldPos]
+        mov [xPos], bx
+        mov di, [xPos]
+        call changeloop
+        call draw_sprite
+        jmp _start.awaitKey
 
 moveright:
+    mov ax, [xPos]
+    mov [oldPos], ax
+	add ax, [xVelocity]
+    mov [xPos], ax
+
+    .check_col_top:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        add word [yPos], 16
+        mov cx, [yPos]                           
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
     
-    mov ax, [xPos]
-	add ax, [xVelocity] 
-	mov [xPos], ax
-    mov ax, [xPos]
-    mov cx, window_width
-    xor dx, dx
-    div cx
-    mov [yPos], dl
-    add ax, 1
-    add word [yPos], 16
-    mov cx, [yPos]                               
-    mov dx, ax                          
-    call getColor 
-	mov di, [xPos]
-	call changeloop
-    call draw_sprite
-    call getColor
-    jmp _start.awaitKey
+    .check_col_down:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        add ax, 8
+        add word [yPos], 16
+        mov cx, [yPos]                             
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+
+    .check_col_middle:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        add ax, 15
+        add word [yPos], 16
+        mov cx, [yPos]                             
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+        cmp bx, 2
+        je .remove_candy
+
+    .remove_candy:
+        ; Remove candy
+
+
+    .moving:
+        mov di, [xPos]
+        call changeloop
+        call draw_sprite
+        jmp _start.awaitKey
+
+    .end:
+        mov bx, [oldPos]
+        mov [xPos], bx
+        mov di, [xPos]
+        call changeloop
+        call draw_sprite
+        jmp _start.awaitKey
 
 changeloop:
     cmp si, right_opened
