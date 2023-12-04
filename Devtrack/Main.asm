@@ -1,5 +1,6 @@
-cpu 8086
+bits 16
 org 100h
+
 
 section .data
     old_time equ 0xf9fe+0x06
@@ -33,6 +34,10 @@ _start:
     mov ax, 0xA000
     call drawMaze
 
+    .spawn_dots:
+        call DrawCheckMark
+        call drawDot
+
     .spawn_entities:
 
         push bx
@@ -59,6 +64,7 @@ _start:
 
         mov di, [xPos]
 
+        mov si, right_closed
         mov si, right_closed
         call draw_sprite
 
@@ -136,3 +142,4 @@ game_loop:
 %include "Map.inc"
 %include "Sprite.inc"
 %include "Scoreboard.inc"
+%include "Items.inc"
