@@ -1,4 +1,4 @@
-%define firstLine 40*window_width+16
+%define firstLine 39*window_width+15
 %define secondLine firstLine+(320*8)
 %define thirdLine firstLine+(320*16)
 %define fourthLine firstLine+(320*24)
