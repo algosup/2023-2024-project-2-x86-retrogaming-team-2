@@ -16,10 +16,23 @@ Write the Functional Specification | In Progress | 11/13/2023 | 8h - 11h | 8h | 
 
 ## Week 2 : 11/13/2023 - 11/17/2023
 
-
+Tasks | Status | Deadline | Time required | Time spent | People involved
+:---: | :---: | :---: | :---: | :---: | :---:
+Write the Functional Specification | Done | 11/13/2023 | 8h - 11h | 11h | Aurélien and Clémentine
+Write the Technical Specification | In Progress | 11/20/2023 | 14h - 17h | 7h | Paul
+Search for information about the assembly | Done | 11/27/2023 | 5h - 17h | 7h | Paul, Clémentine and Mathias
+Make sprites for the game | In Progress | 12/04/2023 | 28h | 11h | Laurent
+Make the map for the game | Done | 11/27/2023 | 8h | 8h | Laurent
+Make the Test Plan | In Progress | 12/08/2023 | 8h - 11h | 3h | Gaël
 
 ## Week 3 : 11/20/2023 - 11/24/2023
 
+Tasks | Status | Deadline | Time required | Time spent | People involved
+:---: | :---: | :---: | :---: | :---: | :---:
+Write the Technical Specification | In Progress | 11/20/2023 | 14h - 17h | 14h | Paul
+Make the Test Plan | In Progress | 12/08/2023 | 8h - 11h | 6h | Gaël
+Search for information about the assembly | Done | 11/27/2023 | 5h - 7h | 15h | Clémentine, Mathias and Aurélien
+Make sprites for the game | In Progress | 12/04/2023 | 28h | 18h | Laurent
 
 
 ## Week 4 : 11/27/2023 - 12/01/2023
