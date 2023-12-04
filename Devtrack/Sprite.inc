@@ -2,7 +2,8 @@ org 100h
 
 section .data
 
-xPos dw window_width*80+(window_width-16)/2
+xPos dw window_width*80+(window_width-16)/2                 ; 12 952
+yPos dw 0
 xVelocity dw 1
 
 ; Bugs Positions
@@ -86,6 +87,11 @@ movedown:
     mov ax, [xPos]
     add ax, window_width
     mov [xPos], ax
+    mov ax, xPos
+    mov cx, window_width
+    xor dx, dx
+    div cx
+    mov [yPos], dl
 	mov di, [xPos]
 	call changeloop
     call draw_sprite

@@ -12,47 +12,54 @@ section .data
 
 section .text
 
+
 ; get the color of of pixel
 ; color in al
 getColor:
+    ; mov ah, 0ch
+    ; mov al, 0dh
+    ; mov dx, 111
+    ; mov cx, 129
+    ; int 10h
+    ; mov bh, 1
     mov ah, 0DH  ; AH = 0Dh for "Read Dot" function
-    mov al, 00H  ; AL = 00h for read dot, 01h for write dot
-    mov cx, nextPosBot ; CX = xPos for left
+    mov cx, 129 ; CX = xPos for left
+    mov dx, 111
 
     int 0x10
 
-    test al, colorWall
+    cmp al, [colorWall]
     je blockRanky 
 
     ret
 
-checkColor:
-    ; Check the top pixel
-    mov dx, nextPosTop
-    call getColor
-    cmp al, colorWall
-    je blockRanky 
+; checkColor:
+;     ; Check the top pixel
+;     mov dx, nextPosTop
+;     call getColor
+;     cmp al, colorWall
+;     je blockRanky 
 
-    ; Check the bottom pixel
-    mov dx, nextPosBot
-    call getColor
-    cmp al, colorWall
-    je blockRanky 
+;     ; Check the bottom pixel
+;     mov dx, nextPosBot
+;     call getColor
+;     cmp al, colorWall
+;     je blockRanky 
 
-    ; Check the left pixel
-    mov dx, nextPosLef
-    call getColor
-    cmp al, colorWall
-    je blockRanky 
+;     ; Check the left pixel
+;     mov dx, nextPosLef
+;     call getColor
+;     cmp al, colorWall
+;     je blockRanky 
 
-    ; Check the right pixel
-    mov dx, nextPosRig
-    call getColor
-    cmp al, colorWall
-    je blockRanky 
+;     ; Check the right pixel
+;     mov dx, nextPosRig
+;     call getColor
+;     cmp al, colorWall
+;     je blockRanky 
 
-; block ranky from going through the wall
-; block the movements 
+; ; block ranky from going through the wall
+; ; block the movements 
 blockRanky:                                  ; exit code for the moment 
     mov ah, 4ch
     xor al, al
