@@ -1,5 +1,11 @@
 ## Test Plan
 
+
+| Author        | Gaël MALVAR |
+|---------------|------------ |
+| Created       | 11/17/2023  |
+| Last Modified | 12/04/2023  |
+
 ---
 
 <details>
@@ -15,6 +21,7 @@
   - [Tools](#tools)
     - [Hardware](#hardware)
     - [Software](#software)
+  - [Test Cases](#test-cases)
   - [Issues Report](#issues-report)
 
 
@@ -106,6 +113,25 @@ We will use different software to run the game, test it, report different bugs a
 - **NASM** to compile the assembly language.
 - **GitHub** to report bugs.
 - **Visual Studio Code** ( version 1.84.2 ) to develop the game and fix bugs.
+
+---
+
+### Test Cases
+
+During the testing phase, all the tests carried out will be stored in the “Test Cases” file.
+
+**Here is an example of a test case :**
+
+| Test Case ID | 1 |
+| --- | --- |
+| Name | Name of the test |
+| Description | Description of what should happen |
+| Pre-conditions | What conditions must be met before starting the test |
+| Steps | Step taken to obtain the expected result |
+| Expected Result | Expected result after the test |
+| Actual Result | Actual result after test |
+| Status | Test status (To test, In testing, Tested) |
+| Priority | The priority of the test (High, Medium, Low) |
 
 ---
 
