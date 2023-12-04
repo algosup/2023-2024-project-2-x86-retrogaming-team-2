@@ -75,7 +75,7 @@ moveup:
 	mov di, [xPos]
 	call changeloop
     call draw_sprite
-    jmp _start.awaitKey
+    ret
 
 movedown:
     mov ax, [xPos]
@@ -84,7 +84,7 @@ movedown:
 	mov di, [xPos]
 	call changeloop
     call draw_sprite
-    jmp _start.awaitKey
+    ret
 
 moveleft:
     mov ax, [xPos]
@@ -93,7 +93,7 @@ moveleft:
 	mov di, [xPos]
 	call changeloop
     call draw_sprite
-    jmp _start.awaitKey
+    ret
 
 moveright:
     mov ax, [xPos]
@@ -102,7 +102,7 @@ moveright:
 	mov di, [xPos]
 	call changeloop
     call draw_sprite
-    jmp _start.awaitKey
+    ret
 
 changeloop:
     cmp si, right_opened

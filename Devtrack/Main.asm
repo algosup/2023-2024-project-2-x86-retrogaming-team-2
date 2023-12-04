@@ -2,6 +2,8 @@ cpu 8086
 org 100h
 
 section .data
+    old_time equ 0xf9fe+0x06
+
     ; KeyBind
     key_up db 'z'
     key_up2 db 48h
@@ -13,7 +15,10 @@ section .data
     key_right2 db 4DH
     key_exit db 27
     key_menu db 'p'
+
+
     charValue db 'X$'
+    charNoKey db 'False$'
     
 section .text
     global _start
@@ -57,8 +62,25 @@ _start:
         mov si, right_closed
         call draw_sprite
 
+        jmp game_loop
+
+keyHandler:
+    xor ax, ax
+    mov ah, 00h
+    int 16h
+    ret
+
+game_loop:
+    mov ah, 00h
+    int 0x1a
+    cmp dx, [old_time]
+    je game_loop
+    mov [old_time], dx
+
+    call keyHandler
+    
+
     .awaitKey:
-        call keyHandler
         mov [charValue], al
         cmp al , [key_exit]
         je .exit
@@ -80,34 +102,32 @@ _start:
         je .moveRg
         cmp ah , [key_left2]
         je .moveLf
-        jmp .awaitKey
 
-    .moveUp:
-        call moveup
-    .moveDn:
-        call movedown
-    .moveRg:
-        call moveright
-    .moveLf:
-        call moveleft
-    .exit:
-        mov ah, 4ch
-        xor al, al
-        int 21h
-    .menu:
-        jmp _start.awaitKey
 
-keyHandler:
-    xor ax, ax
-    int 16h
-    ret
 
-; game_loop:
-;     mov cx, 64000 
-;     .waitloop:
-;     loop .waitloop
-;     call move_bug1
-;     jmp _start.awaitKey
+        jmp .endloop
+
+
+        .moveUp:
+            call moveup
+            jmp .endloop
+        .moveDn:
+            call movedown
+            jmp .endloop
+        .moveRg:
+            call moveright
+            jmp .endloop
+        .moveLf:
+            call moveleft
+            jmp .endloop
+        .exit:
+            mov ah, 4ch
+            xor al, al
+            int 21h
+        .menu:
+
+        .endloop:
+            jmp game_loop
 
 ; includes
 %include "Sprites_List.inc"
