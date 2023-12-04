@@ -2,7 +2,7 @@ org 100h
 
 section .data
 
-xPos dw window_width*80+(window_width-16)/2                 ; 12 952
+xPos dw window_width*80+(window_width-16)/2                 ; 25 752
 yPos dw 0
 xVelocity dw 1
 
@@ -77,21 +77,34 @@ moveup:
 	mov ax, [xPos]
 	sub ax, window_width
     mov [xPos], ax
+    mov ax, [xPos]
+    mov cx, window_width
+    xor dx, dx
+    div cx
+    mov [yPos], dl
+    sub ax, 1
+    mov cx, [yPos]    
+    add word [yPos], 1                            
+    mov dx, ax                          
+    call getColor 
 	mov di, [xPos]
 	call changeloop
     call draw_sprite
     jmp _start.awaitKey
 
 movedown:
-    call getColor
     mov ax, [xPos]
     add ax, window_width
     mov [xPos], ax
-    mov ax, xPos
+    mov ax, [xPos]
     mov cx, window_width
     xor dx, dx
     div cx
     mov [yPos], dl
+    add ax, 16
+    mov cx, [yPos]                               
+    mov dx, ax                          
+    call getColor 
 	mov di, [xPos]
 	call changeloop
     call draw_sprite
@@ -102,6 +115,16 @@ moveleft:
     mov ax, [xPos]
 	sub ax, [xVelocity]
 	mov [xPos], ax
+    mov ax, [xPos]
+    mov cx, window_width
+    xor dx, dx
+    div cx
+    mov [yPos], dl
+    add ax, 1
+    sub word [yPos], 1
+    mov cx, [yPos]                               
+    mov dx, ax                          
+    call getColor 
 	mov di, [xPos]
 	call changeloop
     call draw_sprite
@@ -112,6 +135,16 @@ moveright:
     mov ax, [xPos]
 	add ax, [xVelocity] 
 	mov [xPos], ax
+    mov ax, [xPos]
+    mov cx, window_width
+    xor dx, dx
+    div cx
+    mov [yPos], dl
+    add ax, 1
+    add word [yPos], 16
+    mov cx, [yPos]                               
+    mov dx, ax                          
+    call getColor 
 	mov di, [xPos]
 	call changeloop
     call draw_sprite
