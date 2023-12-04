@@ -1,6 +1,21 @@
 # Test Cases
 
+| Author        | Gaël MALVAR |
+|---------------|------------ |
+| Created       | 12/01/2023  |
+| Last Modified | 12/04/2023  |
+
+---
+
 In this document we will describe the tests that we will perform and the results obtained
+
+---
+
+### Legend : 
+- **Status** : To test, In testing, Tested
+- **Priority** : High, Medium, Low
+
+
 
 ## Test Case 1 :
 
@@ -97,7 +112,7 @@ In this document we will describe the tests that we will perform and the results
 
 | Test Case ID | 8 |
 | --- | --- |
-| Name | Enemy collision |
+| Name | Collision between player and enemies |
 | Description | The player should not be able to walk through enemies |
 | Pre-conditions | The game has started |
 | Steps | 1. Move the player toward an enemy |
@@ -110,6 +125,19 @@ In this document we will describe the tests that we will perform and the results
 
 | Test Case ID | 9 |
 | --- | --- |
+| Name | Collision between enemies |
+| Description | Enemies should be able to cross each other |
+| Pre-conditions | The game has started |
+| Steps | 1. Wait till two enemies cross each other |
+| Expected Result | Enemies cross each other |
+| Actual Result | ------ |
+| Status | To test |
+| Priority | Medium |
+
+## Test Case 10 :
+
+| Test Case ID | 10 |
+| --- | --- |
 | Name | Tunnel |
 | Description | The player should be able to use tunnels |
 | Pre-conditions | The game has started |
@@ -119,41 +147,28 @@ In this document we will describe the tests that we will perform and the results
 | Status | To test |
 | Priority | Medium |
 
-## Test Case 10:
+## Test Case 11:
 
-| Test Case ID | 10 |
+| Test Case ID | 11 |
 | --- | --- |
 | Name | Consume dots |
 | Description | The player should be able to eat dots |
 | Pre-conditions | The game has started |
 | Steps | 1. Move the player toward a dot |
-| Expected Result | The dot disappears |
+| Expected Result | The dot disappears and the score increase |
 | Actual Result | ------ |
 | Status | To test |
-| Priority | High |
-
-## Test Case 11 :
-
-| Test Case ID | 11 |
-| --- | --- |
-| Name | Consume pellets |
-| Description | The player should be able to eat pellets |
-| Pre-conditions | The game has started |
-| Steps | 1. Move the player toward a pellet |
-| Expected Result | The pellet disappears |
-| Actual Result | ------ |
-| Status | To test |
-| Priority | High |
+| Priority | Medium |
 
 ## Test Case 12 :
 
 | Test Case ID | 12 |
 | --- | --- |
-| Name | Score |
-| Description | The score should increase when the player eat a dot, a pellet or an enemy |
+| Name | Consume power pellets |
+| Description | The player should be able to eat power pellets |
 | Pre-conditions | The game has started |
-| Steps | 1. Eat a dot, a pellet and an enemy |
-| Expected Result | The score increases accordingly on what was eaten |
+| Steps | 1. Move the player toward a power pellet |
+| Expected Result | The power pellet disappears and enemies become vulnerable to the player |
 | Actual Result | ------ |
 | Status | To test |
 | Priority | High |
@@ -162,11 +177,11 @@ In this document we will describe the tests that we will perform and the results
 
 | Test Case ID | 13 |
 | --- | --- |
-| Name | Decrease lives |
-| Description | The player should lose a life when eaten by an enemy |
+| Name | Eat enemies |
+| Description | The player should be able to eat enemies |
 | Pre-conditions | The game has started |
-| Steps | 1. Let the enemy eat the player |
-| Expected Result | The player loses a life and returns to the spawn point |
+| Steps | 1. Move the player with the effect of a power pellet towards an enemy |
+| Expected Result | The enemy is eaten and returns to its spawn point |
 | Actual Result | ------ |
 | Status | To test |
 | Priority | High |
@@ -175,6 +190,32 @@ In this document we will describe the tests that we will perform and the results
 
 | Test Case ID | 14 |
 | --- | --- |
+| Name | Score |
+| Description | The score should increase when the player eat a dot, a power pellet or an enemy |
+| Pre-conditions | The game has started |
+| Steps | 1. Eat a dot, a power pellet and an enemy |
+| Expected Result | The score increases accordingly on what was eaten |
+| Actual Result | ------ |
+| Status | To test |
+| Priority | Medium |
+
+## Test Case 15 :
+
+| Test Case ID | 15 |
+| --- | --- |
+| Name | Decrease lives |
+| Description | The player should lose a life when eaten by an enemy |
+| Pre-conditions | The game has started |
+| Steps | 1. Let the enemy eat the player |
+| Expected Result | The player loses a life and returns to the spawn point |
+| Actual Result | ------ |
+| Status | To test |
+| Priority | Medium |
+
+## Test Case 16 :
+
+| Test Case ID | 16 |
+| --- | --- |
 | Name | Increase lives |
 | Description | The player should gain a life when reaching a score of 10k points |
 | Pre-conditions | The game has started |
@@ -182,13 +223,13 @@ In this document we will describe the tests that we will perform and the results
 | Expected Result | The player gains a life |
 | Actual Result | ------ |
 | Status | To test |
-| Priority | High |
+| Priority | Medium |
 
-## Test Case 15 :
+## Test Case 17 :
 
-| Test Case ID | 15 |
+| Test Case ID | 17 |
 | --- | --- |
-| Name | Lose |
+| Name | Game over |
 | Description | The player loses when he has lost all his lives  |
 | Pre-conditions | The game has started |
 | Steps | 1. Lose all lives |
@@ -197,15 +238,28 @@ In this document we will describe the tests that we will perform and the results
 | Status | To test |
 | Priority | High |
 
-## Test Case 16 :
+## Test Case 18 :
 
-| Test Case ID | 16 |
+| Test Case ID | 18 |
 | --- | --- |
 | Name | Win |
 | Description | Player wins when all levels are completed |
 | Pre-conditions | The game has started |
 | Steps | 1. Complete all levels |
 | Expected Result | The game should end when the player wins all levels |
+| Actual Result | ------ |
+| Status | To test |
+| Priority | Low |
+
+## Test Case 19 :
+
+| Test Case ID | 19 |
+| --- | --- |
+| Name | Levels |
+| Description | The game should move to the next level when all points are eaten |
+| Pre-conditions | The game has started |
+| Steps | 1. Eat all dots and pellets |
+| Expected Result | The game goes to the next level |
 | Actual Result | ------ |
 | Status | To test |
 | Priority | Medium |
