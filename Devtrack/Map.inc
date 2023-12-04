@@ -49,7 +49,7 @@ drawMaze:
         jae resetCL
 
         cmp di, window_width*window_height - 8  ; check if the generation is complete
-        jae _start.spawn_entities               ; go to entity spawn if the maze generation is complete
+        jae _start.spawn_dots               ; go to entity spawn if the maze generation is complete
 
         test al,cl  ;if current bit is set, create a tile
         jnz .drawTile
