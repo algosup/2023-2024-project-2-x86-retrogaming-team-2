@@ -105,6 +105,7 @@ moveright:
 	mov di, [xPos]
 	call changeloop
     call draw_sprite
+    call getColor
     jmp _start.awaitKey
 
 changeloop:

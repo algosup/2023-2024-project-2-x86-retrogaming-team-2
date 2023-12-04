@@ -114,3 +114,4 @@ keyHandler:
 %include "Map.inc"
 %include "Sprite.inc"
 %include "Scoreboard.inc"
+%include "Collision.inc"
