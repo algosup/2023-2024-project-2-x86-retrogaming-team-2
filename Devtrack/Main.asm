@@ -26,7 +26,7 @@ _start:
     mov di, 0
     ; Return to text mode and exit
     mov ax, 0xA000
-    call drawMaze
+    ; call drawMaze
 
     .spawn_entities:
         call draw_score

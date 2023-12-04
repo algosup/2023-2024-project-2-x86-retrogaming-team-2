@@ -72,6 +72,7 @@ move_bug1:
     ret
 
 moveup:
+    call getColor
 	mov ax, [xPos]
 	sub ax, window_width
     mov [xPos], ax
@@ -81,6 +82,7 @@ moveup:
     jmp _start.awaitKey
 
 movedown:
+    call getColor
     mov ax, [xPos]
     add ax, window_width
     mov [xPos], ax
@@ -90,6 +92,7 @@ movedown:
     jmp _start.awaitKey
 
 moveleft:
+    call getColor
     mov ax, [xPos]
 	sub ax, [xVelocity]
 	mov [xPos], ax
@@ -99,6 +102,7 @@ moveleft:
     jmp _start.awaitKey
 
 moveright:
+    
     mov ax, [xPos]
 	add ax, [xVelocity] 
 	mov [xPos], ax
