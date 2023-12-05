@@ -87,7 +87,7 @@ moveup:
         xor dx, dx
         div cx
         mov [yPos], dl
-        sub ax, 1
+        sub ax, 0
         mov cx, [yPos]                           
         mov dx, ax                          
         call getColor 
@@ -101,7 +101,7 @@ moveup:
         xor dx, dx
         div cx
         mov [yPos], dl
-        sub ax, 1
+        sub ax, 0
         add word [yPos], 15
         mov cx, [yPos]                             
         mov dx, ax                          
@@ -116,7 +116,7 @@ moveup:
         xor dx, dx
         div cx
         mov [yPos], dl
-        sub ax, 1
+        sub ax, 0
         add word [yPos], 8
         mov cx, [yPos]                             
         mov dx, ax                          
@@ -161,7 +161,7 @@ movedown:
         xor dx, dx
         div cx
         mov [yPos], dl
-        add ax, 16
+        add ax, 15
         mov cx, [yPos]                           
         mov dx, ax                          
         call getColor 
@@ -175,7 +175,7 @@ movedown:
         xor dx, dx
         div cx
         mov [yPos], dl
-        add ax, 16
+        add ax, 15
         add word [yPos], 15
         mov cx, [yPos]                             
         mov dx, ax                          
@@ -190,7 +190,7 @@ movedown:
         xor dx, dx
         div cx
         mov [yPos], dl
-        add ax, 16
+        add ax, 15
         add word [yPos], 8
         mov cx, [yPos]                             
         mov dx, ax                          
@@ -235,7 +235,7 @@ moveleft:
         xor dx, dx
         div cx
         mov [yPos], dl
-        sub word [yPos], 1
+        sub word [yPos], 0
         mov cx, [yPos]                           
         mov dx, ax                          
         call getColor 
@@ -250,7 +250,7 @@ moveleft:
         div cx
         mov [yPos], dl
         add ax, 15
-        sub word [yPos], 1
+        sub word [yPos], 0
         mov cx, [yPos]                             
         mov dx, ax                          
         call getColor 
@@ -265,7 +265,7 @@ moveleft:
         div cx
         mov [yPos], dl
         add ax, 8
-        sub word [yPos], 1
+        sub word [yPos], 0
         mov cx, [yPos]                             
         mov dx, ax                          
         call getColor 
@@ -309,7 +309,7 @@ moveright:
         xor dx, dx
         div cx
         mov [yPos], dl
-        add word [yPos], 16
+        add word [yPos], 15
         mov cx, [yPos]                           
         mov dx, ax                          
         call getColor 
@@ -324,7 +324,7 @@ moveright:
         div cx
         mov [yPos], dl
         add ax, 8
-        add word [yPos], 16
+        add word [yPos], 15
         mov cx, [yPos]                             
         mov dx, ax                          
         call getColor 
@@ -339,7 +339,7 @@ moveright:
         div cx
         mov [yPos], dl
         add ax, 15
-        add word [yPos], 16
+        add word [yPos], 15
         mov cx, [yPos]                             
         mov dx, ax                          
         call getColor 

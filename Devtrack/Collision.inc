@@ -2,7 +2,7 @@ org 100h
 
 section .data
 
-    colorWall dw 0xff                        ; color of the walls
+    colorWall dw 0x0F;0xff                        ; color of the walls
     candyColor dw 0x43
 
 section .text
