@@ -40,11 +40,7 @@ _start:
 
     .spawn_entities:
 
-        push bx
-        mov bx, 10
-        call add_score
-        pop bx
-        call update_score
+        
 
         mov si, bug1_sprite
         mov di, [bug1_pos]
@@ -82,6 +78,8 @@ game_loop:
     cmp dx, [old_time]
     je game_loop
     mov [old_time], dx
+
+    call update_score
 
     call keyHandler
     

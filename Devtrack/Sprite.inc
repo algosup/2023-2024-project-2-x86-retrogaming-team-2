@@ -125,10 +125,14 @@ moveup:
         cmp bx, 0
         je .end
         cmp bx, 2
-        je .remove_candy
+        jne .moving
 
     .remove_candy:
         ; Remove candy
+        push bx
+        mov bx, 10
+        call add_score
+        pop bx
 
 
     .moving:
@@ -195,10 +199,14 @@ movedown:
         cmp bx, 0
         je .end
         cmp bx, 2
-        je .remove_candy
+        jne .moving
 
     .remove_candy:
         ; Remove candy
+        push bx
+        mov bx, 10
+        call add_score
+        pop bx
 
 
     .moving:
@@ -265,10 +273,14 @@ moveleft:
         cmp bx, 0
         je .end
         cmp bx, 2
-        je .remove_candy
+        jne .moving
 
     .remove_candy:
         ; Remove candy
+        push bx
+        mov bx, 10
+        call add_score
+        pop bx
 
 
     .moving:
@@ -335,10 +347,14 @@ moveright:
         cmp bx, 0
         je .end
         cmp bx, 2
-        je .remove_candy
+        jne .moving
 
     .remove_candy:
         ; Remove candy
+        push bx
+        mov bx, 10
+        call add_score
+        pop bx
 
 
     .moving:
