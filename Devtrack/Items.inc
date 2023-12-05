@@ -18,7 +18,7 @@
 %define eighteenthLine firstLine+(320*136)
 %define nineteenthLine firstLine+(320*144)
 
-section .dina
+section .data
 
     Dots_pos    dw firstLine, firstLine+ 8, firstLine+ 16, firstLine+ 24, firstLine+ 32, firstLine+ 40, firstLine+ 48, firstLine+ 56 
                 dw firstLine+ 64, firstLine+ 72, firstLine+ 80, firstLine+ 88, firstLine+ 96, firstLine+ 104, firstLine+ 112, firstLine+ 120 
