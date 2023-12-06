@@ -323,7 +323,7 @@ moveright:
         xor dx, dx
         div cx
         mov [yPos], dl
-        add ax, 8
+        add ax, 15
         add word [yPos], 15
         mov cx, [yPos]                             
         mov dx, ax                          
@@ -338,7 +338,7 @@ moveright:
         xor dx, dx
         div cx
         mov [yPos], dl
-        add ax, 15
+        add ax, 8
         add word [yPos], 15
         mov cx, [yPos]                             
         mov dx, ax                          
