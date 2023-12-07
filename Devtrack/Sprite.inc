@@ -14,6 +14,12 @@ bug2_pos dw window_width*108+(window_width-16)/2            ; Center in the hous
 bug3_pos dw window_width*108+((window_width-16)/2 - 24)     ; Left in the house
 bug4_pos dw window_width*108+((window_width-16)/2 + 24)     ; Right in the house
 
+; Teleporter positions
+telepRight dw window_width*105-16
+telepLeft dw window_width*104
+telepUp dw window_width*24+(window_width-16)/2
+telepBottom dw window_width*185+(window_width-16)/2
+
 truem db '1',13,10,'$'   ; true and false message.
 falsem db '0',13,10,'$'
 
@@ -121,7 +127,7 @@ moveup:
         cmp bx, 0
         je .end
         cmp bx, 2
-        jne .moving
+        jne .telep
 
     .remove_candy:
         ; Remove candy
@@ -130,6 +136,16 @@ moveup:
         call add_score
         pop bx
 
+    .telep:
+        mov bx, [xPos]
+        cmp bx, [telepUp]        
+        jne .moving
+        mov si, clean
+        mov di, [xPos]
+        call draw_sprite
+        mov bx, [telepBottom]
+        mov [xPos], bx
+        mov si, up_closed
 
     .moving:
         mov di, [xPos]
@@ -195,7 +211,7 @@ movedown:
         cmp bx, 0
         je .end
         cmp bx, 2
-        jne .moving
+        jne .telep
 
     .remove_candy:
         ; Remove candy
@@ -204,6 +220,16 @@ movedown:
         call add_score
         pop bx
 
+    .telep:
+        mov bx, [xPos]
+        cmp bx, [telepBottom]        
+        jne .moving
+        mov si, clean
+        mov di, [xPos]
+        call draw_sprite
+        mov bx, [telepUp]
+        mov [xPos], bx
+        mov si, down_closed
 
     .moving:
         mov di, [xPos]
@@ -269,7 +295,7 @@ moveleft:
         cmp bx, 0
         je .end
         cmp bx, 2
-        jne .moving
+        jne .telep
 
     .remove_candy:
         ; Remove candy
@@ -278,6 +304,16 @@ moveleft:
         call add_score
         pop bx
 
+    .telep:
+        mov bx, [xPos]
+        cmp bx, [telepLeft]        
+        jne .moving
+        mov si, clean
+        mov di, [xPos]
+        call draw_sprite
+        mov bx, [telepRight]
+        mov [xPos], bx
+        mov si, left_closed
 
     .moving:
         mov di, [xPos]
@@ -343,7 +379,7 @@ moveright:
         cmp bx, 0
         je .end
         cmp bx, 2
-        jne .moving
+        jne .telep
 
     .remove_candy:
         ; Remove candy
@@ -352,6 +388,16 @@ moveright:
         call add_score
         pop bx
 
+    .telep:
+        mov bx, [xPos]
+        cmp bx, [telepRight]        
+        jne .moving
+        mov si, clean
+        mov di, [xPos]
+        call draw_sprite
+        mov bx, [telepLeft]
+        mov [xPos], bx
+        mov si, right_closed
 
     .moving:
         mov di, [xPos]
