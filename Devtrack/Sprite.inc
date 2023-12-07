@@ -2,14 +2,20 @@ org 100h
 
 section .data
 
-xPos dw window_width*80+(window_width-16)/2
+xPos dw window_width*80+(window_width-16)/2                 ; 25 752
+yPos dw 0
 xVelocity dw 1
+
+oldPos dw 0
 
 ; Bugs Positions
 bug1_pos dw window_width*136+(window_width-16)/2            ; Outside of the house
 bug2_pos dw window_width*108+(window_width-16)/2            ; Center in the house
 bug3_pos dw window_width*108+((window_width-16)/2 - 24)     ; Left in the house
 bug4_pos dw window_width*108+((window_width-16)/2 + 24)     ; Right in the house
+
+truem db '1',13,10,'$'   ; true and false message.
+falsem db '0',13,10,'$'
 
 
 section .text
@@ -53,10 +59,6 @@ draw_letter:
             jnz .eachLine
     ret
 
-spawn_bugs:
-    jmp move_bug1
-    ret
-
 move_bug1:
     mov di, [bug1_pos]
     mov si, bug1_sprite
@@ -70,39 +72,300 @@ move_bug1:
 
 moveup:
 	mov ax, [xPos]
+    mov [oldPos], ax
 	sub ax, window_width
     mov [xPos], ax
-	mov di, [xPos]
-	call changeloop
-    call draw_sprite
-    ret
+
+
+    .check_col_left:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        sub ax, 0
+        mov cx, [yPos]                           
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+    
+    .check_col_right:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        sub ax, 0
+        add word [yPos], 15
+        mov cx, [yPos]                             
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+
+    .check_col_middle:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        sub ax, 0
+        add word [yPos], 8
+        mov cx, [yPos]                             
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+        cmp bx, 2
+        jne .moving
+
+    .remove_candy:
+        ; Remove candy
+        push bx
+        mov bx, 10
+        call add_score
+        pop bx
+
+
+    .moving:
+        mov di, [xPos]
+        call changeloop
+        call draw_sprite
+        ret
+
+    .end:
+        mov bx, [oldPos]
+        mov [xPos], bx
+        mov di, [xPos]
+        call changeloop
+        call draw_sprite
+        ret
 
 movedown:
     mov ax, [xPos]
-    add ax, window_width
+    mov [oldPos], ax
+	add ax, window_width
     mov [xPos], ax
-	mov di, [xPos]
-	call changeloop
-    call draw_sprite
-    ret
+
+    .check_col_left:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        add ax, 15
+        mov cx, [yPos]                           
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+    
+    .check_col_right:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        add ax, 15
+        add word [yPos], 15
+        mov cx, [yPos]                             
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+
+    .check_col_middle:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        add ax, 15
+        add word [yPos], 8
+        mov cx, [yPos]                             
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+        cmp bx, 2
+        jne .moving
+
+    .remove_candy:
+        ; Remove candy
+        push bx
+        mov bx, 10
+        call add_score
+        pop bx
+
+
+    .moving:
+        mov di, [xPos]
+        call changeloop
+        call draw_sprite
+        ret
+
+    .end:
+        mov bx, [oldPos]
+        mov [xPos], bx
+        mov di, [xPos]
+        call changeloop
+        call draw_sprite
+        ret
 
 moveleft:
     mov ax, [xPos]
+    mov [oldPos], ax
 	sub ax, [xVelocity]
-	mov [xPos], ax
-	mov di, [xPos]
-	call changeloop
-    call draw_sprite
-    ret
+    mov [xPos], ax
+
+    .check_col_top:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        sub word [yPos], 0
+        mov cx, [yPos]                           
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+    
+    .check_col_down:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        add ax, 15
+        sub word [yPos], 0
+        mov cx, [yPos]                             
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+
+    .check_col_middle:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        add ax, 8
+        sub word [yPos], 0
+        mov cx, [yPos]                             
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+        cmp bx, 2
+        jne .moving
+
+    .remove_candy:
+        ; Remove candy
+        push bx
+        mov bx, 10
+        call add_score
+        pop bx
+
+
+    .moving:
+        mov di, [xPos]
+        call changeloop
+        call draw_sprite
+        ret
+
+    .end:
+        mov bx, [oldPos]
+        mov [xPos], bx
+        mov di, [xPos]
+        call changeloop
+        call draw_sprite
+        ret
 
 moveright:
     mov ax, [xPos]
-	add ax, [xVelocity] 
-	mov [xPos], ax
-	mov di, [xPos]
-	call changeloop
-    call draw_sprite
-    ret
+    mov [oldPos], ax
+	add ax, [xVelocity]
+    mov [xPos], ax
+
+    .check_col_top:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        add word [yPos], 15
+        mov cx, [yPos]                           
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+    
+    .check_col_down:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        add ax, 15
+        add word [yPos], 15
+        mov cx, [yPos]           
+        mov dx, ax                          
+        call getColor 
+
+        cmp bx, 0
+        je .end
+
+    .check_col_middle:
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dl
+        add ax, 8
+        add word [yPos], 15
+        mov cx, [yPos]
+        mov dx, ax
+        call getColor 
+
+        cmp bx, 0
+        je .end
+        cmp bx, 2
+        jne .moving
+
+    .remove_candy:
+        ; Remove candy
+        push bx
+        mov bx, 10
+        call add_score
+        pop bx
+
+
+    .moving:
+        mov di, [xPos]
+        call changeloop
+        call draw_sprite
+        ret
+
+    .end:
+        mov bx, [oldPos]
+        mov [xPos], bx
+        mov di, [xPos]
+        call changeloop
+        call draw_sprite
+        ret
 
 changeloop:
     cmp si, right_opened
@@ -117,3 +380,49 @@ pacmanopend:
 pacmanclosed:
     mov si, right_opened
 	ret
+
+
+comp_color:
+    push ax
+    push bx
+    push cx
+    push dx
+    push di
+
+    mov dx, 8
+    mov bx, 8
+
+    mov ax, 0xA000           
+    add ax, bx    
+    mov di, ax   
+
+    
+    mov al, [di]  
+
+    
+    cmp al, 0x27
+    je .true
+
+    .false:
+        mov ah, 9
+        mov dx, falsem
+        int 21h
+
+        pop di
+        pop dx
+        pop cx
+        pop bx
+        pop ax
+        ret
+
+    .true:
+        mov ah, 9
+        mov dx, truem
+        int 21h
+
+        pop di
+        pop dx
+        pop cx
+        pop bx
+        pop ax
+        ret
