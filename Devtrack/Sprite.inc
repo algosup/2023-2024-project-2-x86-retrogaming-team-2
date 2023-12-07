@@ -2,15 +2,17 @@ org 100h
 
 section .data
 
-xPos dw window_width*80+(window_width-16)/2                 ; 25 752
+xPos dw window_width*80+(window_width-16)/2       ; 25 752
 yPos dw 0
 xVelocity dw 1
+
+isFrenzy db 0
 
 oldPos dw 0
 
 ; Bugs Positions
-bug1_pos dw window_width*136+(window_width-16)/2            ; Outside of the house
-bug2_pos dw window_width*108+(window_width-16)/2            ; Center in the house
+bug1_pos dw window_width*136+(window_width-16)/2  ; Outside of the house
+bug2_pos dw window_width*108+(window_width-16)/2  ; Center in the house
 bug3_pos dw window_width*108+((window_width-16)/2 - 24)     ; Left in the house
 bug4_pos dw window_width*108+((window_width-16)/2 + 24)     ; Right in the house
 
@@ -84,8 +86,8 @@ moveup:
         div cx
         mov [yPos],dx
         sub ax, 0
-        mov cx, [yPos]                           
-        mov dx, ax                          
+        mov cx, [yPos]       
+        mov dx, ax      
         call getColor 
 
         cmp bx, 0
@@ -99,8 +101,8 @@ moveup:
         mov [yPos],dx
         sub ax, 0
         add word [yPos], 15
-        mov cx, [yPos]                             
-        mov dx, ax                          
+        mov cx, [yPos]         
+        mov dx, ax      
         call getColor 
 
         cmp bx, 0
@@ -114,8 +116,8 @@ moveup:
         mov [yPos],dx
         sub ax, 0
         add word [yPos], 8
-        mov cx, [yPos]                             
-        mov dx, ax                          
+        mov cx, [yPos]         
+        mov dx, ax      
         call getColor 
 
         cmp bx, 0
@@ -158,8 +160,8 @@ movedown:
         div cx
         mov [yPos],dx
         add ax, 15
-        mov cx, [yPos]                           
-        mov dx, ax                          
+        mov cx, [yPos]       
+        mov dx, ax      
         call getColor 
 
         cmp bx, 0
@@ -173,8 +175,8 @@ movedown:
         mov [yPos],dx
         add ax, 15
         add word [yPos], 15
-        mov cx, [yPos]                             
-        mov dx, ax                          
+        mov cx, [yPos]         
+        mov dx, ax      
         call getColor 
 
         cmp bx, 0
@@ -188,8 +190,8 @@ movedown:
         mov [yPos],dx
         add ax, 15
         add word [yPos], 8
-        mov cx, [yPos]                             
-        mov dx, ax                          
+        mov cx, [yPos]         
+        mov dx, ax      
         call getColor 
 
         cmp bx, 0
@@ -232,8 +234,8 @@ moveleft:
         div cx
         mov [yPos],dx
         sub word [yPos], 0
-        mov cx, [yPos]                           
-        mov dx, ax                          
+        mov cx, [yPos]
+        mov dx, ax
         call getColor 
 
         cmp bx, 0
@@ -247,9 +249,9 @@ moveleft:
         mov [yPos],dx
         add ax, 15
         sub word [yPos], 0
-        mov cx, [yPos]                             
-        mov dx, ax                          
-        call getColor 
+        mov cx, [yPos]
+        mov dx, ax
+        call getColor
 
         cmp bx, 0
         je .end
@@ -262,9 +264,9 @@ moveleft:
         mov [yPos],dx
         add ax, 8
         sub word [yPos], 0
-        mov cx, [yPos]                             
-        mov dx, ax                          
-        call getColor 
+        mov cx, [yPos]
+        mov dx, ax
+        call getColor
 
         cmp bx, 0
         je .end
@@ -306,9 +308,9 @@ moveright:
         div cx
         mov [yPos], dx
         add word [yPos], 15
-        mov cx, [yPos]                           
-        mov dx, ax                          
-        call getColor 
+        mov cx, [yPos]
+        mov dx, ax
+        call getColor
 
         cmp bx, 0
         je .end
@@ -321,8 +323,8 @@ moveright:
         mov [yPos], dx
         add ax, 15
         add word [yPos], 15
-        mov cx, [yPos]           
-        mov dx, ax                          
+        mov cx, [yPos] 
+        mov dx, ax      
         call getColor 
 
         cmp bx, 0
@@ -392,7 +394,7 @@ comp_color:
     mov dx, 8
     mov bx, 8
 
-    mov ax, 0xA000           
+    mov ax, 0xA000 
     add ax, bx    
     mov di, ax   
 
