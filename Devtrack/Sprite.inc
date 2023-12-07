@@ -59,10 +59,6 @@ draw_letter:
             jnz .eachLine
     ret
 
-spawn_bugs:
-    jmp move_bug1
-    ret
-
 move_bug1:
     mov di, [bug1_pos]
     mov si, bug1_sprite
