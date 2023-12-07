@@ -132,6 +132,7 @@ moveup:
         jne .telep
 
     .remove_candy:
+        call EraseCandyTop
         ; Remove candy
         push bx
         mov bx, 10
@@ -217,6 +218,7 @@ movedown:
 
     .remove_candy:
         ; Remove candy
+        call EraseCandyBottom
         push bx
         mov bx, 10
         call add_score
@@ -297,14 +299,30 @@ moveleft:
         cmp bx, 0
         je .end
         cmp bx, 2
-        jne .telep
+        je .remove_candy
+        cmp bx, 3
+        je .eat_check_mark
+        jmp .telep
+        
 
     .remove_candy:
         ; Remove candy
+        call EraseCandyLeft
         push bx
         mov bx, 10
         call add_score
         pop bx
+        jmp .moving
+
+    .eat_check_mark:
+        call toggle_frenzy
+
+        mov si, clean
+        mov bx, [oldPos]
+        sub bx, 8
+        mov di, bx
+        call draw_sprite
+        jmp .moving
 
     .telep:
         mov bx, [xPos]
@@ -381,14 +399,29 @@ moveright:
         cmp bx, 0
         je .end
         cmp bx, 2
-        jne .telep
+        je .remove_candy
+        cmp bx, 3
+        je .eat_check_mark
+        jmp .telep
 
     .remove_candy:
         ; Remove candy
+        call EraseCandyRight
         push bx
         mov bx, 10
         call add_score
         pop bx
+        jmp .moving
+
+    .eat_check_mark:
+        call toggle_frenzy
+
+        mov si, clean
+        mov bx, [oldPos]
+        add bx, 8
+        mov di, bx
+        call draw_sprite
+        jmp .moving
 
     .telep:
         mov bx, [xPos]
@@ -417,60 +450,75 @@ moveright:
 
 changeloop:
     cmp si, right_opened
-	jne pacmanclosed
+	jne .pacmanclosed
     cmp si, right_closed
-	jne pacmanopend
+	jne .pacmanopend
 
-pacmanopend:
-    mov si, right_closed
-	ret
-
-pacmanclosed:
-    mov si, right_opened
-	ret
-
-
-comp_color:
-    push ax
-    push bx
-    push cx
-    push dx
-    push di
-
-    mov dx, 8
-    mov bx, 8
-
-    mov ax, 0xA000 
-    add ax, bx    
-    mov di, ax   
-
-    
-    mov al, [di]  
-
-    
-    cmp al, 0x27
-    je .true
-
-    .false:
-        mov ah, 9
-        mov dx, falsem
-        int 21h
-
-        pop di
-        pop dx
-        pop cx
-        pop bx
-        pop ax
+    .pacmanopend:
+        mov si, right_closed
         ret
 
-    .true:
-        mov ah, 9
-        mov dx, truem
-        int 21h
-
-        pop di
-        pop dx
-        pop cx
-        pop bx
-        pop ax
+    .pacmanclosed:
+        mov si, right_opened
         ret
+
+
+toggle_frenzy:
+    cmp byte [isFrenzy], 0
+    jz .enable_frenzy
+    jmp .disable_frenzy
+
+    .enable_frenzy:
+        mov byte [isFrenzy], 1
+        ret
+
+    .disable_frenzy:
+        mov byte [isFrenzy], 0
+        ret
+
+EraseCandyRight:
+    mov al,0x00
+    mov di, [xPos]
+    add di,16+320*7
+    mov [es:di],al
+
+    add di,320
+
+    mov [es:di],al
+
+    ret
+EraseCandyLeft:
+    mov al,0x00
+    mov di, [xPos]
+    dec di
+    add di, 320*7
+    mov [es:di],al
+
+    add di,320
+
+    mov [es:di],al
+
+    ret
+EraseCandyTop:
+    mov al,0x00
+    mov di, [xPos]
+    add di,7
+    sub di,320
+    mov [es:di],al
+
+    add di,1
+
+    mov [es:di],al
+
+    ret
+EraseCandyBottom:
+    mov al,0x00
+    mov di, [xPos]
+    add di,7+320*16
+    mov [es:di],al
+
+    add di,1
+
+    mov [es:di],al
+
+    ret

@@ -4,6 +4,7 @@ section .data
 
     colorWall dw 0x10                        ; color of the walls
     candyColor dw 0x43
+    colorCheckMark dw 0x2F
 
 section .text
 
@@ -25,11 +26,19 @@ getColor:
 
     cmp al, [candyColor]
     je .candy
+
+    cmp al, [colorCheckMark]
+    je .check_mark
     jmp .end
    
 
     .candy:
         mov bx, 2
+        jmp .end
+
+    .check_mark:
+        mov bx, 3
+        jmp .end
 
     .end:
         ret
