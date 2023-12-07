@@ -20,7 +20,7 @@ falsem db '0',13,10,'$'
 
 section .text
 
-; draw sprite in 16x16 pixels*
+; draw sprite in 16x16 pixels
 draw_sprite:
     mov ax, 0xA000
     mov es, ax
@@ -82,7 +82,7 @@ moveup:
         mov cx, window_width
         xor dx, dx
         div cx
-        mov [yPos], dl
+        mov [yPos],dx
         sub ax, 0
         mov cx, [yPos]                           
         mov dx, ax                          
@@ -96,7 +96,7 @@ moveup:
         mov cx, window_width
         xor dx, dx
         div cx
-        mov [yPos], dl
+        mov [yPos],dx
         sub ax, 0
         add word [yPos], 15
         mov cx, [yPos]                             
@@ -111,7 +111,7 @@ moveup:
         mov cx, window_width
         xor dx, dx
         div cx
-        mov [yPos], dl
+        mov [yPos],dx
         sub ax, 0
         add word [yPos], 8
         mov cx, [yPos]                             
@@ -156,7 +156,7 @@ movedown:
         mov cx, window_width
         xor dx, dx
         div cx
-        mov [yPos], dl
+        mov [yPos],dx
         add ax, 15
         mov cx, [yPos]                           
         mov dx, ax                          
@@ -170,7 +170,7 @@ movedown:
         mov cx, window_width
         xor dx, dx
         div cx
-        mov [yPos], dl
+        mov [yPos],dx
         add ax, 15
         add word [yPos], 15
         mov cx, [yPos]                             
@@ -185,7 +185,7 @@ movedown:
         mov cx, window_width
         xor dx, dx
         div cx
-        mov [yPos], dl
+        mov [yPos],dx
         add ax, 15
         add word [yPos], 8
         mov cx, [yPos]                             
@@ -230,7 +230,7 @@ moveleft:
         mov cx, window_width
         xor dx, dx
         div cx
-        mov [yPos], dl
+        mov [yPos],dx
         sub word [yPos], 0
         mov cx, [yPos]                           
         mov dx, ax                          
@@ -244,7 +244,7 @@ moveleft:
         mov cx, window_width
         xor dx, dx
         div cx
-        mov [yPos], dl
+        mov [yPos],dx
         add ax, 15
         sub word [yPos], 0
         mov cx, [yPos]                             
@@ -259,7 +259,7 @@ moveleft:
         mov cx, window_width
         xor dx, dx
         div cx
-        mov [yPos], dl
+        mov [yPos],dx
         add ax, 8
         sub word [yPos], 0
         mov cx, [yPos]                             
@@ -304,7 +304,7 @@ moveright:
         mov cx, window_width
         xor dx, dx
         div cx
-        mov [yPos], dl
+        mov [yPos], dx
         add word [yPos], 15
         mov cx, [yPos]                           
         mov dx, ax                          
@@ -318,7 +318,7 @@ moveright:
         mov cx, window_width
         xor dx, dx
         div cx
-        mov [yPos], dl
+        mov [yPos], dx
         add ax, 15
         add word [yPos], 15
         mov cx, [yPos]           
@@ -333,7 +333,7 @@ moveright:
         mov cx, window_width
         xor dx, dx
         div cx
-        mov [yPos], dl
+        mov [yPos], dx
         add ax, 8
         add word [yPos], 15
         mov cx, [yPos]
