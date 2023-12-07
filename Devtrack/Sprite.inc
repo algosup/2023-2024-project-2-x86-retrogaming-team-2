@@ -134,6 +134,7 @@ moveup:
     .remove_candy:
         call EraseCandyTop
         ; Remove candy
+        call EraseCandyTop
         push bx
         mov bx, 10
         call add_score
