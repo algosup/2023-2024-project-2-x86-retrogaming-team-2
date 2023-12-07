@@ -60,10 +60,10 @@ First, we'll run a smoke test to see if the basic functionality works. When the 
 
 This is a short description of the somke test we will perform
 
-1.  **Start the game** 
-2.  **Exit the game** 
-3.  **Movements** 
-4.  **Collision**
+1. **Start the game** 
+2. **Exit the game** 
+3. **Movements** 
+4. **Collision**
 
 The purpose of these tests is to verify and confirm that the main features of our game work well.
 
@@ -150,12 +150,12 @@ MacBook Air :
 
 We will use different software to run the game, test it, report different bugs and resolve them.
 
-- **DOSBox** to run the game and test it on our different Hardware.
-  - DOSBox **0.74-3** for Windows
-  - DOSBox **0.74-3** for macOS
-- **NASM** to compile the assembly language.
-- **GitHub** to report bugs.
-- **Visual Studio Code** ( version 1.84.2 ) to develop the game and fix bugs.
+- [DOSBox](https://www.dosbox.com) to run the game and test it on our different Hardware.
+  - [DOSBox **0.74-3**](https://sourceforge.net/projects/dosbox/files/dosbox/0.74-3/DOSBox0.74-3-win32-installer.exe/download) for Windows
+  - [DOSBox **0.74-3**](https://sourceforge.net/projects/dosbox/files/dosbox/0.74-3/DOSBox-0.74-3-3.dmg/download) for macOS
+- [NASM](https://www.nasm.us/) to compile the assembly language.
+- [GitHub](https://github.com) to report bugs.
+- [Visual Studio Code](https://code.visualstudio.com/) ( version 1.84.2 ) to develop the game and fix bugs.
 
 ---
 
