@@ -133,6 +133,7 @@ moveup:
 
     .remove_candy:
         ; Remove candy
+        call EraseCandyTop
         push bx
         mov bx, 10
         call add_score
@@ -217,6 +218,7 @@ movedown:
 
     .remove_candy:
         ; Remove candy
+        call EraseCandyBottom
         push bx
         mov bx, 10
         call add_score
@@ -301,6 +303,7 @@ moveleft:
 
     .remove_candy:
         ; Remove candy
+        call EraseCandyLeft
         push bx
         mov bx, 10
         call add_score
@@ -385,6 +388,7 @@ moveright:
 
     .remove_candy:
         ; Remove candy
+        call EraseCandyRight
         push bx
         mov bx, 10
         call add_score
@@ -474,3 +478,52 @@ comp_color:
         pop bx
         pop ax
         ret
+
+
+EraseCandyRight:
+    mov al,0x00
+    mov di, [xPos]
+    add di,16+320*7
+    mov [es:di],al
+
+    add di,320
+
+    mov [es:di],al
+
+    ret
+EraseCandyLeft:
+    mov al,0x00
+    mov di, [xPos]
+    dec di
+    add di, 320*7
+    mov [es:di],al
+
+    add di,320
+
+    mov [es:di],al
+
+    ret
+EraseCandyTop:
+    mov al,0x00
+    mov di, [xPos]
+    add di,7
+    sub di,320
+    mov [es:di],al
+
+    add di,1
+
+    mov [es:di],al
+
+    ret
+EraseCandyBottom:
+    mov al,0x00
+    mov di, [xPos]
+    add di,7+320*16
+    mov [es:di],al
+
+    add di,1
+
+    mov [es:di],al
+
+    ret
+
