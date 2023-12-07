@@ -74,7 +74,7 @@ keyHandler:
 
 game_loop:
     mov ah, 00h
-    int 0x1a
+    int 1Ah
     cmp dx, [old_time]
     je game_loop
     mov [old_time], dx

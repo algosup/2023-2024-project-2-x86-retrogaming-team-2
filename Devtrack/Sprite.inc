@@ -321,7 +321,7 @@ moveright:
         mov [yPos], dl
         add ax, 15
         add word [yPos], 15
-        mov cx, [yPos]                             
+        mov cx, [yPos]           
         mov dx, ax                          
         call getColor 
 
@@ -336,8 +336,8 @@ moveright:
         mov [yPos], dl
         add ax, 8
         add word [yPos], 15
-        mov cx, [yPos]                             
-        mov dx, ax                          
+        mov cx, [yPos]
+        mov dx, ax
         call getColor 
 
         cmp bx, 0

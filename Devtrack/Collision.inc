@@ -11,8 +11,9 @@ getColor:
     ; mov ah, 0CH               ; draw the points
     ; mov al, 0DH
     ; int 10h
+
     mov ah, 0DH                 ; AH = 0Dh for "Read Dot" function
-    int 0x10
+    int 10h
 
     mov bx, 0
 
