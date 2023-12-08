@@ -132,9 +132,9 @@ moveup:
         jne .telep
 
     .remove_candy:
-        call EraseCandyTop
         ; Remove candy
         call EraseCandyTop
+        dec word [candies_remain]
         push bx
         mov bx, 10
         call add_score
@@ -220,6 +220,7 @@ movedown:
     .remove_candy:
         ; Remove candy
         call EraseCandyBottom
+        dec word [candies_remain]
         push bx
         mov bx, 10
         call add_score
@@ -309,6 +310,7 @@ moveleft:
     .remove_candy:
         ; Remove candy
         call EraseCandyLeft
+        dec word [candies_remain]
         push bx
         mov bx, 10
         call add_score
@@ -408,6 +410,7 @@ moveright:
     .remove_candy:
         ; Remove candy
         call EraseCandyRight
+        dec word [candies_remain]
         push bx
         mov bx, 10
         call add_score
