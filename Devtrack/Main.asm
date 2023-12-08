@@ -40,8 +40,6 @@ _start:
 
     .spawn_entities:
 
-        
-
         mov si, bug1_sprite
         mov di, [bug1_pos]
         call draw_sprite
@@ -108,8 +106,8 @@ game_loop:
         je .moveLf
 
 
-        jmp .endloop
 
+        jmp .endloop
 
         .moveUp:
             call moveup
@@ -131,6 +129,7 @@ game_loop:
         .menu:
 
         .endloop:
+            ; call moveBug1
             jmp game_loop
 
 ; includes
