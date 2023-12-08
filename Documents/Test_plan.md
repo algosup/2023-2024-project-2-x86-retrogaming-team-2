@@ -4,7 +4,7 @@
 | Author        | Gaël MALVAR |
 |---------------|------------ |
 | Created       | 11/17/2023  |
-| Last Modified | 12/07/2023  |
+| Last Modified | 12/08/2023  |
 
 ---
 
@@ -44,6 +44,7 @@ The purpose of these tests is to verify that the game works as expected and is p
 | Smoke test | A smoke test is a quick and basic check or test performed to verify that it works on a fundamental level. A smoke test ensures that the main functionalities of a program or system are operational without delving into detailed or exhaustive testing. |
 | Functional test | Functional testing is a process categorized as black-box testing. It constructs test cases based on the specified requirements of the software component under examination. |
 | Regression test | A regression test is a check to ensure that recent changes to a software application haven't negatively impacted its existing functionalities. It helps catch unintended side effects or "regressions" that might occur when new features or updates are added. |
+| Unit test | A unit test is a specific kind of testing conducted by developers on isolated components (units) of a software program. Developers create and execute unit tests to verify the correctness of individual functions or methods within the code. |
 | Test case | A "test case" is a specific set of instructions or conditions that are designed to determine whether a software application, system, or component functions correctly under certain circumstances. It's a detailed scenario or situation used to verify that the software behaves as expected. |
 
 ---
@@ -100,13 +101,29 @@ The purpose of these tests is to verify and confirm that the main features of ou
 
 ### Schedule
 
-_We do not yet have a playable version of the game and therefore cannot yet plan a schedule_
+This section is dedicated to the progress of the testing phase, including smoke tests, functionality tests and bug reports. The game will be tested throughout development and after each new version.
+
+- Project timeline :
+  
+Start of the project : **_11/06/2023_**
+Project deadline : **_12/21/2023_**
+
+
+| Task | Start date | End date |
+|------|------|----------|
+| Report bugs | 11/27/2023 | 12/21/2023 |
+| Unit test | 11/27/2023 | 12/21/2023 |
+| Smoke testing | 12/04/2023 | 12/04/2023 |
+| Production of documents | 11/17/2023 | 12/08/2023 |
+| Start of the test on the working prototype | 12/11/2023 | 12/11/2023 |
+| Functionality test | 12/14/2023 | 12/15/2023 |
+| Regression test after each new version | 12/14/2023 | 12/21/2023 |
 
 ---
 
 ### Test Cases
 
-During the testing phase, all the tests carried out will be stored in the “TestCases.md” file.
+During the testing phase, all the tests carried out will be stored in the " TestCases.md" file.
 
 **Here is an example of a test case :**
 
@@ -129,11 +146,11 @@ In order to test the game, we will use several tools.
 
 #### Hardware
 
-We will run and test the game on different machines, we have 2 at our disposal : 
+We will run and test the game on different machines, we have 3 at our disposal, 2 of the machines were provided by the school: the Lenovo and the MacBook, the 3rd was provided by a member of our team.
 
 Lenovo ThinkBook :
   - ThinkBook 14 G4 IAP
-    - **Processor** : 12th Gen Intel(R) Core(TM) i7-1255U   1.70 GHz
+    - **Processor** : 12th Gen Intel® Core® i7-1255U   1.70 GHz
     - **RAM** : 16.0 GB
     - **System** : 64-bit operating system, x64-based processor
     - **Operating system** : Windows 11 Pro ( Version : 22H2 ) 
@@ -144,6 +161,11 @@ MacBook Air :
     - **RAM** : 8.0 GB
     - **Operating system** : macOS Ventura
 
+Desktop computer : 
+  - HP compaq 500b mt
+    - **Processor** : Intel® Pentium® E5400 2,7 GHz
+    - **RAM** : 2 Go DDR3
+    - **Operating system** : Windows XP SP3
 
 
 #### Software
