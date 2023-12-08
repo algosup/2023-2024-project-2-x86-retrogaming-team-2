@@ -108,7 +108,6 @@ game_loop:
         je .moveLf
 
 
-
         jmp .endloop
 
 
@@ -119,6 +118,7 @@ game_loop:
             call movedown
             jmp .endloop
         .moveRg:
+            ; dec byte [life_count]
             call moveright
             jmp .endloop
         .moveLf:
@@ -142,3 +142,4 @@ game_loop:
 %include "Scoreboard.inc"
 %include "Collision.inc"
 %include "Items.inc"
+%include "Bugs.inc"

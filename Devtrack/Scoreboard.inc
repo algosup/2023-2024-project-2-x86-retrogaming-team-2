@@ -49,7 +49,7 @@ update_score:
     jz end_level
 
     cmp byte [life_count], 0
-    jz end_level
+    jz .die
 
     call draw_score
     call draw_highscore
@@ -57,6 +57,15 @@ update_score:
 
 
     ret
+
+    .die:
+        mov si, game_over
+        mov di, 31040 + 121 
+        call draw_gameover
+
+        mov ah, 4ch
+        xor al, al
+        int 21h
 
 draw_score:
     mov ax, [score1]  ; Load the integer into AX

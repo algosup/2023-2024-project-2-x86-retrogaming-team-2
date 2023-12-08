@@ -67,6 +67,19 @@ draw_letter:
             jnz .eachLine
     ret
 
+
+draw_gameover:
+    mov ax, 0xA000
+    mov es, ax
+    mov dx, 38
+    .eachLine:
+        mov cx, 78
+        rep movsb
+        add di, window_width-78
+        dec dx
+        jnz .eachLine
+    ret
+
 move_bug1:
     mov di, [bug1_pos]
     mov si, bug1_sprite
@@ -77,7 +90,6 @@ move_bug1:
     add bx, [bug1_pos]
     mov [bug1_pos], bx
     ret
-
 moveup:
 	mov ax, [xPos]
     mov [oldPos], ax
