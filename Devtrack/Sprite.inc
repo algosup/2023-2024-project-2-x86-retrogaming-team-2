@@ -160,6 +160,7 @@ moveup:
         mov di, [xPos]
         call draw_sprite
         mov bx, [telepBottom]
+        sub bx, (window_width * 3)
         mov [xPos], bx
         mov si, up_closed
 
@@ -246,6 +247,7 @@ movedown:
         mov di, [xPos]
         call draw_sprite
         mov bx, [telepUp]
+        add bx, (window_width * 3)
         mov [xPos], bx
         mov si, down_closed
 
@@ -347,6 +349,7 @@ moveleft:
         mov di, [xPos]
         call draw_sprite
         mov bx, [telepRight]
+        sub bx, 3
         mov [xPos], bx
         mov si, left_closed
 
@@ -447,6 +450,7 @@ moveright:
         mov di, [xPos]
         call draw_sprite
         mov bx, [telepLeft]
+        add bx, 3
         mov [xPos], bx
         mov si, right_closed
 
