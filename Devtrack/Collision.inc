@@ -1,10 +1,14 @@
 org 100h
-
 section .data
 
     colorWall dw 0x10                        ; color of the walls
     candyColor dw 0x43
     colorCheckMark dw 0x2F
+    colorBug1 dw 0x28
+    colorBug2 dw 0x0D
+    colorBug3 dw 0x06
+    colorBug4 dw 0x0F
+    colorBug4_1 dw 0x20
 
 section .text
 
@@ -35,9 +39,20 @@ getColor:
 
     cmp al, [colorCheckMark]
     je .check_mark
+
+    cmp al, [colorBug1]
+    je .bug
+    cmp al, [colorBug2]
+    je .bug
+    cmp al, [colorBug3]
+    je .bug
+    cmp al, [colorBug4]
+    je .bug
+    cmp al, [colorBug4_1]
+    je .bug
+
     jmp .end
    
-
     .candy:
         mov bx, 2
         jmp .end
@@ -45,6 +60,16 @@ getColor:
     .check_mark:
         mov bx, 3
         jmp .end
+    .bug:
+        cmp byte [isFrenzy],1
+        je .frenzy_active
+
+        mov bx, 4
+        jmp .end
+
+    .frenzy_active:
+        mov bx, 5
 
     .end:
         ret
+
