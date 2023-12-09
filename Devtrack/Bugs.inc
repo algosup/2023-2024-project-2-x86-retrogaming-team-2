@@ -164,7 +164,7 @@ falseLeft:
     mov ax, [left]
     mov ax, 0
     mov [left], ax 
-    jmp 
+    ret
 
 trueLeft:
     mov ax, [left]

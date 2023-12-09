@@ -25,6 +25,7 @@ telepBottom dw window_width*185+(window_width-16)/2
 truem db '1',13,10,'$'   ; true and false message.
 falsem db '0',13,10,'$'
 
+killStreak db 1
 
 section .text
 
@@ -129,7 +130,25 @@ moveup:
         cmp bx, 0
         je .end
         cmp bx, 2
-        jne .telep
+        je .remove_candy
+        cmp bx, 4
+        je dec_life
+        cmp bx, 5
+        je .eat_ghost
+
+        jmp .telep
+
+
+    .eat_ghost:
+        push bx
+       mov bx, [killStreak]
+        mov ax,200
+        mul bx
+        mov bx,ax
+        call add_score
+        inc byte [killStreak]
+        pop bx
+        jmp .moving
 
     .remove_candy:
         ; Remove candy
@@ -215,7 +234,13 @@ movedown:
         cmp bx, 0
         je .end
         cmp bx, 2
-        jne .telep
+        je .remove_candy
+        cmp bx, 4
+        je dec_life
+        cmp bx, 5
+        je .eat_ghost
+
+        jmp .telep
 
     .remove_candy:
         ; Remove candy
@@ -225,6 +250,17 @@ movedown:
         mov bx, 10
         call add_score
         pop bx
+
+    .eat_ghost:
+        push bx
+       mov bx, [killStreak]
+        mov ax,200
+        mul bx
+        mov bx,ax
+        call add_score
+        inc byte [killStreak]
+        pop bx
+        jmp .moving
 
     .telep:
         mov bx, [xPos]
@@ -304,6 +340,10 @@ moveleft:
         je .remove_candy
         cmp bx, 3
         je .eat_check_mark
+        cmp bx, 4
+        je dec_life
+        cmp bx, 5
+        je .eat_ghost
         jmp .telep
         
 
@@ -317,10 +357,23 @@ moveleft:
         pop bx
         jmp .moving
 
+    .eat_ghost:
+        push bx
+        mov bx, [killStreak]
+        mov ax,200
+        mul bx
+        mov bx,ax
+        call add_score
+        inc byte [killStreak]
+        pop bx
+        jmp .moving
+
     .eat_check_mark:
         call toggle_frenzy
 
         mov si, clean
+        mov bx, 50
+        call add_score
         mov bx, [oldPos]
         sub bx, 8
         mov di, bx
@@ -405,6 +458,10 @@ moveright:
         je .remove_candy
         cmp bx, 3
         je .eat_check_mark
+        cmp bx, 4
+        je dec_life
+        cmp bx, 5
+        je .eat_ghost
         jmp .telep
 
     .remove_candy:
@@ -420,11 +477,26 @@ moveright:
     .eat_check_mark:
         call toggle_frenzy
 
-        mov si, clean
+        mov bx, 50
+        call add_score
+
         mov bx, [oldPos]
-        add bx, 8
+        sub bx, 8
+        mov si, clean
         mov di, bx
         call draw_sprite
+        
+        jmp .moving
+
+    .eat_ghost:
+        push bx
+       mov bx, [killStreak]
+        mov ax,200
+        mul bx
+        mov bx,ax
+        call add_score
+        inc  byte [killStreak]
+        pop bx
         jmp .moving
 
     .telep:
@@ -478,6 +550,7 @@ toggle_frenzy:
 
     .disable_frenzy:
         mov byte [isFrenzy], 0
+        mov byte [killStreak],1
         ret
 
 EraseCandyRight:
@@ -526,3 +599,15 @@ EraseCandyBottom:
     mov [es:di],al
 
     ret
+
+dec_life:
+    dec byte [life_count]
+    mov si, clean
+    mov di, [xPos]
+    call draw_sprite
+    mov word [xPos], window_width*80+(window_width-16)/2
+    mov si, right_closed
+    mov di, [xPos]
+    call draw_sprite
+    jmp game_loop
+
