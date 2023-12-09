@@ -8,6 +8,12 @@ section .data
 
 section .text
 
+
+; Collisions
+; 0 - Wall
+; 1 - Nothing
+; 2 - Candies
+; 3 - Check Marks
 getColor:
     ; mov ah, 0CH               ; draw the points
     ; mov al, 0DH

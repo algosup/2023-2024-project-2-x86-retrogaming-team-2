@@ -1,21 +1,9 @@
-bits 16
+cpu 8086
 org 100h
 
 
 section .data
     old_time equ 0xf9fe+0x06
-
-    ; KeyBind
-    key_up db 'z'
-    key_up2 db 48h
-    key_down db 's'
-    key_down2 db 50h
-    key_left db 'q'
-    key_left2 db 4BH
-    key_right db 'd'
-    key_right2 db 4DH
-    key_exit db 27
-    key_menu db 'p'
 
 
     charValue db 'X$'
@@ -56,19 +44,13 @@ _start:
         mov di, [bug4_pos]
         call draw_sprite
 
-        mov di, [xPos]
 
+        mov di, [xPos]
         mov si, right_closed
         mov si, right_closed
         call draw_sprite
 
         jmp game_loop
-
-keyHandler:
-    xor ax, ax
-    mov ah, 00h
-    int 16h
-    ret
 
 game_loop:
     mov ah, 00h
@@ -77,62 +59,16 @@ game_loop:
     je game_loop
     mov [old_time], dx
 
+    call move_bug1
     call update_score
 
-    call keyHandler
-    
+    call keyboard_handler
 
-    .awaitKey:
-        mov [charValue], al
-        cmp al , [key_exit]
-        je .exit
-        cmp al , [key_menu]
-        je .menu
-        cmp al , [key_up]
-        je .moveUp
-        cmp al , [key_down]
-        je .moveDn
-        cmp al , [key_right]
-        je .moveRg
-        cmp al , [key_left]
-        je .moveLf
-        cmp ah , [key_up2]
-        je .moveUp
-        cmp ah , [key_down2]
-        je .moveDn
-        cmp ah , [key_right2]
-        je .moveRg
-        cmp ah , [key_left2]
-        je .moveLf
-
-
-
-        jmp .endloop
-
-        .moveUp:
-            call moveup
-            jmp .endloop
-        .moveDn:
-            call movedown
-            jmp .endloop
-        .moveRg:
-            ; dec byte [life_count]
-            call moveright
-            jmp .endloop
-        .moveLf:
-            call moveleft
-            jmp .endloop
-        .exit:
-            mov ah, 4ch
-            xor al, al
-            int 21h
-        .menu:
-
-        .endloop:
-            ; call moveBug1
-            jmp game_loop
+    .endloop:
+        jmp game_loop
 
 ; includes
+%include "keyboard.inc"
 %include "Sprites_List.inc"
 %include "Animations/Ranky_Anims.inc"
 %include "Animations/Bugs_Anims.inc"

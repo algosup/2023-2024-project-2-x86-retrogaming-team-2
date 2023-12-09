@@ -2,199 +2,123 @@ org 100h
 
 section .data
 
-bugOld1 dw 0
-bugPosY1 dw 0
+; Bugs Positions
+bug1_pos dw window_width*136+(window_width-16)/2  ; Outside of the house
+bug1_YPos dw 0
 
-up db 0
-down db 0
-left db 0
-right db 0
-
-section .text 
-
-moveBug1:
-    mov ax, [bug1_pos]
-    mov [bugOld1], ax
-    call check_col_left
-    call check_col_up
-    call check_col_right
-    call check_col_down
-    jmp moveBug1
-
-check_col_down:
-    mov ax, [xPos]
-    mov cx, window_width
-    xor dx, dx
-    div cx
-    mov [yPos],dx
-    add ax, 15
-    add word [yPos], 8
-    mov cx, [yPos]         
-    mov dx, ax      
-    call getColor 
-
-    ; if a wall
-    cmp bx, 0       
-    je falseDown
-
-    ; no wall
-    cmp bx, 0
-    jne bugMoveDown
-    ret
+bugs_velocity dw 1, 1, 1, 1
 
 
-check_col_up:
-    mov ax, [bug1_pos]
-    mov cx, window_width
-    xor dx, dx
-    div cx
-    mov [bugPosY1],dx
-    sub ax, 0
-    add word [bugPosY1], 8
-    mov cx, [bugPosY1]         
-    mov dx, ax      
-    call getColor 
+bug2_pos dw window_width*108+(window_width-16)/2  ; Center in the house
+bug3_pos dw window_width*108+((window_width-16)/2 - 24)     ; Left in the house
+bug4_pos dw window_width*108+((window_width-16)/2 + 24)     ; Right in the house
 
-    ; if a wall
-    cmp bx, 0       
-    je falseUp
+section .text
 
-    ; no wall
-    cmp bx, 0
-    jne bugMoveUp
-    ret
+    move_bug1:
+        ; mov di, [bug1_pos]
+        ; mov si, bug1_sprite
+        ; call draw_sprite
+        ; ret
 
-check_col_left:
-    mov ax, [xPos]
-    mov cx, window_width
-    xor dx, dx
-    div cx
-    mov [yPos],dx
-    add ax, 8
-    sub word [yPos], 0
-    mov cx, [yPos]
-    mov dx, ax
-    call getColor
+        cmp byte [bugs_velocity], 1
+        je .check_right_col_top
+        jmp .check_left_col_top
 
-    ; if a wall
-    cmp bx, 0       
-    je falseLeft
+        ; Right Collisions
+            .check_right_col_top:
+                mov ax, [bug1_pos]
+                mov cx, window_width
+                xor dx, dx
+                div cx
+                mov [bug1_YPos], dx
+                add word [bug1_YPos], 16
+                mov cx, [bug1_YPos]       
+                mov dx, ax      
+                call getColor 
 
-    ; no wall
-    cmp bx, 0
-    jne bugMoveLeft
-    ret
+                cmp bx, 0
+                je .collide
+        
+            .check_right_col_bottom:
+                mov ax, [bug1_pos]
+                mov cx, window_width
+                xor dx, dx
+                div cx
+                mov [bug1_YPos],dx
+                add ax, 15
+                add word [bug1_YPos], 16
+                mov cx, [bug1_YPos]         
+                mov dx, ax      
+                call getColor 
 
-check_col_right:
-    mov ax, [xPos]
-    mov cx, window_width
-    xor dx, dx
-    div cx
-    mov [yPos], dx
-    add ax, 8
-    add word [yPos], 15
-    mov cx, [yPos]
-    mov dx, ax
-    call getColor 
+                cmp bx, 0
+                je .collide
 
-    ; if a wall
-    cmp bx, 0       
-    je falseRight
+                jmp .moving
 
-    ; no wall
-    cmp bx, 0
-    jne bugMoveRight
-    ret
+        ; Left Collisions
+            .check_left_col_top:
+                mov ax, [bug1_pos]
+                mov cx, window_width
+                xor dx, dx
+                div cx
+                mov [bug1_YPos], dx
+                sub word [bug1_YPos], 1
+                mov cx, [bug1_YPos]       
+                mov dx, ax      
+                call getColor 
 
-moving:
-        mov di, [bug1_pos]
-        add di, 1
-        mov [bug1_pos], di
-        call changeloop
-        call draw_sprite
-        jmp move_bug1
+                cmp bx, 0
+                je .collide
+        
+            .check_left_col_bottom:
+                mov ax, [bug1_pos]
+                mov cx, window_width
+                xor dx, dx
+                div cx
+                mov [bug1_YPos],dx
+                add ax, 15
+                sub word [bug1_YPos], 1
+                mov cx, [bug1_YPos]         
+                mov dx, ax      
+                call getColor 
 
-end:
-        mov bx, [bugOld1]
-        mov [bug1_pos], bx
-        mov di, [bug1_pos]
-        call changeloop
-        call draw_sprite
-        jmp move_bug1
+                cmp bx, 0
+                je .collide
 
-falseDown:
-    mov ax, [down]
-    mov ax, 0
-    mov [down], ax 
-    ret
+                jmp .moving
 
-trueDown:
-    mov ax, [down]
-    mov ax, 1
-    mov [down], ax 
-    ret
+        ; .telep:
+        ;     mov bx, [bug1_pos]
+        ;     cmp bx, [telepUp]        
+        ;     jne .moving
+        ;     mov si, clean
+        ;     mov di, [bug1_pos]
+        ;     call draw_sprite
+        ;     mov bx, [telepBottom]
+        ;     sub bx, (window_width * 3)
+        ;     mov [bug1_pos], bx
+        ;     mov si, up_closed
 
-bugMoveDown:
-    call trueDown
-    mov ax, [bug1_pos]
-    add ax, window_width
-    mov [bug1_pos], ax
-    ret
+        .moving:
+            xor bx, bx
+            mov bx, [bugs_velocity]
+            add bx, [bug1_pos]
+            mov [bug1_pos], bx
 
-falseUp:
-    mov ax, [up]
-    mov ax, 0
-    mov [up], ax 
-    ret
 
-trueUp:
-    mov ax, [up]
-    mov ax, 1
-    mov [up], ax 
-    ret
+            mov di, [bug1_pos]
+            mov si, bug1_sprite
+            call draw_sprite
+            ret
 
-bugMoveUp:
-    call trueUp
-    mov ax, [bug1_pos]
-    sub ax, window_width
-    mov [bug1_pos], ax
-    ret
-
-falseLeft:
-    mov ax, [left]
-    mov ax, 0
-    mov [left], ax 
-    ; jmp
-    ret ; adding a ret to compile properly 
-
-trueLeft:
-    mov ax, [left]
-    mov ax, 1
-    mov [left], ax 
-    ret
-
-bugMoveLeft:
-    call trueLeft
-    mov ax, [bug1_pos]
-    sub ax, 1
-    mov [bug1_pos], ax
-    ret
-
-falseRight:
-    mov ax, [right]
-    mov ax, 0
-    mov [right], ax 
-    ret
-
-trueRight:
-    mov ax, [right]
-    mov ax, 1
-    mov [right], ax 
-    ret
-
-bugMoveRight:
-    call trueRight
-    mov ax, [bug1_pos]
-    add ax, 1
-    mov [bug1_pos], ax
-    ret
+        .collide:
+            ; mov ah, 4ch
+            ; xor al, al
+            ; int 21h
+            ; neg byte [bugs_velocity]
+            mov bx, [bugs_velocity]
+            neg bx
+            mov [bugs_velocity], bx
+            jmp .moving

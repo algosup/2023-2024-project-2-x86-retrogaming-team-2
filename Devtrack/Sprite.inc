@@ -10,12 +10,6 @@ isFrenzy db 0
 
 oldPos dw 0
 
-; Bugs Positions
-bug1_pos dw window_width*136+(window_width-16)/2  ; Outside of the house
-bug2_pos dw window_width*108+(window_width-16)/2  ; Center in the house
-bug3_pos dw window_width*108+((window_width-16)/2 - 24)     ; Left in the house
-bug4_pos dw window_width*108+((window_width-16)/2 + 24)     ; Right in the house
-
 ; Teleporter positions
 telepRight dw window_width*105-16
 telepLeft dw window_width*104
@@ -80,16 +74,6 @@ draw_gameover:
         jnz .eachLine
     ret
 
-move_bug1:
-    mov di, [bug1_pos]
-    mov si, bug1_sprite
-    call draw_sprite
-
-    xor bx, bx
-    add bx, 1
-    add bx, [bug1_pos]
-    mov [bug1_pos], bx
-    ret
 moveup:
 	mov ax, [xPos]
     mov [oldPos], ax
