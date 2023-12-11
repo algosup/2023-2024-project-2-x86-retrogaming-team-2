@@ -36,6 +36,14 @@ section .text
                 cmp bx, 0
                 je .collide
                 
+                add dx, -2
+                add cx, 2
+                call getColor
+                cmp bx, 6
+                je dec_life
+
+
+                
             .check_right_col_bottom:
                 mov ax, [bug1_pos]
                 mov cx, window_width
@@ -76,7 +84,10 @@ section .text
                 je .collide
  
                 add dx, -2
+                add cx, 2
                 call getColor
+                cmp bx, 6
+                je dec_life
         
             .check_left_col_bottom:
                 mov ax, [bug1_pos]
