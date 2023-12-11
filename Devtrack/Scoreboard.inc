@@ -1,11 +1,12 @@
-score1 dw 0141
-score2 dw 8907
+score1 dw 0000
+score2 dw 0000
 
 digits db 5 DUP(0) ; Array to store individual digits
 highscore_title dw 'high score', 0
 highscore1 dw 0625
 highscore2 dw 9100
 
+candies_remain dw 0270
 
 length db 0
 
@@ -44,11 +45,27 @@ draw_scoreboard:
     ret
 
 update_score:
+    cmp word [candies_remain], 0
+    jz end_level
+
+    cmp byte [life_count], 0
+    jz .die
+
     call draw_score
     call draw_highscore
     call draw_life
 
+
     ret
+
+    .die:
+        mov si, game_over
+        mov di, 31040 + 121 
+        call draw_gameover
+
+        mov ah, 4ch
+        xor al, al
+        int 21h
 
 draw_score:
     mov ax, [score1]  ; Load the integer into AX
@@ -252,22 +269,44 @@ draw_highscore:
 draw_life:
 
     cmp byte [life_count], 3
-    jb .second_life
+    jb .empty_life_3
     mov si, right_closed
-    mov di, (window_width*life_yoffset - 16) - (life_xoffset)
-    call draw_sprite
+    jmp .draw_life_3
+
+        .empty_life_3:
+            mov si, clean
+            jmp .draw_life_3
+
+        .draw_life_3:
+            mov di, (window_width*life_yoffset - 16) - (life_xoffset)
+            call draw_sprite
 
     .second_life:
         cmp byte [life_count], 2
-        jb .first_life
+        jb .empty_life_2
         mov si, right_closed
-        mov di, (window_width*life_yoffset - 16) - (life_xoffset + 18)
-        call draw_sprite
+        jmp .draw_life_2
+
+        .empty_life_2:
+            mov si, clean
+            jmp .draw_life_2
+
+        .draw_life_2:
+            mov di, (window_width*life_yoffset - 16) - (life_xoffset + 18)
+            call draw_sprite
 
     .first_life:
+        jb .empty_life_1
         mov si, right_closed
-        mov di, (window_width*life_yoffset - 16) - (life_xoffset + 36)
-        call draw_sprite
+        jmp .draw_life_1
+
+        .empty_life_1:
+            mov si, clean
+            jmp .draw_life_1
+
+        .draw_life_1:
+            mov di, (window_width*life_yoffset - 16) - (life_xoffset + 36)
+            call draw_sprite
     ret
 
 
@@ -386,3 +425,18 @@ add_score:
         mov [score2], si
 
     ret
+
+end_level:
+    mov word [candies_remain], 270
+    mov byte [life_count], 3
+
+    mov si, clean
+    mov di, [xPos]
+    call draw_sprite
+
+    mov word [xPos], window_width*80+(window_width-16)/2
+
+    call DrawCheckMark
+    call drawDot
+
+    jmp _start.spawn_entities
