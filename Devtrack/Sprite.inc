@@ -170,7 +170,7 @@ moveup:
 
     .moving:
         mov di, [xPos]
-        call changeloop
+        call changeloopup
         call draw_sprite
         ret
 
@@ -178,7 +178,7 @@ moveup:
         mov bx, [oldPos]
         mov [xPos], bx
         mov di, [xPos]
-        call changeloop
+        call changeloopup
         call draw_sprite
         ret
 
@@ -275,7 +275,7 @@ movedown:
 
     .moving:
         mov di, [xPos]
-        call changeloop
+        call changeloopdown
         call draw_sprite
         ret
 
@@ -283,7 +283,7 @@ movedown:
         mov bx, [oldPos]
         mov [xPos], bx
         mov di, [xPos]
-        call changeloop
+        call changeloopdown
         call draw_sprite
         ret
 
@@ -396,7 +396,7 @@ moveleft:
 
     .moving:
         mov di, [xPos]
-        call changeloop
+        call changeloopleft
         call draw_sprite
         ret
 
@@ -404,7 +404,7 @@ moveleft:
         mov bx, [oldPos]
         mov [xPos], bx
         mov di, [xPos]
-        call changeloop
+        call changeloopleft
         call draw_sprite
         ret
 
@@ -517,7 +517,7 @@ moveright:
 
     .moving:
         mov di, [xPos]
-        call changeloop
+        call changeloopright
         call draw_sprite
         ret
 
@@ -525,11 +525,11 @@ moveright:
         mov bx, [oldPos]
         mov [xPos], bx
         mov di, [xPos]
-        call changeloop
+        call changeloopright
         call draw_sprite
         ret
 
-changeloop:
+changeloopright:
     cmp si, right_opened
 	jne .pacmanclosed
     cmp si, right_closed
@@ -543,6 +543,48 @@ changeloop:
         mov si, right_opened
         ret
 
+changeloopdown:
+	cmp si, down_opened
+	jne .pacmanclosed
+	cmp si, down_closed
+	jne .pacmanopend
+
+    .pacmanopend:
+        mov si, down_closed
+        ret
+
+    .pacmanclosed:
+        mov si, down_opened
+        ret
+
+changeloopleft:
+	cmp si, left_opened
+	jne .pacmanclosed
+	cmp si, left_closed
+	jne .pacmanopend
+
+	.pacmanopend:
+		mov si, left_closed
+		ret
+
+	.pacmanclosed:
+		mov si, left_opened
+		ret
+
+
+changeloopup:
+	cmp si, up_opened
+	jne .pacmanclosed
+	cmp si, up_closed
+	jne .pacmanopend
+
+	.pacmanopend:
+		mov si, up_closed
+		ret
+
+	.pacmanclosed:
+		mov si, up_opened
+		ret
 
 toggle_frenzy:
     cmp byte [isFrenzy], 0
