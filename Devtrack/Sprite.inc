@@ -156,6 +156,9 @@ moveup:
         call add_score
         pop bx
 
+    call check_candies_top
+
+
     .telep:
         mov bx, [xPos]
         cmp bx, [telepUp]        
@@ -477,6 +480,8 @@ moveright:
         call add_score
         pop bx
         jmp .moving
+
+; check_candy
 
     .eat_check_mark:
         call toggle_frenzy

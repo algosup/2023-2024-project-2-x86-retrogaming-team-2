@@ -24,7 +24,7 @@ _start:
 
     .spawn_dots:
         call DrawCheckMark
-        call drawDot
+        ; call drawDot
 
     .spawn_entities:
 
@@ -44,7 +44,6 @@ _start:
         mov di, [bug4_pos]
         call draw_sprite
 
-
         mov di, [xPos]
         mov si, right_closed
         mov si, right_closed
@@ -61,9 +60,10 @@ game_loop:
 
     call move_bug1
     call update_score
+    
 
     call keyboard_handler
-
+    call drawDot
     .endloop:
         jmp game_loop
 
@@ -78,3 +78,4 @@ game_loop:
 %include "Collision.inc"
 %include "Items.inc"
 %include "Bugs.inc"
+%include "Candies.inc"
