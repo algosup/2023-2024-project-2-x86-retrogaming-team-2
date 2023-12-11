@@ -19,9 +19,9 @@ section .data
 
 
     keyPressed dw 0
+    newKeyPressed dw 0
 
 section .text
-
 
 keyboard_handler:
 
@@ -29,18 +29,51 @@ keyboard_handler:
     int 16h
     jz .skip_buffer
 
-    
+
     .read_buffer:
         mov ah, 00h
         int 16h
-        mov bx, ax
-        mov ah, 01h
-        int 16h
-        jnz .read_buffer
+
+
+        mov [newKeyPressed], ah
+
+        push cx
+        push ax
+            
+        call check_col
+
+        pop ax
+        pop cx
+        
+        cmp bx, 0
+        jne .skip_key_change
+
+        mov ch, [keyPressed]
+        mov ax, cx
+
+        .skip_key_change:
+            mov bx, ax
+            mov ah, 01h
+            int 16h
+            jnz .read_buffer
 
     mov [keyPressed], bh
 
     .skip_buffer:
+
+        mov bh, [newKeyPressed]
+        cmp byte [keyPressed], bh
+        je .skip_update_key
+
+        call check_col
+
+        cmp bx, 0
+        je .skip_update_key
+
+        mov bh, [newKeyPressed]
+        mov [keyPressed], bh
+
+        .skip_update_key:
         ; Exit
         cmp byte [keyPressed], key_exit
         je .exit
@@ -108,3 +141,52 @@ keyboard_handler:
 
         .end_buffer:
             ret
+
+
+check_col:
+
+    cmp byte [newKeyPressed], key_right
+    je .right_col
+
+    cmp byte [newKeyPressed], key_right2
+    je .right_col
+
+    .right_col:
+        cmp word [xVelocity], -320
+        je .right_bottom
+        cmp word [xVelocity], 320
+        je .right_top
+        ret
+        ; issue if direction not found 
+
+    .right_bottom:
+        
+        ; Check Collisions at 1 px at Right of Ranky
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dx
+        add ax, 16
+        add word [yPos], 15
+        mov cx, [yPos]
+        mov dx, ax
+        call getColor 
+
+        ret
+
+    .right_top:
+        
+        ; Check Collisions at 1 px at Right of Ranky
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dx
+        ; add ax, 16
+        add word [yPos], 16
+        mov cx, [yPos]
+        mov dx, ax
+        call getColor 
+
+        ret
