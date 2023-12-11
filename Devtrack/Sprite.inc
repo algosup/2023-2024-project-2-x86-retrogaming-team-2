@@ -76,9 +76,10 @@ draw_gameover:
     ret
 
 moveup:
+    mov word [xVelocity], -320
 	mov ax, [xPos]
     mov [oldPos], ax
-	sub ax, window_width
+	add ax, [xVelocity]
     mov [xPos], ax
 
 
@@ -182,9 +183,10 @@ moveup:
         ret
 
 movedown:
+    mov word [xVelocity], 320
     mov ax, [xPos]
     mov [oldPos], ax
-	add ax, window_width
+	add ax, [xVelocity]
     mov [xPos], ax
 
     .check_col_left:
@@ -239,15 +241,6 @@ movedown:
 
         jmp .telep
 
-    .remove_candy:
-        ; Remove candy
-        call EraseCandyBottom
-        dec word [candies_remain]
-        push bx
-        mov bx, 10
-        call add_score
-        pop bx
-
     .eat_ghost:
         push bx
        mov bx, [killStreak]
@@ -258,6 +251,15 @@ movedown:
         inc byte [killStreak]
         pop bx
         jmp .moving
+
+    .remove_candy:
+        ; Remove candy
+        call EraseCandyBottom
+        dec word [candies_remain]
+        push bx
+        mov bx, 10
+        call add_score
+        pop bx
 
     .telep:
         mov bx, [xPos]
@@ -286,9 +288,10 @@ movedown:
         ret
 
 moveleft:
+    mov word [xVelocity], -1
     mov ax, [xPos]
     mov [oldPos], ax
-	sub ax, [xVelocity]
+	add ax, [xVelocity]
     mov [xPos], ax
 
     .check_col_top:
@@ -369,11 +372,12 @@ moveleft:
     .eat_check_mark:
         call toggle_frenzy
 
-        mov si, clean
+        
         mov bx, 50
         call add_score
         mov bx, [oldPos]
         sub bx, 8
+        mov si, clean
         mov di, bx
         call draw_sprite
         jmp .moving
@@ -405,6 +409,7 @@ moveleft:
         ret
 
 moveright:
+    mov word [xVelocity], 1
     mov ax, [xPos]
     mov [oldPos], ax
 	add ax, [xVelocity]
@@ -480,7 +485,7 @@ moveright:
         call add_score
 
         mov bx, [oldPos]
-        sub bx, 8
+        add bx, 8
         mov si, clean
         mov di, bx
         call draw_sprite
