@@ -9,6 +9,8 @@ section .data
     colorBug3 dw 0x06
     colorBug4 dw 0x0F
     colorBug4_1 dw 0x20
+    colorRanky dw 0x27
+
 
 section .text
 
@@ -18,6 +20,7 @@ section .text
 ; 1 - Nothing
 ; 2 - Candies
 ; 3 - Check Marks
+; 4 - Bug or ranky
 getColor:
     ; mov ah, 0CH               ; draw the points
     ; mov al, 0DH
@@ -51,6 +54,9 @@ getColor:
     cmp al, [colorBug4_1]
     je .bug
 
+    cmp al, [colorRanky]
+    je .eat_ranky
+
     jmp .end
    
     .candy:
@@ -69,6 +75,10 @@ getColor:
 
     .frenzy_active:
         mov bx, 5
+
+    .eat_ranky:
+        mov bx, 6
+        jmp .end
 
     .end:
         ret
