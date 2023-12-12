@@ -59,7 +59,7 @@ game_loop:
     je game_loop
     mov [old_time], dx
 
-    call move_bug1
+    ; call move_bug1
     call update_score
 
     call keyboard_handler

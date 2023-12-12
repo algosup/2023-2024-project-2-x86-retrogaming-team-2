@@ -16,10 +16,6 @@ bug4_pos dw window_width*108+((window_width-16)/2 + 24)     ; Right in the house
 section .text
 
     move_bug1:
-        ; mov di, [bug1_pos]
-        ; mov si, bug1_sprite
-        ; call draw_sprite
-        ; ret
 
         cmp byte [bugs_velocity], 1
         je .check_right_col_top
@@ -39,7 +35,15 @@ section .text
 
                 cmp bx, 0
                 je .collide
-        
+                
+                add dx, -2
+                add cx, 2
+                call getColor
+                cmp bx, 6
+                je dec_life
+
+
+                
             .check_right_col_bottom:
                 mov ax, [bug1_pos]
                 mov cx, window_width
@@ -52,8 +56,15 @@ section .text
                 mov dx, ax      
                 call getColor 
 
+                
                 cmp bx, 0
                 je .collide
+                
+                add dx, -2
+                add cx, 2
+                call getColor
+                cmp bx, 6
+                je dec_life
 
                 jmp .moving
 
@@ -71,6 +82,12 @@ section .text
 
                 cmp bx, 0
                 je .collide
+ 
+                add dx, -2
+                add cx, 2
+                call getColor
+                cmp bx, 6
+                je dec_life
         
             .check_left_col_bottom:
                 mov ax, [bug1_pos]
@@ -81,11 +98,17 @@ section .text
                 add ax, 15
                 sub word [bug1_YPos], 1
                 mov cx, [bug1_YPos]         
-                mov dx, ax      
+                mov dx, ax
                 call getColor 
 
                 cmp bx, 0
                 je .collide
+
+                add dx, -2
+                add cx, -2
+                call getColor
+                cmp bx, 6
+                je dec_life
 
                 jmp .moving
 
@@ -114,11 +137,10 @@ section .text
             ret
 
         .collide:
-            ; mov ah, 4ch
-            ; xor al, al
-            ; int 21h
-            ; neg byte [bugs_velocity]
-            mov bx, [bugs_velocity]
-            neg bx
-            mov [bugs_velocity], bx
+            neg word [bugs_velocity]
             jmp .moving
+
+   
+
+            
+            

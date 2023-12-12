@@ -21,46 +21,51 @@ section .data
     keyPressed dw 0
     newKeyPressed dw 0
 
+    testChar dw "1$"
+
 section .text
 
 keyboard_handler:
 
+    ; read key buffer state
     mov ah, 01h
     int 16h
     jz .skip_buffer
 
-
     .read_buffer:
+        ; get the key pressed
         mov ah, 00h
         int 16h
 
-
+        ; save the key pressed in newKeyPressed
         mov [newKeyPressed], ah
 
         push cx
         push ax
             
+        ; get the collision
         call check_col
 
         pop ax
         pop cx
         
+        ; Check collision with a wall
         cmp bx, 0
         jne .skip_key_change
 
         mov ch, [keyPressed]
         mov ax, cx
 
+        ; key then keyboard buffer status
         .skip_key_change:
             mov bx, ax
             mov ah, 01h
             int 16h
             jnz .read_buffer
 
-    mov [keyPressed], bh
-
     .skip_buffer:
 
+        ; compare new Key Pressed with Key Pressed and update it if needed
         mov bh, [newKeyPressed]
         cmp byte [keyPressed], bh
         je .skip_update_key
@@ -70,6 +75,7 @@ keyboard_handler:
         cmp bx, 0
         je .skip_update_key
 
+        ; update keyPressed
         mov bh, [newKeyPressed]
         mov [keyPressed], bh
 
@@ -145,11 +151,33 @@ keyboard_handler:
 
 check_col:
 
+    ; Auto go right
     cmp byte [newKeyPressed], key_right
     je .right_col
 
     cmp byte [newKeyPressed], key_right2
     je .right_col
+
+    ; Auto move left
+    cmp byte [newKeyPressed], key_left
+    je .left_col
+
+    cmp byte [newKeyPressed], key_left2
+    je .left_col
+
+    ; Auto Go up
+    cmp byte [newKeyPressed], key_up
+    je .up_col
+
+    cmp byte [newKeyPressed], key_up2
+    je .up_col
+
+    ; Auto move down
+    cmp byte [newKeyPressed], key_down
+    je .down_col
+
+    cmp byte [newKeyPressed], key_down2
+    je .down_col
 
     .right_col:
         cmp word [xVelocity], -320
@@ -167,8 +195,8 @@ check_col:
         xor dx, dx
         div cx
         mov [yPos], dx
-        add ax, 16
-        add word [yPos], 15
+        add ax, 15
+        add word [yPos], 16
         mov cx, [yPos]
         mov dx, ax
         call getColor 
@@ -187,6 +215,132 @@ check_col:
         add word [yPos], 16
         mov cx, [yPos]
         mov dx, ax
+        call getColor
+
+        ret
+
+    .left_col:
+        cmp word [xVelocity], -320
+        je .left_top
+        cmp word [xVelocity], 320
+        je .left_bottom
+        ret
+        ; issue if direction not found 
+
+    .left_bottom:
+        
+        ; Check Collisions at 1 px at Right of Ranky
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dx
+        add ax, 0
+        sub word [yPos], 1
+        mov cx, [yPos]
+        mov dx, ax
+
         call getColor 
 
         ret
+
+    .left_top:
+        
+        ; Check Collisions at 1 px at Right of Ranky
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dx
+        add ax, 15
+        sub word [yPos], 1
+        mov cx, [yPos]
+        mov dx, ax
+
+        call getColor
+
+        ret
+
+    .up_col:
+        cmp word [xVelocity], -1
+        je .up_right
+        cmp word [xVelocity], 1
+        je .up_left
+        ret
+        ; issue if direction not found 
+
+    .up_left:
+        
+        ; Check Collisions at 1 px at Right of Ranky
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dx
+        sub ax, 1
+        add word [yPos], 0
+        mov cx, [yPos]
+        mov dx, ax
+        call getColor
+
+        ret
+
+    .up_right:
+        
+        ; Check Collisions at 1 px at Right of Ranky
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dx
+        sub ax, 1
+        add word [yPos], 15
+        mov cx, [yPos]
+        mov dx, ax
+        call getColor 
+
+        ret
+
+
+    .down_col:
+        cmp word [xVelocity], -1
+        je .down_right
+        cmp word [xVelocity], 1
+        je .down_left
+        ret
+        ; issue if direction not found 
+
+    .down_left:
+        
+        ; Check Collisions at 1 px at Right of Ranky
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dx
+        add ax, 16
+        add word [yPos], 0
+        mov cx, [yPos]
+        mov dx, ax
+
+        call getColor
+
+        ret
+
+    .down_right:
+        
+        ; Check Collisions at 1 px at Right of Ranky
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dx
+        add ax, 16
+        add word [yPos], 15
+        mov cx, [yPos]
+        mov dx, ax
+
+        call getColor 
+
+        ret
+
