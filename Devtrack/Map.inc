@@ -30,10 +30,8 @@ section .data
             db 0b1111_1111,0b1111_1111,0b1110_0111,0b1111_1111,0b1111_1111
 
 drawMaze:
-
     mov si, maze ;set si as the maze array
     mov cl, 0b1000_0000 ;set cl as the comparator
-    dec si
     mov al,[si]   ; set al as the current byte of si's array
     
     mov di, window_width*game_stats_height    ; set the start of the maze
@@ -98,8 +96,8 @@ CreateTile:
 ; when cl is reseted, it means the current byte is finished
 resetCL:  
     mov byte [nb_tile], 0
-    mov cl, 0b1000_0000 ;reset cl to check the leftmost bit
-    inc si              ;increase si to get next byte in maze
+    mov cl, 0b1000_0000 ;reset cl to check the leftmost bit   
     mov al,[si]         ;move current byte to al
+    inc si              ;increase si to get next byte in maze
 
     jmp drawingloop
