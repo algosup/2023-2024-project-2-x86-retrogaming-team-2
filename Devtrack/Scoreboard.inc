@@ -59,10 +59,13 @@ update_score:
     ret
 
     .die:
+		mov byte [life_count], 3
+		call drawMazeWhite
         mov si, game_over
         mov di, 31040 + 121 
         call draw_gameover
-
+		mov byte [life_count], 0
+		call draw_life
         mov ah, 4ch
         xor al, al
         int 21h
@@ -296,6 +299,8 @@ draw_life:
             call draw_sprite
 
     .first_life:
+		cmp byte [life_count], 1
+		
         jb .empty_life_1
         mov si, right_closed
         jmp .draw_life_1
@@ -307,6 +312,7 @@ draw_life:
         .draw_life_1:
             mov di, (window_width*life_yoffset - 16) - (life_xoffset + 36)
             call draw_sprite
+			
     ret
 
 
