@@ -40,6 +40,15 @@ keyboard_handler:
         ; save the key pressed in newKeyPressed
         mov [newKeyPressed], ah
 
+        call is_valid_key
+        cmp bx, 0
+        jne .valid_key
+
+        mov bh, [keyPressed]
+        mov [newKeyPressed], bh
+
+        .valid_key:
+
         push cx
         push ax
             
@@ -141,6 +150,7 @@ keyboard_handler:
             xor al, al
             int 21h
         .menu:
+            ; Add menu here
             ; mov ah, 4ch
             ; xor al, al
             ; int 21h
@@ -344,3 +354,51 @@ check_col:
 
         ret
 
+is_valid_key:
+
+    ; Move Right
+    cmp byte [newKeyPressed], key_right
+    je .true
+
+    cmp byte [newKeyPressed], key_right2
+    je .true
+
+    ; Move left
+    cmp byte [newKeyPressed], key_left
+    je .true
+
+    cmp byte [newKeyPressed], key_left2
+    je .true
+
+    ; Move up
+    cmp byte [newKeyPressed], key_up
+    je .true
+
+    cmp byte [newKeyPressed], key_up2
+    je .true
+
+    ; Move down
+    cmp byte [newKeyPressed], key_down
+    je .true
+
+    cmp byte [newKeyPressed], key_down2
+    je .true
+
+
+    ; Escape
+    cmp byte [newKeyPressed], key_exit
+    je .true
+
+    ; Menu
+    cmp byte [newKeyPressed], key_menu
+    je .true
+    jmp .false
+
+
+    .true:
+        mov bx, 1
+        ret
+
+    .false:
+        mov bx, 0
+        ret
