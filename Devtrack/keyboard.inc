@@ -40,6 +40,15 @@ keyboard_handler:
         ; save the key pressed in newKeyPressed
         mov [newKeyPressed], ah
 
+        call is_valid_key
+        cmp bx, 0
+        jne .valid_key
+
+        mov bh, [keyPressed]
+        mov [newKeyPressed], bh
+
+        .valid_key:
+
         push cx
         push ax
             
@@ -141,6 +150,7 @@ keyboard_handler:
             xor al, al
             int 21h
         .menu:
+            ; Add menu here
             ; mov ah, 4ch
             ; xor al, al
             ; int 21h
@@ -180,12 +190,6 @@ check_col:
     je .down_col
 
     .right_col:
-        cmp word [xVelocity], -320
-        je .right_bottom
-        cmp word [xVelocity], 320
-        je .right_top
-        ret
-        ; issue if direction not found 
 
     .right_bottom:
         
@@ -201,7 +205,25 @@ check_col:
         mov dx, ax
         call getColor 
 
-        ret
+        cmp bx, 0
+        je .end
+
+    .right_middle:
+        
+        ; Check Collisions at 1 px at Right of Ranky
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dx
+        add ax, 8
+        add word [yPos], 16
+        mov cx, [yPos]
+        mov dx, ax
+        call getColor 
+
+        cmp bx, 0
+        je .end
 
     .right_top:
         
@@ -220,12 +242,6 @@ check_col:
         ret
 
     .left_col:
-        cmp word [xVelocity], -320
-        je .left_top
-        cmp word [xVelocity], 320
-        je .left_bottom
-        ret
-        ; issue if direction not found 
 
     .left_bottom:
         
@@ -242,7 +258,26 @@ check_col:
 
         call getColor 
 
-        ret
+        cmp bx, 0
+        je .end
+
+    .left_middle:
+        
+        ; Check Collisions at 1 px at Right of Ranky
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dx
+        add ax, 8
+        sub word [yPos], 1
+        mov cx, [yPos]
+        mov dx, ax
+
+        call getColor 
+
+        cmp bx, 0
+        je .end
 
     .left_top:
         
@@ -262,12 +297,6 @@ check_col:
         ret
 
     .up_col:
-        cmp word [xVelocity], -1
-        je .up_right
-        cmp word [xVelocity], 1
-        je .up_left
-        ret
-        ; issue if direction not found 
 
     .up_left:
         
@@ -283,7 +312,25 @@ check_col:
         mov dx, ax
         call getColor
 
-        ret
+        cmp bx, 0
+        je .end
+
+    .up_middle:
+        
+        ; Check Collisions at 1 px at Right of Ranky
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dx
+        sub ax, 1
+        add word [yPos], 8
+        mov cx, [yPos]
+        mov dx, ax
+        call getColor
+
+        cmp bx, 0
+        je .end
 
     .up_right:
         
@@ -303,12 +350,6 @@ check_col:
 
 
     .down_col:
-        cmp word [xVelocity], -1
-        je .down_right
-        cmp word [xVelocity], 1
-        je .down_left
-        ret
-        ; issue if direction not found 
 
     .down_left:
         
@@ -325,7 +366,26 @@ check_col:
 
         call getColor
 
-        ret
+        cmp bx, 0
+        je .end
+
+    .down_middle:
+        
+        ; Check Collisions at 1 px at Right of Ranky
+        mov ax, [xPos]
+        mov cx, window_width
+        xor dx, dx
+        div cx
+        mov [yPos], dx
+        add ax, 16
+        add word [yPos], 8
+        mov cx, [yPos]
+        mov dx, ax
+
+        call getColor
+
+        cmp bx, 0
+        je .end
 
     .down_right:
         
@@ -344,3 +404,53 @@ check_col:
 
         ret
 
+    .end:
+        ret
+
+is_valid_key:
+
+    ; Move Right
+    cmp byte [newKeyPressed], key_right
+    je .true
+
+    cmp byte [newKeyPressed], key_right2
+    je .true
+
+    ; Move left
+    cmp byte [newKeyPressed], key_left
+    je .true
+
+    cmp byte [newKeyPressed], key_left2
+    je .true
+
+    ; Move up
+    cmp byte [newKeyPressed], key_up
+    je .true
+
+    cmp byte [newKeyPressed], key_up2
+    je .true
+
+    ; Move down
+    cmp byte [newKeyPressed], key_down
+    je .true
+
+    cmp byte [newKeyPressed], key_down2
+    je .true
+
+    ; Escape
+    cmp byte [newKeyPressed], key_exit
+    je .true
+
+    ; Menu
+    cmp byte [newKeyPressed], key_menu
+    je .true
+    jmp .false
+
+
+    .true:
+        mov bx, 1
+        ret
+
+    .false:
+        mov bx, 0
+        ret
