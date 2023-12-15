@@ -150,16 +150,3 @@ section .text
             mov [bugs_velocity], bx
             jmp .movingright
 
-animeloopright:
-    cmp si, bug1_sprite_right
-	je .one
-    cmp si, bug1_sprite2_right
-	je .two
-
-    .two:
-        mov si, bug2_sprite
-        ret
-
-    .one:
-        mov si, bug2_sprite
-        ret
