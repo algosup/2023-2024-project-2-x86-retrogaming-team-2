@@ -68,12 +68,12 @@ update_score:
 		call DrawCheckMarkWithe
         mov si, game_over
         mov di, 31040 + 121 
-        call draw_gameover
-		mov byte [life_count], 0
-		call draw_life
-
+        ; call draw_gameover
+		; jmp update_score
+		mov byte [life_count], 3
+		mov word [score1], 0
+		mov word [score2], 0
 		call mapLoop
-		jmp update_score
 
         mov ah, 4ch
         xor al, al
@@ -82,28 +82,23 @@ update_score:
 
 mapLoop:
 	cmp byte [mapBool], 0
-	je mapWhite
+	je .mapWhite
 	cmp byte [mapBool], 1
-	je map
+	je .map
 
 
-mapWhite:
-
-	mov byte [mapBool], 1
-	mov byte [life_count], 3
-	mov byte [score1], 0
-	mov byte [score2], 0
-	call drawMazeWhite
-	call DrawCheckMark
-	call drawDot
+	.mapWhite:
+		mov byte [mapBool], 1
+		; jmp update_score
+		call drawMazeWhite
+		call DrawCheckMark
+		call drawDot
 
 
-map:
-	mov byte [mapBool], 0
-	mov byte [life_count], 3
-	mov byte [score1], 0
-	mov byte [score2], 0
-	call drawMaze2
+	.map:
+		mov byte [mapBool], 0
+		; jmp update_score
+		call drawMaze2
 
 
 
@@ -472,7 +467,7 @@ add_score:
 
 end_level:
     mov word [candies_remain], 270
-    mov byte [life_count], 3
+    mov byte [life_count], 1
 
     mov si, clean
     mov di, [xPos]

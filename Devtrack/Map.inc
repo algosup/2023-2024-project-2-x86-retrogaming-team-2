@@ -112,9 +112,6 @@ drawMaze2:
     
     mov di, window_width*game_stats_height    ; set the start of the maze
 
-    xor bx, bx 
-
-    call draw_scoreboard
 
     xor bx, bx   
     drawingloop2:
