@@ -24,7 +24,7 @@ _start:
 
     .spawn_dots:
         call DrawCheckMark
-        ; call drawDot
+        call drawDot
 
     .spawn_entities:
 
@@ -63,7 +63,7 @@ game_loop:
     
 
     call keyboard_handler
-    call drawDot
+    ; call drawDot
     .endloop:
         jmp game_loop
 

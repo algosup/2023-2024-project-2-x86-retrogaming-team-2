@@ -154,7 +154,7 @@ section .text:
         
         call .newLine
 
-        add si,2 ; add 2 because idk why index need to be multiplied by 2
+        add si,2 ; add 2 because each element is 2 byte long
         mov di, [si]
 
         inc cx

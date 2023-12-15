@@ -82,7 +82,6 @@ moveup:
 	add ax, [xVelocity]
     mov [xPos], ax
 
-
     .check_col_left:
         mov ax, [xPos]
         mov cx, window_width
@@ -135,7 +134,6 @@ moveup:
 
         jmp .telep
 
-
     .eat_ghost:
         push bx
        mov bx, [killStreak]
@@ -156,9 +154,6 @@ moveup:
         call add_score
         pop bx
 
-    call check_candies_top
-
-
     .telep:
         mov bx, [xPos]
         cmp bx, [telepUp]        
@@ -172,6 +167,7 @@ moveup:
         mov si, up_closed
 
     .moving:
+        ; call EraseCandyTop
         mov di, [xPos]
         call changeloop
         call draw_sprite
@@ -277,6 +273,7 @@ movedown:
         mov si, down_closed
 
     .moving:
+        call check_candies_top
         mov di, [xPos]
         call changeloop
         call draw_sprite
