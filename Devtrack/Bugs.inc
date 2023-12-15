@@ -17,9 +17,22 @@ section .text
 
     move_bug1:
 
+        ; mov di, [bug1_pos]
+        ; mov si, bug1_sprite
+        ; call draw_sprite
+        ; ret
+
+		
+
         cmp byte [bugs_velocity], 1
         je .check_right_col_top
         jmp .check_left_col_top
+
+
+
+
+
+
 
         ; Right Collisions
             .check_right_col_top:
@@ -35,15 +48,7 @@ section .text
 
                 cmp bx, 0
                 je .collide
-                
-                add dx, -2
-                add cx, 2
-                call getColor
-                cmp bx, 6
-                je dec_life
-
-
-                
+        
             .check_right_col_bottom:
                 mov ax, [bug1_pos]
                 mov cx, window_width
@@ -56,17 +61,10 @@ section .text
                 mov dx, ax      
                 call getColor 
 
-                
                 cmp bx, 0
                 je .collide
-                
-                add dx, -2
-                add cx, 2
-                call getColor
-                cmp bx, 6
-                je dec_life
 
-                jmp .moving
+                jmp .movingright
 
         ; Left Collisions
             .check_left_col_top:
@@ -82,12 +80,6 @@ section .text
 
                 cmp bx, 0
                 je .collide
- 
-                add dx, -2
-                add cx, 2
-                call getColor
-                cmp bx, 6
-                je dec_life
         
             .check_left_col_bottom:
                 mov ax, [bug1_pos]
@@ -98,20 +90,17 @@ section .text
                 add ax, 15
                 sub word [bug1_YPos], 1
                 mov cx, [bug1_YPos]         
-                mov dx, ax
+                mov dx, ax      
                 call getColor 
 
                 cmp bx, 0
                 je .collide
 
-                add dx, -2
-                add cx, -2
-                call getColor
-                cmp bx, 6
-                je dec_life
+                jmp .movingleft
 
-                jmp .moving
-
+        ;
+        ;
+        ;
         ; .telep:
         ;     mov bx, [bug1_pos]
         ;     cmp bx, [telepUp]        
@@ -124,7 +113,7 @@ section .text
         ;     mov [bug1_pos], bx
         ;     mov si, up_closed
 
-        .moving:
+        .movingleft:
             xor bx, bx
             mov bx, [bugs_velocity]
             add bx, [bug1_pos]
@@ -132,15 +121,45 @@ section .text
 
 
             mov di, [bug1_pos]
-            mov si, bug1_sprite
+            mov si, bug1_sprite_left
             call draw_sprite
             ret
 
+
+        .movingright:
+            xor bx, bx
+            mov bx, [bugs_velocity]
+            add bx, [bug1_pos]
+            mov [bug1_pos], bx
+
+
+            mov di, [bug1_pos]
+            mov si, bug1_sprite_right
+            call draw_sprite
+            ret
+
+
+
         .collide:
-            neg word [bugs_velocity]
-            jmp .moving
+            ; mov ah, 4ch
+            ; xor al, al
+            ; int 21h
+            ; neg byte [bugs_velocity]
+            mov bx, [bugs_velocity]
+            neg bx
+            mov [bugs_velocity], bx
+            jmp .movingright
 
-   
+animeloopright:
+    cmp si, bug1_sprite_right
+	je .one
+    cmp si, bug1_sprite2_right
+	je .two
 
-            
-            
+    .two:
+        mov si, bug2_sprite
+        ret
+
+    .one:
+        mov si, bug2_sprite
+        ret

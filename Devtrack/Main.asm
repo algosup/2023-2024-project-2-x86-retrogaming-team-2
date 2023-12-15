@@ -8,6 +8,7 @@ section .data
 
     charValue db 'X$'
     charNoKey db 'False$'
+
     
 section .text
     global _start
@@ -64,8 +65,24 @@ game_loop:
 
     call keyboard_handler
 
+
+
+
+
     .endloop:
         jmp game_loop
+
+
+	.end:
+		mov ah, 00h
+		mov al, 03h
+		int 10h
+		mov ax, 4C00h
+		int 21h
+
+
+
+
 
 ; includes
 %include "keyboard.inc"

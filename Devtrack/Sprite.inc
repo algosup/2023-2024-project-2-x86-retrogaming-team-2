@@ -299,7 +299,7 @@ moveleft:
         mov cx, window_width
         xor dx, dx
         div cx
-        mov [yPos],dx
+        mov [yPos], dx
         sub word [yPos], 0
         mov cx, [yPos]
         mov dx, ax
@@ -313,7 +313,7 @@ moveleft:
         mov cx, window_width
         xor dx, dx
         div cx
-        mov [yPos],dx
+        mov [yPos], dx
         add ax, 15
         sub word [yPos], 0
         mov cx, [yPos]
@@ -328,7 +328,7 @@ moveleft:
         mov cx, window_width
         xor dx, dx
         div cx
-        mov [yPos],dx
+        mov [yPos], dx
         add ax, 8
         sub word [yPos], 0
         mov cx, [yPos]
@@ -494,12 +494,12 @@ moveright:
 
     .eat_ghost:
         push bx
-       mov bx, [killStreak]
+        mov bx, [killStreak]
         mov ax,200
         mul bx
         mov bx,ax
         call add_score
-        inc  byte [killStreak]
+        inc byte [killStreak]
         pop bx
         jmp .moving
 
@@ -544,9 +544,9 @@ changeloopright:
         ret
 
 changeloopdown:
-	cmp si, down_opened
+    cmp si, down_opened
 	jne .pacmanclosed
-	cmp si, down_closed
+    cmp si, down_closed
 	jne .pacmanopend
 
     .pacmanopend:
