@@ -32,7 +32,6 @@ section .data
 
 
 drawMaze:
-
     mov si, maze ;set si as the maze array
     mov cl, 0b1000_0000 ;set cl as the comparator
     mov al,[si]   ; set al as the current byte of si's array
