@@ -1,10 +1,5 @@
 # Test Cases
 
-| Author        | Gaël MALVAR |
-|---------------|------------ |
-| Created       | 12/01/2023  |
-| Last Modified | 12/11/2023  |
-
 ---
 
 In this document we will describe the tests that we will perform and the results obtained
@@ -22,7 +17,7 @@ In this document we will describe the tests that we will perform and the results
 | Test Case ID | 1 |
 | --- | --- |
 | Name | Start the game |
-| Description | The game starts when the user clicks the start button |
+| Description | The game starts when the user presses the start button |
 | Pre-conditions | The game hasn't started yet |
 | Steps | 1. Click on the start button |
 | Expected Result | The game starts |
@@ -35,7 +30,7 @@ In this document we will describe the tests that we will perform and the results
 | Test Case ID | 2 |
 | --- | --- |
 | Name | Exit the game |
-| Description | The game ends when the user clicks the button  |
+| Description | The game ends when the user presses the button  |
 | Pre-conditions | The game has started |
 | Steps | 1. Click on the exit button |
 | Expected Result | The game ends |
@@ -117,8 +112,8 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Move the player toward an enemy |
 | Expected Result | The player stops against the enemy and dies |
-| Actual Result | ------ |
-| Status | To test ⏳ |
+| Actual Result | The player stops against the enemy and dies |
+| Status | Tested ✅ |
 | Priority | High 🔴 |
 
 ## Test Case 9 :
@@ -156,8 +151,8 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Move the player toward a dot |
 | Expected Result | The dot disappears and the score increase |
-| Actual Result | ------ |
-| Status | To test ⏳ |
+| Actual Result | The dot disappears and the score increase |
+| Status | Tested ✅ |
 | Priority | Medium 🟡 |
 
 ## Test Case 12 :
@@ -208,8 +203,8 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Let the enemy eat the player |
 | Expected Result | The player loses a life and returns to the spawn point |
-| Actual Result | ------ |
-| Status | To test ⏳ |
+| Actual Result | The player loses a life and returns to the spawn point |
+| Status | Tested ✅ |
 | Priority | Medium 🟡 |
 
 ## Test Case 16 :
@@ -260,6 +255,6 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Eat all dots and pellets |
 | Expected Result | The game goes to the next level |
-| Actual Result | ------ |
-| Status | To test ⏳ |
+| Actual Result | The game goes to the next level |
+| Status | Tested ✅ |
 | Priority | Medium 🟡 |
