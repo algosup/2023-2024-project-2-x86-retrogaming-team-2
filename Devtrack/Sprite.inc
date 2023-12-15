@@ -6,7 +6,7 @@ xPos dw window_width*80+(window_width-16)/2       ; 25 752
 yPos dw 0
 xVelocity dw 1
 
-isFrenzy db 0
+isFrenzy db 0, 0, 0, 0
 
 oldPos dw 0
 
@@ -75,91 +75,319 @@ draw_gameover:
         jnz .eachLine
     ret
 
-moveup:
-    mov word [xVelocity], -320
+getCollision:
+
+    cmp word [xVelocity], -320
+    je .check_up_col_left
+
+    cmp word [xVelocity], 320
+    je .check_down_col_left
+
+    cmp word [xVelocity], -1
+    je .check_left_col_top
+
+    cmp word [xVelocity], 1
+    je .check_right_col_top
+    jmp .end
+
+        ; Collisions Up
+        .check_up_col_left:
+            mov ax, [xPos]
+            mov cx, window_width
+            xor dx, dx
+            div cx
+            mov [yPos],dx
+            sub ax, 0
+            mov cx, [yPos]       
+            mov dx, ax      
+            call getColor 
+
+            cmp bx, 0
+            je .end
+
+        .check_up_col_right:
+            mov ax, [xPos]
+            mov cx, window_width
+            xor dx, dx
+            div cx
+            mov [yPos],dx
+            sub ax, 0
+            add word [yPos], 15
+            mov cx, [yPos]         
+            mov dx, ax      
+            call getColor 
+
+            cmp bx, 0
+            je .end
+
+        .check_up_col_middle:
+            mov ax, [xPos]
+            mov cx, window_width
+            xor dx, dx
+            div cx
+            mov [yPos],dx
+            sub ax, 0
+            add word [yPos], 8
+            mov cx, [yPos]         
+            mov dx, ax      
+            call getColor
+            jmp .end
+
+
+        ; Collisions Down
+        .check_down_col_left:
+            mov ax, [xPos]
+            mov cx, window_width
+            xor dx, dx
+            div cx
+            mov [yPos],dx
+            add ax, 15
+            mov cx, [yPos]       
+            mov dx, ax      
+            call getColor 
+
+            cmp bx, 0
+            je .end
+    
+        .check_down_col_right:
+            mov ax, [xPos]
+            mov cx, window_width
+            xor dx, dx
+            div cx
+            mov [yPos],dx
+            add ax, 15
+            add word [yPos], 15
+            mov cx, [yPos]         
+            mov dx, ax      
+            call getColor 
+
+            cmp bx, 0
+            je .end
+
+        .check_down_col_middle:
+            mov ax, [xPos]
+            mov cx, window_width
+            xor dx, dx
+            div cx
+            mov [yPos],dx
+            add ax, 15
+            add word [yPos], 8
+            mov cx, [yPos]         
+            mov dx, ax      
+            call getColor 
+            jmp .end
+
+
+        ; Collisions Left
+        .check_left_col_top:
+            mov ax, [xPos]
+            mov cx, window_width
+            xor dx, dx
+            div cx
+            mov [yPos],dx
+            sub word [yPos], 0
+            mov cx, [yPos]
+            mov dx, ax
+            call getColor 
+
+            cmp bx, 0
+            je .end
+    
+        .check_left_col_down:
+            mov ax, [xPos]
+            mov cx, window_width
+            xor dx, dx
+            div cx
+            mov [yPos],dx
+            add ax, 15
+            sub word [yPos], 0
+            mov cx, [yPos]
+            mov dx, ax
+            call getColor
+
+            cmp bx, 0
+            je .end
+
+        .check_left_col_middle:
+            mov ax, [xPos]
+            mov cx, window_width
+            xor dx, dx
+            div cx
+            mov [yPos],dx
+            add ax, 8
+            sub word [yPos], 0
+            mov cx, [yPos]
+            mov dx, ax
+            call getColor
+            jmp .end
+
+
+        ; Collisions Right
+        .check_right_col_top:
+            mov ax, [xPos]
+            mov cx, window_width
+            xor dx, dx
+            div cx
+            mov [yPos], dx
+            add word [yPos], 15
+            mov cx, [yPos]
+            mov dx, ax
+            call getColor
+
+            cmp bx, 0
+            je .end
+        
+        .check_right_col_down:
+            mov ax, [xPos]
+            mov cx, window_width
+            xor dx, dx
+            div cx
+            mov [yPos], dx
+            add ax, 15
+            add word [yPos], 15
+            mov cx, [yPos] 
+            mov dx, ax      
+            call getColor 
+
+            cmp bx, 0
+            je .end
+
+        .check_right_col_middle:
+            mov ax, [xPos]
+            mov cx, window_width
+            xor dx, dx
+            div cx
+            mov [yPos], dx
+            add ax, 8
+            add word [yPos], 15
+            mov cx, [yPos]
+            mov dx, ax
+            call getColor
+            jmp .end
+
+    .end:
+        ret
+
+
+move_ranky:
 	mov ax, [xPos]
     mov [oldPos], ax
 	add ax, [xVelocity]
     mov [xPos], ax
 
-
-    .check_col_left:
-        mov ax, [xPos]
-        mov cx, window_width
-        xor dx, dx
-        div cx
-        mov [yPos],dx
-        sub ax, 0
-        mov cx, [yPos]       
-        mov dx, ax      
-        call getColor 
-
-        cmp bx, 0
-        je .end
-    
-    .check_col_right:
-        mov ax, [xPos]
-        mov cx, window_width
-        xor dx, dx
-        div cx
-        mov [yPos],dx
-        sub ax, 0
-        add word [yPos], 15
-        mov cx, [yPos]         
-        mov dx, ax      
-        call getColor 
-
-        cmp bx, 0
-        je .end
-
-    .check_col_middle:
-        mov ax, [xPos]
-        mov cx, window_width
-        xor dx, dx
-        div cx
-        mov [yPos],dx
-        sub ax, 0
-        add word [yPos], 8
-        mov cx, [yPos]         
-        mov dx, ax      
-        call getColor 
+        call getCollision
 
         cmp bx, 0
         je .end
         cmp bx, 2
         je .remove_candy
+        cmp bx, 3
+        je .eat_check_mark
         cmp bx, 4
-        je dec_life
+        je .kill_ranky
         cmp bx, 5
-        je .eat_ghost
+        je .eat_ghost1
+        cmp bx, 7
+        je .eat_ghost2
+        cmp bx, 8
+        je .eat_ghost3
+        cmp bx, 9
+        je .eat_ghost4
 
-        jmp .telep
+        jmp .check_tp
 
 
-    .eat_ghost:
+    .eat_ghost1:
         push bx
-       mov bx, [killStreak]
-        mov ax,200
-        mul bx
-        mov bx,ax
-        call add_score
-        inc byte [killStreak]
+        call move_bug1.eaten
+        pop bx
+        jmp .moving
+
+    .eat_ghost2:
+        push bx
+        call move_bug2.eaten
+        pop bx
+        jmp .moving
+
+    .eat_ghost3:
+        push bx
+        call move_bug3.eaten
+        pop bx
+        jmp .moving
+
+    .eat_ghost4:
+        push bx
+        call move_bug4.eaten
         pop bx
         jmp .moving
 
     .remove_candy:
         ; Remove candy
-        call EraseCandyTop
+        call EraseCandy
         dec word [candies_remain]
         push bx
         mov bx, 10
         call add_score
         pop bx
+        jmp .moving
 
-    .telep:
+    .kill_ranky:
+        call dec_life
+        jmp .moving
+    
+    .eat_check_mark:
+        call toggle_frenzy.enable_frenzy
+
+        
+        mov bx, 50
+        call add_score
+        mov bx, [oldPos]
+
+        cmp word [xVelocity], 1
+        je .right
+            sub bx, 8
+            jmp .skip_check_mark
+        .right:
+            add bx, 8
+        .skip_check_mark:
+            mov si, clean
+            mov di, bx
+            call draw_sprite
+            jmp .moving
+
+    .check_tp:
+        call check_teleporter
+        jmp .moving
+
+    .moving:
+        mov di, [xPos]
+        call change_sprite
+        call draw_sprite
+        ret
+
+    .end:
+        mov bx, [oldPos]
+        mov [xPos], bx
+        mov di, [xPos]
+        call change_sprite
+        call draw_sprite
+        ret
+
+check_teleporter:
+
+    cmp word [xVelocity], -320
+    je .tp_up
+    cmp word [xVelocity], 320
+    je .tp_down
+    cmp word [xVelocity], -1
+    je .tp_left
+    cmp word [xVelocity], 1
+    je .tp_right
+
+    .tp_up:
         mov bx, [xPos]
         cmp bx, [telepUp]        
-        jne .moving
+        jne .end
         mov si, clean
         mov di, [xPos]
         call draw_sprite
@@ -167,104 +395,12 @@ moveup:
         sub bx, (window_width * 3)
         mov [xPos], bx
         mov si, up_closed
+        jmp .end
 
-    .moving:
-        mov di, [xPos]
-        call changeloopup
-        call draw_sprite
-        ret
-
-    .end:
-        mov bx, [oldPos]
-        mov [xPos], bx
-        mov di, [xPos]
-        call changeloopup
-        call draw_sprite
-        ret
-
-movedown:
-    mov word [xVelocity], 320
-    mov ax, [xPos]
-    mov [oldPos], ax
-	add ax, [xVelocity]
-    mov [xPos], ax
-
-    .check_col_left:
-        mov ax, [xPos]
-        mov cx, window_width
-        xor dx, dx
-        div cx
-        mov [yPos],dx
-        add ax, 15
-        mov cx, [yPos]       
-        mov dx, ax      
-        call getColor 
-
-        cmp bx, 0
-        je .end
-    
-    .check_col_right:
-        mov ax, [xPos]
-        mov cx, window_width
-        xor dx, dx
-        div cx
-        mov [yPos],dx
-        add ax, 15
-        add word [yPos], 15
-        mov cx, [yPos]         
-        mov dx, ax      
-        call getColor 
-
-        cmp bx, 0
-        je .end
-
-    .check_col_middle:
-        mov ax, [xPos]
-        mov cx, window_width
-        xor dx, dx
-        div cx
-        mov [yPos],dx
-        add ax, 15
-        add word [yPos], 8
-        mov cx, [yPos]         
-        mov dx, ax      
-        call getColor 
-
-        cmp bx, 0
-        je .end
-        cmp bx, 2
-        je .remove_candy
-        cmp bx, 4
-        je dec_life
-        cmp bx, 5
-        je .eat_ghost
-
-        jmp .telep
-
-    .eat_ghost:
-        push bx
-       mov bx, [killStreak]
-        mov ax,200
-        mul bx
-        mov bx,ax
-        call add_score
-        inc byte [killStreak]
-        pop bx
-        jmp .moving
-
-    .remove_candy:
-        ; Remove candy
-        call EraseCandyBottom
-        dec word [candies_remain]
-        push bx
-        mov bx, 10
-        call add_score
-        pop bx
-
-    .telep:
+    .tp_down:
         mov bx, [xPos]
         cmp bx, [telepBottom]        
-        jne .moving
+        jne .end
         mov si, clean
         mov di, [xPos]
         call draw_sprite
@@ -272,120 +408,12 @@ movedown:
         add bx, (window_width * 3)
         mov [xPos], bx
         mov si, down_closed
+        jmp .end
 
-    .moving:
-        mov di, [xPos]
-        call changeloopdown
-        call draw_sprite
-        ret
-
-    .end:
-        mov bx, [oldPos]
-        mov [xPos], bx
-        mov di, [xPos]
-        call changeloopdown
-        call draw_sprite
-        ret
-
-moveleft:
-    mov word [xVelocity], -1
-    mov ax, [xPos]
-    mov [oldPos], ax
-	add ax, [xVelocity]
-    mov [xPos], ax
-
-    .check_col_top:
-        mov ax, [xPos]
-        mov cx, window_width
-        xor dx, dx
-        div cx
-        mov [yPos],dx
-        sub word [yPos], 0
-        mov cx, [yPos]
-        mov dx, ax
-        call getColor 
-
-        cmp bx, 0
-        je .end
-    
-    .check_col_down:
-        mov ax, [xPos]
-        mov cx, window_width
-        xor dx, dx
-        div cx
-        mov [yPos],dx
-        add ax, 15
-        sub word [yPos], 0
-        mov cx, [yPos]
-        mov dx, ax
-        call getColor
-
-        cmp bx, 0
-        je .end
-
-    .check_col_middle:
-        mov ax, [xPos]
-        mov cx, window_width
-        xor dx, dx
-        div cx
-        mov [yPos],dx
-        add ax, 8
-        sub word [yPos], 0
-        mov cx, [yPos]
-        mov dx, ax
-        call getColor
-
-        cmp bx, 0
-        je .end
-        cmp bx, 2
-        je .remove_candy
-        cmp bx, 3
-        je .eat_check_mark
-        cmp bx, 4
-        je dec_life
-        cmp bx, 5
-        je .eat_ghost
-        jmp .telep
-        
-
-    .remove_candy:
-        ; Remove candy
-        call EraseCandyLeft
-        dec word [candies_remain]
-        push bx
-        mov bx, 10
-        call add_score
-        pop bx
-        jmp .moving
-
-    .eat_ghost:
-        push bx
-        mov bx, [killStreak]
-        mov ax,200
-        mul bx
-        mov bx,ax
-        call add_score
-        inc byte [killStreak]
-        pop bx
-        jmp .moving
-
-    .eat_check_mark:
-        call toggle_frenzy
-
-        
-        mov bx, 50
-        call add_score
-        mov bx, [oldPos]
-        sub bx, 8
-        mov si, clean
-        mov di, bx
-        call draw_sprite
-        jmp .moving
-
-    .telep:
+     .tp_left:
         mov bx, [xPos]
         cmp bx, [telepLeft]        
-        jne .moving
+        jne .end
         mov si, clean
         mov di, [xPos]
         call draw_sprite
@@ -393,120 +421,12 @@ moveleft:
         sub bx, 3
         mov [xPos], bx
         mov si, left_closed
+        jmp .end
 
-    .moving:
-        mov di, [xPos]
-        call changeloopleft
-        call draw_sprite
-        ret
-
-    .end:
-        mov bx, [oldPos]
-        mov [xPos], bx
-        mov di, [xPos]
-        call changeloopleft
-        call draw_sprite
-        ret
-
-moveright:
-    mov word [xVelocity], 1
-    mov ax, [xPos]
-    mov [oldPos], ax
-	add ax, [xVelocity]
-    mov [xPos], ax
-
-    .check_col_top:
-        mov ax, [xPos]
-        mov cx, window_width
-        xor dx, dx
-        div cx
-        mov [yPos], dx
-        add word [yPos], 15
-        mov cx, [yPos]
-        mov dx, ax
-        call getColor
-
-        cmp bx, 0
-        je .end
-    
-    .check_col_down:
-        mov ax, [xPos]
-        mov cx, window_width
-        xor dx, dx
-        div cx
-        mov [yPos], dx
-        add ax, 15
-        add word [yPos], 15
-        mov cx, [yPos] 
-        mov dx, ax      
-        call getColor 
-
-        cmp bx, 0
-        je .end
-
-    .check_col_middle:
-        mov ax, [xPos]
-        mov cx, window_width
-        xor dx, dx
-        div cx
-        mov [yPos], dx
-        add ax, 8
-        add word [yPos], 15
-        mov cx, [yPos]
-        mov dx, ax
-        call getColor 
-
-        cmp bx, 0
-        je .end
-        cmp bx, 2
-        je .remove_candy
-        cmp bx, 3
-        je .eat_check_mark
-        cmp bx, 4
-        je dec_life
-        cmp bx, 5
-        je .eat_ghost
-        jmp .telep
-
-    .remove_candy:
-        ; Remove candy
-        call EraseCandyRight
-        dec word [candies_remain]
-        push bx
-        mov bx, 10
-        call add_score
-        pop bx
-        jmp .moving
-
-    .eat_check_mark:
-        call toggle_frenzy
-
-        mov bx, 50
-        call add_score
-
-        mov bx, [oldPos]
-        add bx, 8
-        mov si, clean
-        mov di, bx
-        call draw_sprite
-        
-        jmp .moving
-
-    .eat_ghost:
-        push bx
-       mov bx, [killStreak]
-        mov ax,200
-        mul bx
-        mov bx,ax
-        call add_score
-        inc  byte [killStreak]
-        pop bx
-        jmp .moving
-
-    .telep:
+    .tp_right:
         mov bx, [xPos]
         cmp bx, [telepRight]        
-        jne .moving
+        jne .end
         mov si, clean
         mov di, [xPos]
         call draw_sprite
@@ -514,138 +434,175 @@ moveright:
         add bx, 3
         mov [xPos], bx
         mov si, right_closed
-
-    .moving:
-        mov di, [xPos]
-        call changeloopright
-        call draw_sprite
-        ret
+        jmp .end
 
     .end:
-        mov bx, [oldPos]
-        mov [xPos], bx
-        mov di, [xPos]
-        call changeloopright
-        call draw_sprite
         ret
 
-changeloopright:
-    cmp si, right_opened
-	jne .pacmanclosed
-    cmp si, right_closed
-	jne .pacmanopend
 
-    .pacmanopend:
+change_sprite:
+
+    cmp word [xVelocity], 320
+    je .changeloopdown
+    cmp word [xVelocity], -320
+    je .changeloopup
+    cmp word [xVelocity], 1
+    je .changeloopright
+    cmp word [xVelocity], -1
+    je .changeloopleft
+    jmp .end
+
+    .changeloopright:
+        cmp si, right_opened
+        jne .pacman_right_closed
+        cmp si, right_closed
+        jne .pacman_right_opened
+
+    .pacman_right_opened:
         mov si, right_closed
         ret
 
-    .pacmanclosed:
+    .pacman_right_closed:
         mov si, right_opened
         ret
 
-changeloopdown:
-	cmp si, down_opened
-	jne .pacmanclosed
-	cmp si, down_closed
-	jne .pacmanopend
+    .changeloopdown:
+        cmp si, down_opened
+        jne .pacman_down_closed
+        cmp si, down_closed
+        jne .pacman_down_opened
 
-    .pacmanopend:
-        mov si, down_closed
+        .pacman_down_opened:
+            mov si, down_closed
+            ret
+
+        .pacman_down_closed:
+            mov si, down_opened
+            ret
+
+    .changeloopleft:
+        cmp si, left_opened
+        jne .pacman_left_closed
+        cmp si, left_closed
+        jne .pacman_left_opened
+
+        .pacman_left_opened:
+            mov si, left_closed
+            ret
+
+        .pacman_left_closed:
+            mov si, left_opened
+            ret
+
+
+    .changeloopup:
+        cmp si, up_opened
+        jne .pacman_up_closed
+        cmp si, up_closed
+        jne .pacman_up_opened
+
+        .pacman_up_opened:
+            mov si, up_closed
+            ret
+
+        .pacman_up_closed:
+            mov si, up_opened
+            ret
+
+    .end:
         ret
-
-    .pacmanclosed:
-        mov si, down_opened
-        ret
-
-changeloopleft:
-	cmp si, left_opened
-	jne .pacmanclosed
-	cmp si, left_closed
-	jne .pacmanopend
-
-	.pacmanopend:
-		mov si, left_closed
-		ret
-
-	.pacmanclosed:
-		mov si, left_opened
-		ret
-
-
-changeloopup:
-	cmp si, up_opened
-	jne .pacmanclosed
-	cmp si, up_closed
-	jne .pacmanopend
-
-	.pacmanopend:
-		mov si, up_closed
-		ret
-
-	.pacmanclosed:
-		mov si, up_opened
-		ret
-
 toggle_frenzy:
-    cmp byte [isFrenzy], 0
-    jz .enable_frenzy
-    jmp .disable_frenzy
-
     .enable_frenzy:
-        mov byte [isFrenzy], 1
-        ret
+
+        mov si, isFrenzy       ; Load the address into si
+        xor bx, bx
+
+        .activation_loop:
+            mov byte [si + bx], 1       ; Store the value at the current address
+            inc bx 
+
+            cmp bx, 4
+            jl .activation_loop
+
+            mov byte [killStreak], 1
+            jmp .end
 
     .disable_frenzy:
-        mov byte [isFrenzy], 0
-        mov byte [killStreak],1
+        mov si, isFrenzy       ; Load the address into si
+        xor bx, bx
+        .desactivation_loop:
+            mov byte [si + bx], 0       ; Store the value at the current address
+            inc bx
+
+            cmp bx, 4
+            jl .desactivation_loop
+            mov byte [killStreak], 1
+            jmp .end
+
+    .end:
         ret
 
-EraseCandyRight:
-    mov al,0x00
-    mov di, [xPos]
-    add di,16+320*7
-    mov [es:di],al
 
-    add di,320
+EraseCandy:
 
-    mov [es:di],al
+    cmp word [xVelocity], 320
+    je .EraseCandyBottom
+    cmp word [xVelocity], -320
+    je .EraseCandyTop
+    cmp word [xVelocity], 1
+    je .EraseCandyRight
+    cmp word [xVelocity], -1
+    je .EraseCandyLeft
+    jmp .end
 
-    ret
-EraseCandyLeft:
-    mov al,0x00
-    mov di, [xPos]
-    dec di
-    add di, 320*7
-    mov [es:di],al
+    .EraseCandyRight:
+        mov al,0x00
+        mov di, [xPos]
+        add di,16+320*7
+        mov [es:di],al
 
-    add di,320
+        add di,320
 
-    mov [es:di],al
+        mov [es:di],al
+        jmp .end
+        
+    .EraseCandyLeft:
+        mov al,0x00
+        mov di, [xPos]
+        dec di
+        add di, 320*7
+        mov [es:di],al
 
-    ret
-EraseCandyTop:
-    mov al,0x00
-    mov di, [xPos]
-    add di,7
-    sub di,320
-    mov [es:di],al
+        add di,320
 
-    add di,1
+        mov [es:di],al
+        jmp .end
+    .EraseCandyTop:
+        mov al,0x00
+        mov di, [xPos]
+        add di,7
+        sub di,320
+        mov [es:di],al
 
-    mov [es:di],al
+        add di,1
 
-    ret
-EraseCandyBottom:
-    mov al,0x00
-    mov di, [xPos]
-    add di,7+320*16
-    mov [es:di],al
+        mov [es:di],al
 
-    add di,1
+        jmp .end
+    .EraseCandyBottom:
+        mov al,0x00
+        mov di, [xPos]
+        add di,7+320*16
+        mov [es:di],al
 
-    mov [es:di],al
+        add di,1
 
-    ret
+        mov [es:di],al
+
+        jmp .end
+
+    .end:
+        ret
 
 dec_life:
     dec byte [life_count]
@@ -656,5 +613,5 @@ dec_life:
     mov si, right_closed
     mov di, [xPos]
     call draw_sprite
-    jmp game_loop
+    ret
 

@@ -134,16 +134,20 @@ keyboard_handler:
         jmp .end_buffer
 
         .moveUp:
-            call moveup
+            mov word [xVelocity], -320
+            call move_ranky
             jmp .end_buffer
         .moveDn:
-            call movedown
+        mov word [xVelocity], 320
+            call move_ranky
             jmp .end_buffer
         .moveRg:
-            call moveright
+            mov word [xVelocity], 1
+            call move_ranky
             jmp .end_buffer
         .moveLf:
-            call moveleft
+            mov word [xVelocity], -1
+            call move_ranky
             jmp .end_buffer
         .exit:
             mov ah, 4ch
