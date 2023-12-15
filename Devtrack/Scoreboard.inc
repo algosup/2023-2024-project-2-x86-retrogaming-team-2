@@ -1,6 +1,9 @@
 score1 dw 0000
 score2 dw 0000
 
+
+mapBool db 0
+
 digits db 5 DUP(0) ; Array to store individual digits
 highscore_title dw 'high score', 0
 highscore1 dw 0625
@@ -61,14 +64,49 @@ update_score:
     .die:
 		mov byte [life_count], 3
 		call drawMazeWhite
+		call drawDotWhite
+		call DrawCheckMarkWithe
         mov si, game_over
         mov di, 31040 + 121 
         call draw_gameover
 		mov byte [life_count], 0
 		call draw_life
+
+		call mapLoop
+		jmp update_score
+
         mov ah, 4ch
         xor al, al
         int 21h
+
+
+mapLoop:
+	cmp byte [mapBool], 0
+	je mapWhite
+	cmp byte [mapBool], 1
+	je map
+
+
+mapWhite:
+
+	mov byte [mapBool], 1
+	mov byte [life_count], 3
+	mov byte [score1], 0
+	mov byte [score2], 0
+	call drawMazeWhite
+	call DrawCheckMark
+	call drawDot
+
+
+map:
+	mov byte [mapBool], 0
+	mov byte [life_count], 3
+	mov byte [score1], 0
+	mov byte [score2], 0
+	call drawMaze2
+
+
+
 
 draw_score:
     mov ax, [score1]  ; Load the integer into AX
