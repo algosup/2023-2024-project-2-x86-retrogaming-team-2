@@ -150,7 +150,7 @@ section .text:
         inc di
         mov [es:di], al
         
-        call .newLine
+        call newLine
 
         add si,2 ; add 2 because each element is 2 byte long
         mov di, [si]
@@ -161,13 +161,40 @@ section .text:
 
     jmp _start.spawn_entities
 
-    .newLine:
-        add di, window_width
-        add di, -1
+
+	newLine:
+		add di, window_width
+		add di, -1
+		mov [es:di], al
+		inc di
+		mov [es:di], al
+		ret
+
+	
+    drawDotWhite:
+        mov ax, 0xA000
+        mov cx,0
+        mov si, Dots_pos
+        mov es,ax
+        mov di,[si]
+        mov al, 0x0F
+
+        DrawDotLoopWhite:
+        
         mov [es:di], al
+
         inc di
         mov [es:di], al
-        ret
+        
+        call newLine
+
+        add si,2 ; add 2 because idk why index need to be multiplied by 2
+        mov di, [si]
+
+        inc cx
+        cmp cx,270
+        jb DrawDotLoopWhite
+
 
 
     DrawCheckMark:
@@ -194,5 +221,33 @@ section .text:
             inc cx
             cmp cx, 4
             jb CheckMarkLoop
+        
+        ret
+
+
+    DrawCheckMarkWithe:
+        mov ax, 0xA000
+        mov cx,0
+        mov si, checkMarkPos
+        mov es,ax
+        
+        CheckMarkLoopWhite:
+            mov di,[si]
+            push si
+            push cx
+            push ax
+
+            mov si, check_mark_white
+            call draw_tile
+        
+            pop ax
+            pop cx
+            pop si
+
+            inc si
+            inc si
+            inc cx
+            cmp cx, 4
+            jb CheckMarkLoopWhite
         
         ret

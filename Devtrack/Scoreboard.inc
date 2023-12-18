@@ -1,6 +1,9 @@
 score1 dw 0000
 score2 dw 0000
 
+
+mapBool db 0
+
 digits db 5 DUP(0) ; Array to store individual digits
 highscore_title dw 'high score', 0
 highscore1 dw 0625
@@ -59,13 +62,46 @@ update_score:
     ret
 
     .die:
+		mov byte [life_count], 3
+		call drawMazeWhite
+		call drawDotWhite
+		call DrawCheckMarkWithe
         mov si, game_over
         mov di, 31040 + 121 
-        call draw_gameover
+        ; call draw_gameover
+		; jmp update_score
+		mov byte [life_count], 3
+		mov word [score1], 0
+		mov word [score2], 0
+		call mapLoop
 
         mov ah, 4ch
         xor al, al
         int 21h
+
+
+mapLoop:
+	cmp byte [mapBool], 0
+	je .mapWhite
+	cmp byte [mapBool], 1
+	je .map
+
+
+	.mapWhite:
+		mov byte [mapBool], 1
+		; jmp update_score
+		call drawMazeWhite
+		call DrawCheckMark
+		call drawDot
+
+
+	.map:
+		mov byte [mapBool], 0
+		; jmp update_score
+		call drawMaze2
+
+
+
 
 draw_score:
     mov ax, [score1]  ; Load the integer into AX
@@ -296,6 +332,8 @@ draw_life:
             call draw_sprite
 
     .first_life:
+		cmp byte [life_count], 1
+		
         jb .empty_life_1
         mov si, right_closed
         jmp .draw_life_1
@@ -307,6 +345,7 @@ draw_life:
         .draw_life_1:
             mov di, (window_width*life_yoffset - 16) - (life_xoffset + 36)
             call draw_sprite
+			
     ret
 
 
@@ -428,7 +467,7 @@ add_score:
 
 end_level:
     mov word [candies_remain], 270
-    mov byte [life_count], 3
+    mov byte [life_count], 1
 
     mov si, clean
     mov di, [xPos]

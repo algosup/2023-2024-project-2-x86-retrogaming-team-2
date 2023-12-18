@@ -6,7 +6,7 @@ menu:
     int 10h
 
     mov word [candies_remain], 270
-    mov byte [life_count], 3
+    mov byte [life_count], 2
     mov word [xPos], window_width*80+(window_width-16)/2
 
     .menuloop:
