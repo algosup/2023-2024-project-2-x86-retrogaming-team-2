@@ -64,11 +64,9 @@ game_loop:
 
     call update_score
     
+    call drawDot
 
     call keyboard_handler
-
-
-
 
 
     .endloop:
@@ -98,4 +96,3 @@ game_loop:
 %include "Items.inc"
 %include "Bugs.inc"
 %include "Candies.inc"
-%include "Candy_Buffer.inc"

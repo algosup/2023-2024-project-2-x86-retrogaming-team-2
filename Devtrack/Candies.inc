@@ -1,7 +1,7 @@
 section .data
 
     topLeftDot dw 39*window_width+15
-    topRightDot dw topLeftDot+(320*8)
+    topRightDot dw topLeftDot+288
     botleftDot dw 0
     botRightDot dw 0
     zero dw 00
@@ -19,22 +19,28 @@ section .text
 ; change the value of this index to ?? Or erase it ??
 erase_candy:
     ; mov bl, [Dots_pos + index]      ; index 0
-    int3
     .topLeft:
-        mov al, [Dots_pos]
-        xor bx, bx
-        mov bx, index
-        mov bl, [Dots_pos + bx]  ; index 0 at the start
-        cmp bl, [topLeftDot]
-        jne .increTL
-        mov word [Dots_pos + bx], 0
-        ret
 
-    .increTL:
-        mov dx, index
-        add dx, 2
-        mov [index], dx
-        jmp .topLeft
+        mov si, Dots_pos
+
+        .loopTL:
+            
+            add si, [index]
+
+            mov dx, [index]
+            add dx, 2
+            mov word [index], dx
+            mov bx, [topLeftDot]
+            cmp word [si], bx
+            jne .loopTL
+            mov word [si], 0
+            ret
+
+    ; .increTL:
+    ;     mov dx, index
+    ;     add dx, 2
+    ;     mov [index], dx
+    ;     jmp .topLeft
 
 ; update_top_dots:
 ;     xor bx, bx
