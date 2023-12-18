@@ -467,7 +467,6 @@ add_score:
 
 end_level:
     mov word [candies_remain], 270
-    mov byte [life_count], 1
 
     mov si, clean
     mov di, [xPos]

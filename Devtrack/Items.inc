@@ -144,12 +144,14 @@ section .text:
         ; to change color, in case
 
         DrawDotLoop:
-        
         mov [es:di], al
 
+        .SecondPoint:
         inc di
+        cmp word [es:di],0x00
+        jne .ThirdPoint
         mov [es:di], al
-        
+        .ThirdPoint:
         call newLine
 
         add si,2 ; add 2 because each element is 2 byte long
@@ -159,16 +161,22 @@ section .text:
         cmp cx,270
         jb DrawDotLoop
 
-    ret
+        ret
 
 
 	newLine:
 		add di, window_width
+
+        cmp word [es:di],0x00
+        jne .FourthPoint
+		mov [es:di], al
+
+        .FourthPoint:
 		add di, -1
 		mov [es:di], al
-		inc di
-		mov [es:di], al
 		ret
+
+	
 
 	
     drawDotWhite:
