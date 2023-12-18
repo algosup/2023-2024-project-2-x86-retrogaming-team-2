@@ -34,6 +34,7 @@ life_count db 3
 
 
 debug_word dw 0000
+debug_word2 dw 0000
 digits2 db 6 DUP(0) ; Array to store individual digits
 
 %DEFINE score_offset 10
@@ -491,11 +492,16 @@ draw_debug:
     
     call get_word
 
+    mov ax, [debug_word2]  ; Load the integer into AX
+    mov dx, window_width*35 + highscore_xoffset
+    
+    call get_word
+
     mov word [digits_counter], 2
     ret
 
 get_word:
-    mov cx, 10        ; Set divisor to 10
+    mov cx, 10        ; Set divisor to 1
     mov si, 0         ; Initialize index for digits array
     push dx
     .extract_digits:

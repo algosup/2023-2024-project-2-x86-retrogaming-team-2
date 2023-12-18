@@ -24,21 +24,28 @@ erase_candy:
         mov bx, 0
 
         .loopTL:
-            
+            xor dx, dx
             add si, bx
-            add bx, 2
-
-            mov dx, [si]
-            mov word [debug_word], dx
-            call draw_debug
       
-            cmp word [si], 30000
+            cmp word [si], 60000
             jae .end
 
-            mov dx, [topLeftDot]
-            cmp word [si], dx;di;12783;dx
+            mov bx, 2
+            mov dx, di
+            sub dx, [xVelocity]
+
+            cmp dx, 12935
+            je .deleteDot
+
+            cmp dx, 12614
+            je .deleteDot
+
+            cmp word [si], dx
             jne .loopTL
-            mov word [si], 0
+            jmp .deleteDot
+
+            .deleteDot:
+                mov word [si], 0
 
             .end:
             ret
