@@ -3,7 +3,7 @@ org 100h
 
 
 section .data
-    old_time equ 0xf9fe+0x06
+    old_time equ 0
 
 
     charValue db 'X$'
@@ -55,12 +55,14 @@ _start:
 
 game_loop:
     mov ah, 00h
-    int 1Ah
+    int 1Ah         ; Get System Time (CX:DX = number of clock ticks since midnight | AL = midnight counter, advanced each time midnight passes.)
     cmp dx, [old_time]
     je game_loop
     mov [old_time], dx
 
-    ; call move_bug1
+    call move_bug1
+    call move_bug3
+
     call update_score
 
     call keyboard_handler
