@@ -111,6 +111,14 @@ moveup:
         cmp bx, 0
         je .end
 
+        cmp bx, 2
+        je .exit
+
+    .exit:
+        mov ah, 4ch
+        xor al, al
+        int 21h
+
     .check_col_middle:
         mov ax, [xPos]
         mov cx, window_width
@@ -273,7 +281,7 @@ movedown:
         mov si, down_closed
 
     .moving:
-        call check_candies_top
+        ; call check_candies_top
         mov di, [xPos]
         call changeloop
         call draw_sprite

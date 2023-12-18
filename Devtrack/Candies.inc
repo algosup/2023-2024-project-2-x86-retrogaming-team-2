@@ -10,34 +10,13 @@ section .data
 
 section .text
 
-; check_candies_top:
-;     mov ax, Dots_pos
 
-; ; Change the value of the dots in the array Dots_pos
-; ; only when it's ranky that touching them.
+; Here because there is a dot in Ranky direct path
 
-; ; Redraw the dots every time the bugs are moving
+; create a copy of the Dots_pos array -> dotsArray for the moment
 
-; ; get color of the middle pixel of the direction
-; ; if white -> erease the dot in the next move  
-; ; else return
-check_candies_top:
-    mov cx, [xPos]
-    ; sub cx, 313
-    call getColor
-    ;cmp bx, 2           ; if bx = 2; there is a dot
-    ; je update_top_dots
-
-    ;je erase_candy
-    ret
-
-
-; ; Here because there is a dot in Ranky direct path
-
-; ; create a copy of the Dots_pos array -> dotsArray for the moment
-
-; ; find the index on the array Dots_pos
-; ; change the value of this index to ?? Or erase it ??
+; find the index on the array Dots_pos
+; change the value of this index to ?? Or erase it ??
 erase_candy:
     ; mov bl, [Dots_pos + index]      ; index 0
     int3

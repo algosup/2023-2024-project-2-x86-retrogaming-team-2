@@ -79,3 +79,4 @@ game_loop:
 %include "Items.inc"
 %include "Bugs.inc"
 %include "Candies.inc"
+%include "Candy_Buffer.inc"
