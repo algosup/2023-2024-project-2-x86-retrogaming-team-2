@@ -323,6 +323,7 @@ move_ranky:
 
     .remove_candy:
         ; Remove candy
+        ; call erase_candy
         call EraseCandy
         dec word [candies_remain]
         push bx
@@ -582,9 +583,7 @@ EraseCandy:
 
     .EraseCandy:
         ; DI is the dot on the top-left, position present in the array in item
-        push di
         call erase_candy
-        pop di
         mov al,0x00
         mov [es:di],al
         add di,1

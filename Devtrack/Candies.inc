@@ -1,7 +1,7 @@
 section .data
 
     topLeftDot dw 39*window_width+15
-    topRightDot dw topLeftDot+288
+    topRightDot dw 12783;topLeftDot+288
     botleftDot dw 0
     botRightDot dw 0
     zero dw 00
@@ -20,21 +20,23 @@ section .text
 erase_candy:
     .topLeft:
 
-        xor si, si
         mov si, Dots_pos
         mov bx, 0
 
         .loopTL:
             
-            add si, [bx]
+            add si, bx
             add bx, 2
 
             mov dx, [si]
-            mov word [highscore1], dx
-
-            mov word [highscore2], di
+            mov word [debug_word], dx
+            call draw_debug
       
-            cmp word [si], di
+            cmp word [si], 30000
+            jae .end
+
+            mov dx, [topLeftDot]
+            cmp word [si], dx;di;12783;dx
             jne .loopTL
             mov word [si], 0
 
