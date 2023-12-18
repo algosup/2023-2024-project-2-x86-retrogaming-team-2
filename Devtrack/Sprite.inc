@@ -544,7 +544,7 @@ toggle_frenzy:
 
 
 EraseCandy:
-
+    // Velocity determine on which side is the candy
     cmp word [xVelocity], 320
     je .EraseCandyBottom
     cmp word [xVelocity], -320
@@ -558,9 +558,7 @@ EraseCandy:
     .EraseCandyRight:
         mov al,0x00
         mov di, [xPos]
-        add di,16+320*7
-
-        mov si,320
+        add di,15+320*7
 
         jmp .EraseCandy
         
@@ -568,29 +566,29 @@ EraseCandy:
         mov di, [xPos]
         add di, 320*7-1
 
-        mov si,320
 
         jmp .EraseCandy
     .EraseCandyTop:
         mov di, [xPos]
         sub di,313
 
-        mov si,1
 
         jmp .EraseCandy
     .EraseCandyBottom:
         mov di, [xPos]
-        add di,7+320*16
+        add di,7+320*15
 
-        mov si,1
         jmp .EraseCandy
 
     .EraseCandy:
+        //DI is the dot on the top-left, position present in the array in item 
         mov al,0x00
         mov [es:di],al
-
-        add di,si
-
+        add di,1
+        mov [es:di],al
+        add di,320
+        mov [es:di],al
+        dec di
         mov [es:di],al
 
     .end:
