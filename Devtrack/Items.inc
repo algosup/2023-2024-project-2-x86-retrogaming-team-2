@@ -159,7 +159,7 @@ section .text:
         cmp cx,270
         jb DrawDotLoop
 
-    jmp _start.spawn_entities
+    ret
 
 
 	newLine:

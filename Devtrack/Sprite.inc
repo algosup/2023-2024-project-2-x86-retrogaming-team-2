@@ -323,6 +323,7 @@ move_ranky:
 
     .remove_candy:
         ; Remove candy
+        call erase_candy
         call EraseCandy
         dec word [candies_remain]
         push bx
