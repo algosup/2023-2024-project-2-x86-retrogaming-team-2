@@ -19,7 +19,7 @@ telepBottom dw window_width*185+(window_width-16)/2
 truem db '1',13,10,'$'   ; true and false message.
 falsem db '0',13,10,'$'
 
-killStreak db 1
+killStreak dw 1
 
 section .text
 
@@ -270,31 +270,31 @@ getCollision:
 
 
 move_ranky:
-	mov ax, [xPos]
+    mov ax, [xPos]
     mov [oldPos], ax
-	add ax, [xVelocity]
+    add ax, [xVelocity]
     mov [xPos], ax
 
-        call getCollision
+    call getCollision
 
-        cmp bx, 0
-        je .end
-        cmp bx, 2
-        je .remove_candy
-        cmp bx, 3
-        je .eat_check_mark
-        cmp bx, 4
-        je .kill_ranky
-        cmp bx, 5
-        je .eat_ghost1
-        cmp bx, 7
-        je .eat_ghost2
-        cmp bx, 8
-        je .eat_ghost3
-        cmp bx, 9
-        je .eat_ghost4
+    cmp bx, 0
+    je .end
+    cmp bx, 2
+    je .remove_candy
+    cmp bx, 3
+    je .eat_check_mark
+    cmp bx, 4
+    je .kill_ranky
+    cmp bx, 5
+    je .eat_ghost1
+    cmp bx, 7
+    je .eat_ghost2
+    cmp bx, 8
+    je .eat_ghost3
+    cmp bx, 9
+    je .eat_ghost4
 
-        jmp .check_tp
+    jmp .check_tp
 
 
     .eat_ghost1:
@@ -524,7 +524,7 @@ toggle_frenzy:
             cmp bx, 4
             jl .activation_loop
 
-            mov byte [killStreak], 1
+            mov word [killStreak], 1
             jmp .end
 
     .disable_frenzy:
@@ -536,7 +536,7 @@ toggle_frenzy:
 
             cmp bx, 4
             jl .desactivation_loop
-            mov byte [killStreak], 1
+            mov word [killStreak], 1
             jmp .end
 
     .end:

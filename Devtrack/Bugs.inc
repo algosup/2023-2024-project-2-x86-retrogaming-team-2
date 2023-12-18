@@ -180,13 +180,15 @@ move_bug1:
         ret
 
     .eaten:
-        mov bx, [killStreak]
+        mov cx, [killStreak]
         mov ax, 200
-        mul bx
-        mov bx,ax
-        call add_score
-        inc  byte [killStreak]
+        mul cx
 
+        mov bx, ax
+        call add_score
+        inc word [killStreak]
+
+        ; disable frenzy mode
         mov si, 0
         mov si, isFrenzy           ; Load the address into si
         mov byte [si + 0], 0       ; Store the value at the current address
