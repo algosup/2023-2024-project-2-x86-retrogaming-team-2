@@ -19,7 +19,7 @@ telepBottom dw window_width*185+(window_width-16)/2
 truem db '1',13,10,'$'   ; true and false message.
 falsem db '0',13,10,'$'
 
-killStreak dw 1
+killStreak db 1
 
 section .text
 
@@ -270,31 +270,31 @@ getCollision:
 
 
 move_ranky:
-    mov ax, [xPos]
+	mov ax, [xPos]
     mov [oldPos], ax
-    add ax, [xVelocity]
+	add ax, [xVelocity]
     mov [xPos], ax
 
-    call getCollision
+        call getCollision
 
-    cmp bx, 0
-    je .end
-    cmp bx, 2
-    je .remove_candy
-    cmp bx, 3
-    je .eat_check_mark
-    cmp bx, 4
-    je .kill_ranky
-    cmp bx, 5
-    je .eat_ghost1
-    cmp bx, 7
-    je .eat_ghost2
-    cmp bx, 8
-    je .eat_ghost3
-    cmp bx, 9
-    je .eat_ghost4
+        cmp bx, 0
+        je .end
+        cmp bx, 2
+        je .remove_candy
+        cmp bx, 3
+        je .eat_check_mark
+        cmp bx, 4
+        je .kill_ranky
+        cmp bx, 5
+        je .eat_ghost1
+        cmp bx, 7
+        je .eat_ghost2
+        cmp bx, 8
+        je .eat_ghost3
+        cmp bx, 9
+        je .eat_ghost4
 
-    jmp .check_tp
+        jmp .check_tp
 
 
     .eat_ghost1:
@@ -525,7 +525,7 @@ toggle_frenzy:
             cmp bx, 4
             jl .activation_loop
 
-            mov word [killStreak], 1
+            mov byte [killStreak], 1
             jmp .end
 
     .disable_frenzy:
@@ -537,7 +537,7 @@ toggle_frenzy:
 
             cmp bx, 4
             jl .desactivation_loop
-            mov word [killStreak], 1
+            mov byte [killStreak], 1
             jmp .end
 
     .end:
@@ -545,7 +545,7 @@ toggle_frenzy:
 
 
 EraseCandy:
-
+    // Velocity determine on which side is the candy
     cmp word [xVelocity], 320
     je .EraseCandyBottom
     cmp word [xVelocity], -320
@@ -559,48 +559,38 @@ EraseCandy:
     .EraseCandyRight:
         mov al,0x00
         mov di, [xPos]
-        add di,16+320*7
-        mov [es:di],al
+        add di,15+320*7
 
-        add di,320
-
-        mov [es:di],al
-        jmp .end
+        jmp .EraseCandy
         
     .EraseCandyLeft:
-        mov al,0x00
         mov di, [xPos]
-        dec di
-        add di, 320*7
-        mov [es:di],al
+        add di, 320*7-1
 
-        add di,320
 
-        mov [es:di],al
-        jmp .end
+        jmp .EraseCandy
     .EraseCandyTop:
-        mov al,0x00
         mov di, [xPos]
-        add di,7
-        sub di,320
-        mov [es:di],al
+        sub di,313
 
-        add di,1
 
-        mov [es:di],al
-
-        jmp .end
+        jmp .EraseCandy
     .EraseCandyBottom:
-        mov al,0x00
         mov di, [xPos]
-        add di,7+320*16
-        mov [es:di],al
+        add di,7+320*15
 
+        jmp .EraseCandy
+
+    .EraseCandy:
+        //DI is the dot on the top-left, position present in the array in item 
+        mov al,0x00
+        mov [es:di],al
         add di,1
-
         mov [es:di],al
-
-        jmp .end
+        add di,320
+        mov [es:di],al
+        dec di
+        mov [es:di],al
 
     .end:
         ret
