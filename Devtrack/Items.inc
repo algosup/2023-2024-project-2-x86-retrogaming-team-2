@@ -144,6 +144,16 @@ section .text:
         ; to change color, in case
 
         DrawDotLoop:
+        
+        cmp di, 0
+        jne .Continue
+        inc cx
+        add si,2
+        mov di,[si]
+        jmp DrawDotLoop
+
+        .Continue:
+        mov al, 0x43
         mov [es:di], al
 
         .SecondPoint:
