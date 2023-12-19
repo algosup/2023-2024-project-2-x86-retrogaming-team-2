@@ -45,7 +45,6 @@ _start:
         mov di, [bug4_pos]
         call draw_sprite
 
-
         mov di, [xPos]
         mov si, right_closed
         mov si, right_closed
@@ -60,15 +59,14 @@ game_loop:
     je game_loop
     mov [old_time], dx
 
+    call drawDot
     call move_bug1
     call move_bug3
 
     call update_score
+    
 
     call keyboard_handler
-
-
-
 
 
     .endloop:
@@ -97,3 +95,4 @@ game_loop:
 %include "Collision.inc"
 %include "Items.inc"
 %include "Bugs.inc"
+%include "Candies.inc"

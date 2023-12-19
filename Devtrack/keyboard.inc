@@ -16,8 +16,6 @@ section .data
     %DEFINE key_exit 01h    ; Escape
     %DEFINE key_menu 1Ch    ; Enter
 
-
-
     keyPressed dw 0
     newKeyPressed dw 0
 
