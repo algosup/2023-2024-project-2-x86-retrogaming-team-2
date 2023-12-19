@@ -67,18 +67,18 @@ update_score:
     ret
 
     .die:
-		mov byte [life_count], 3
-		call drawMazeWhite
-		call drawDotWhite
-		call DrawCheckMarkWithe
+		; mov byte [life_count], 3
+		; call drawMazeWhite
+		; call drawDotWhite
+		; call DrawCheckMarkWithe
         mov si, game_over
         mov di, 31040 + 121 
-        ; call draw_gameover
+        call draw_gameover
 		; jmp update_score
-		mov byte [life_count], 3
-		mov word [score1], 0
-		mov word [score2], 0
-		call mapLoop
+		; mov byte [life_count], 3
+		; mov word [score1], 0
+		; mov word [score2], 0
+		; call mapLoop
 
         mov ah, 4ch
         xor al, al

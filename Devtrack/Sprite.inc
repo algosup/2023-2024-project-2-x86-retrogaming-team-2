@@ -325,12 +325,8 @@ move_ranky:
         ; Remove candy
         ; call erase_candy
         call EraseCandy
-        dec word [candies_remain]
-        push bx
-        mov bx, 10
-        call add_score
-        pop bx
         jmp .moving
+        
 
     .kill_ranky:
         call dec_life
