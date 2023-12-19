@@ -132,6 +132,8 @@ section .data
                 dw nineteenthLine+ 168, nineteenthLine+ 176, nineteenthLine+ 184, nineteenthLine+ 192, nineteenthLine+ 200, nineteenthLine+ 208, nineteenthLine+ 216, nineteenthLine+ 224
                 dw nineteenthLine+ 232, nineteenthLine+ 240, nineteenthLine+ 248, nineteenthLine+ 264, nineteenthLine+ 272, nineteenthLine+ 280, nineteenthLine+ 288 
 
+    OldVelocity dw -1
+
 section .text:
     drawDot:
         mov ax, 0xA000
@@ -268,4 +270,46 @@ section .text:
             cmp cx, 4
             jb CheckMarkLoopWhite
         
+        ret
+
+
+erase_candy:
+    ; set the buffer of candies in SI
+    ; set the index at 0
+    mov si, Dots_pos
+    mov bx, 0
+
+    .loop:
+        xor dx, dx
+        add si, bx
+    
+        ; Limit to 60000 to avoid overflow
+        cmp word [si], 60000
+        jae .end
+
+        ; inc the index
+        mov bx, 2
+        mov dx, di
+
+        ; compare actual Velocity with Velocity saved
+        mov ax, [xVelocity]
+        cmp ax, [OldVelocity]
+        je .skipSub
+        
+        
+        sub dx, [xVelocity]
+
+    .skipSub:
+        ; if candy's coords aren't equal to the coords in the buffer we continue to loop
+        cmp word [si], dx
+        jne .loop
+
+        ; set the coords in the buffer to 0 to stop drawing this candy
+        mov word [si], 0
+
+        ; save the Velocity in OldVelocity
+        mov ax, [xVelocity]
+        mov word [OldVelocity], ax
+
+        .end:
         ret

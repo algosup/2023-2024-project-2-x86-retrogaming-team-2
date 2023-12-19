@@ -95,4 +95,3 @@ game_loop:
 %include "Collision.inc"
 %include "Items.inc"
 %include "Bugs.inc"
-%include "Candies.inc"
