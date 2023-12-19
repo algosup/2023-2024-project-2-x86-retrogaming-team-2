@@ -6,6 +6,7 @@ section .data
     botRightDot dw 0
     zero dw 00
     index dw 62
+    OldVelocity dw -1
 
 
 section .text
@@ -32,8 +33,15 @@ erase_candy:
 
             mov bx, 2
             mov dx, di
+
+            mov ax, [xVelocity]
+            cmp ax, [OldVelocity]
+            je .skipSub
+            
+            
             sub dx, [xVelocity]
 
+            .skipSub:
             cmp dx, 12935
             je .deleteDot
 
@@ -46,6 +54,9 @@ erase_candy:
 
             .deleteDot:
                 mov word [si], 0
+
+                mov ax, [xVelocity]
+                mov word [OldVelocity], ax
 
             .end:
             ret
