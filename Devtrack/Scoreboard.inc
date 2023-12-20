@@ -106,8 +106,6 @@ mapLoop:
 		call drawMaze2
 
 
-
-
 draw_score:
     mov ax, [score1]  ; Load the integer into AX
     mov dx, window_width*score_yoffset + score_xoffset
@@ -478,7 +476,12 @@ end_level:
     call draw_sprite
 
     mov word [xPos], window_width*80+(window_width-16)/2
-
+    mov si, [dotsArray]
+    mov si, [dotsArrayStock]
+    mov [dotsArray], si
+    mov si, [checkMarkPos]
+    mov si, [checkMarkPosStock]
+    mov [checkMarkPos], si
     call DrawCheckMark
     call drawDot
 
