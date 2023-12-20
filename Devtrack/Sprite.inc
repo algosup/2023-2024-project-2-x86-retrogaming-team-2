@@ -346,11 +346,85 @@ move_ranky:
             jmp .skip_check_mark
         .right:
             add bx, 8
-        .skip_check_mark:
-            mov si, clean
-            mov di, bx
-            call draw_sprite
-            jmp .moving
+                .skip_check_mark:
+                    ; clean the actual checkmark from the maze
+                    mov si, clean
+                    mov di, bx
+                    call draw_sprite
+                    
+                    ; remove the checkmark from the array, so it will not pop again
+                    ; cmp word [si], 60000
+                    ; jae .moving
+                    mov si, checkMarkPos
+                    mov dx, [xPos]
+                    ; int3
+                    ; mov word [debug_word], dx
+                    ; call draw_debug
+                    ; int3
+                    cmp dx, 17955
+                    je .deleteCheck1
+                    
+                    cmp dx, 17933
+                    je .deleteCheck1
+
+                    cmp dx, 18189
+                    je .deleteCheck2
+
+                    cmp dx, 18211
+                    je .deleteCheck2
+
+                    cmp dx, 56371
+                    je .deleteCheck3
+
+                    cmp dx, 56349
+                    je .deleteCheck3
+
+                    cmp dx, 56573
+                    je .deleteCheck4
+
+                    cmp dx, 56590
+                    je .deleteCheck4
+
+                    jmp .moving
+
+                    .deleteCheck1:
+                        mov ax, si
+                        mov si, ax
+                        mov word [si], 100
+                        mov di, 100
+                        mov si, clean
+                        call draw_tile
+                        jmp .moving
+
+                    .deleteCheck2:
+                        mov ax, si
+                        add ax, 2
+                        mov si, ax
+                        mov word [si], 100
+                        mov di, 100
+                        mov si, clean
+                        call draw_tile
+                        jmp .moving
+
+                    .deleteCheck3:
+                        mov ax, si
+                        add ax, 4
+                        mov si, ax
+                        mov word [si], 100
+                        mov di, 100
+                        mov si, clean
+                        call draw_tile
+                        jmp .moving
+
+                    .deleteCheck4:
+                        mov ax, si
+                        add ax, 6
+                        mov si, ax
+                        mov word [si], 100
+                        mov di, 100
+                        mov si, clean
+                        call draw_tile
+                        jmp .moving
 
     .check_tp:
         call check_teleporter
@@ -360,6 +434,7 @@ move_ranky:
         mov di, [xPos]
         call change_sprite
         call draw_sprite
+
         ret
 
     .end:

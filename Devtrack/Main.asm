@@ -60,6 +60,10 @@ game_loop:
     mov [old_time], dx
 
     call drawDot
+    call DrawCheckMark
+    mov di, 100
+    mov si, clean
+    call draw_tile
     call move_bug1
     call move_bug3
 
