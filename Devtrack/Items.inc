@@ -77,7 +77,9 @@ section .data
 
     checkMarkPos dw fourthLine+13-(320*3), fourthLine+269-(320*3),nineteenthLine+29-(320*3),nineteenthLine+253-(320*3)
 
-    Dots_pos equ dotsArray
+    Dots_pos times 270 dw 10
+
+
 
     OldVelocity dw -1
 
@@ -266,4 +268,25 @@ erase_candy:
         mov word [OldVelocity], ax
 
         .end:
+        ret
+
+        
+
+    reset_buffer:
+    mov si, dotsArray ; Source index
+    mov di, Dots_pos   ; Destination index
+    mov cx, 540   ; Loop counter
+
+    .overwrite_loop:
+        ; Copy one byte from source to destination
+        mov ax, [si]
+        mov [di], ax
+
+        ; Increment source and destination indices
+        inc si
+        inc di
+
+        dec cx
+        cmp cx,0
+        ja .overwrite_loop
         ret

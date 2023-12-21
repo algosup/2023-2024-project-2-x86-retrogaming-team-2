@@ -472,7 +472,7 @@ add_score:
 
 end_level:
     mov word [candies_remain], 270
-
+    call reset_buffer
     mov si, clean
     mov di, [xPos]
     call draw_sprite
