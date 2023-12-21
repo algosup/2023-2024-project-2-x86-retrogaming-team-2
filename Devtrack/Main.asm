@@ -68,7 +68,6 @@ game_loop:
     ; mov si, clean
     ; call draw_tile
     call move_bug1
-    ;call move_bug2
     call move_bug3
 
     call update_score
