@@ -61,6 +61,7 @@ game_loop:
     mov [old_time], dx
 
     call move_bug1
+    ;call move_bug2
     call move_bug3
 
     call update_score
