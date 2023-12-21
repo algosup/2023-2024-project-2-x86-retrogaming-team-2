@@ -19,7 +19,7 @@ telepBottom dw window_width*185+(window_width-16)/2
 truem db '1',13,10,'$'   ; true and false message.
 falsem db '0',13,10,'$'
 
-killStreak db 1
+killStreak dw 1
 
 section .text
 
@@ -325,12 +325,8 @@ move_ranky:
         ; Remove candy
         ; call erase_candy
         call EraseCandy
-        dec word [candies_remain]
-        push bx
-        mov bx, 10
-        call add_score
-        pop bx
         jmp .moving
+        
 
     .kill_ranky:
         call dec_life
