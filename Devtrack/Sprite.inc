@@ -353,14 +353,8 @@ move_ranky:
                     call draw_sprite
                     
                     ; remove the checkmark from the array, so it will not pop again
-                    ; cmp word [si], 60000
-                    ; jae .moving
                     mov si, checkMarkPos
                     mov dx, [xPos]
-                    ; int3
-                    ; mov word [debug_word], dx
-                    ; call draw_debug
-                    ; int3
                     cmp dx, 17955
                     je .deleteCheck1
                     

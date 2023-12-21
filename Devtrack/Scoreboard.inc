@@ -32,6 +32,8 @@ life_yoffset equ 4
 
 life_count db 3
 
+dot_size dw 270
+check_size dw 4
 
 debug_word dw 0000
 debug_word2 dw 0000
@@ -474,19 +476,49 @@ end_level:
     mov si, clean
     mov di, [xPos]
     call draw_sprite
-
     mov word [xPos], window_width*80+(window_width-16)/2
-    mov si, [dotsArray]
-    mov si, [dotsArrayStock]
-    mov [dotsArray], si
-    mov si, [checkMarkPos]
-    mov si, [checkMarkPosStock]
-    mov [checkMarkPos], si
+    call fill_check
+    call fill_dot
     call DrawCheckMark
     call drawDot
 
     jmp _start.spawn_entities
 
+
+fill_dot: 
+    mov si, dotsArrayStock
+    mov di, dotsArray
+    mov cx, dot_size
+
+    .copy_loop:
+        mov al, [si]
+        mov [di], al
+        inc si 
+        inc di
+        ; cmp di, cx
+        ; je .exit
+        loopnz .copy_loop
+        ret
+    ; .exit:
+    ret
+
+fill_check: 
+    mov si, checkMarkPosStock
+    mov di, checkMarkPos
+    mov cx, check_size
+
+    .copy_loop:
+        mov al, [si]
+        mov [di], al
+        inc si 
+        inc di
+        ; cmp si, cx
+        ; je .exit
+        loopnz .copy_loop
+        ret
+    ; .exit:
+    ;     ret
+    ret
 
 
 draw_debug:
