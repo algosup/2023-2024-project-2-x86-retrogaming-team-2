@@ -109,3 +109,16 @@ Test the game on a real computer | In Progress | 12/18/2023 | 1h | 8h | Gaël
 
 
 ## Week 7 : 12/18/2023 - 12/22/2023
+
+| Tasks | Status | Deadline | Time required | Time spent | People involved |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+Implementation of the movements of the "Bugs" | In Progress | 12/18/2023 | 8h | 8h | Paul
+Searching for a way to put music in the game | Stopped | 12/18/2023 | 8h | 8h | Paul
+Create an array of candies to correct an issue | Done | 12/19/2023 | 10h | 10h | Clémentine
+Saving the High Score | Stopped | 12/18/2023 | 2h | 2h | Aurélien
+Checkmark buffer | Done | 12/18/2023 | 1h | 1h | Mathias & Clémentine
+Refactoring of the code | Done | 12/18/2023 | 1h | 1h | Mathias
+Finish the final release | Done | 12/18/2023 | 1h | 1h | All the team
+Create a user manual | Done | 12/18/2023 | 1h | 1h | Laurent
+Create a presentation video | Done | 12/18/2023 | 1h | 1h | Laurent
+

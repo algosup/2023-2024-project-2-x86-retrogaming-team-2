@@ -6,9 +6,25 @@ ALGOSUP gave us the mission to recreate the famous retro game named Pac-Man with
 
 ## The game
 
-The game Dev-Track is available here:
+### Quick start
 
-PLAY GAME
+To start the game, you have to install the lastest version of DosBox virtual machine and run the following commands in the terminal:
+
+```bash
+mount c: /path/to/your/project
+```
+
+```bash
+c:
+```
+
+```bash
+main
+```
+
+### Installation
+
+See [Installation](/Documents/User_manual.md)
 
 ## Project Team
 |        Name        |           Role           |                                                                      Photo                                                                       |             E-mail             |
