@@ -4,7 +4,7 @@ org 100h
 
 section .data
     old_time equ 0
-
+    firstLine DW 39*window_width+15
 
     charValue db 'X$'
     charNoKey db 'False$'
@@ -64,6 +64,9 @@ game_loop:
     mov di, 100
     mov si, clean
     call draw_tile
+    ; mov di, firstLine
+    ; mov si, clean
+    ; call draw_tile
     call move_bug1
     call move_bug3
 

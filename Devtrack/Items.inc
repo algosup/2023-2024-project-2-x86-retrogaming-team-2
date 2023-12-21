@@ -75,7 +75,7 @@ section .data
                 dw nineteenthLine+ 168, nineteenthLine+ 176, nineteenthLine+ 184, nineteenthLine+ 192, nineteenthLine+ 200, nineteenthLine+ 208, nineteenthLine+ 216, nineteenthLine+ 224
                 dw nineteenthLine+ 232, nineteenthLine+ 240, nineteenthLine+ 248, nineteenthLine+ 264, nineteenthLine+ 272, nineteenthLine+ 280, nineteenthLine+ 288 
 
-    removeDot dw 0
+    removeDot dw 0, 0, 0
 
     dotsArrayStock    dw firstLine, firstLine+ 8, firstLine+ 16, firstLine+ 24, firstLine+ 32, firstLine+ 40, firstLine+ 48, firstLine+ 56 
                 dw firstLine+ 64, firstLine+ 72, firstLine+ 80, firstLine+ 88, firstLine+ 96, firstLine+ 104, firstLine+ 112, firstLine+ 120 
@@ -131,6 +131,8 @@ section .data
                 dw nineteenthLine+ 64, nineteenthLine+ 72, nineteenthLine+ 80, nineteenthLine+ 88, nineteenthLine+ 96, nineteenthLine+ 104, nineteenthLine+ 112, nineteenthLine+ 120 
                 dw nineteenthLine+ 168, nineteenthLine+ 176, nineteenthLine+ 184, nineteenthLine+ 192, nineteenthLine+ 200, nineteenthLine+ 208, nineteenthLine+ 216, nineteenthLine+ 224
                 dw nineteenthLine+ 232, nineteenthLine+ 240, nineteenthLine+ 248, nineteenthLine+ 264, nineteenthLine+ 272, nineteenthLine+ 280, nineteenthLine+ 288 
+
+    removeDot2 dw 0, 0, 0
 
     checkMarkPos dw fourthLine+13-(320*3), fourthLine+269-(320*3),nineteenthLine+29-(320*3),nineteenthLine+253-(320*3)
     checkMarkPosStock dw fourthLine+13-(320*3), fourthLine+269-(320*3),nineteenthLine+29-(320*3),nineteenthLine+253-(320*3)

@@ -477,48 +477,53 @@ end_level:
     mov di, [xPos]
     call draw_sprite
     mov word [xPos], window_width*80+(window_width-16)/2
-    call fill_check
-    call fill_dot
+    ; cld
+    ; call fill_check
+    ; call fill_dot
     call DrawCheckMark
     call drawDot
 
     jmp _start.spawn_entities
 
 
-fill_dot: 
-    mov si, dotsArrayStock
-    mov di, dotsArray
-    mov cx, dot_size
+; fill_dot: 
+    ; xor si, si 
+    ; xor di, di
+    ; mov si, dotsArrayStock
+    ; mov di, dotsArray
+    ; mov cx, dot_size
 
-    .copy_loop:
-        mov al, [si]
-        mov [di], al
-        inc si 
-        inc di
-        ; cmp di, cx
-        ; je .exit
-        loopnz .copy_loop
-        ret
-    ; .exit:
-    ret
-
-fill_check: 
-    mov si, checkMarkPosStock
-    mov di, checkMarkPos
-    mov cx, check_size
-
-    .copy_loop:
-        mov al, [si]
-        mov [di], al
-        inc si 
-        inc di
-        ; cmp si, cx
-        ; je .exit
-        loopnz .copy_loop
-        ret
+    ; .copy_loop:
+    ;     mov al, [si]
+    ;     mov [di], al
+    ;     inc si 
+    ;     inc di
+    ;     dec cx
+    ;     cmp cx, 0
+    ;     je .exit
+    ;     loop .copy_loop
     ; .exit:
     ;     ret
-    ret
+
+; fill_check: 
+    ; xor si, si 
+    ; xor di, di
+    ; mov si, checkMarkPosStock
+    ; mov di, checkMarkPos
+    ; mov cx, check_size
+
+    ; .copy_loop:
+    ;     mov al, [si]
+    ;     mov [di], al
+    ;     inc si 
+    ;     inc di
+    ;     dec cx
+    ;     cmp cx, 0
+    ;     je .exit
+    ;     loop .copy_loop
+    ;     ret
+    ; .exit:
+    ;     ret
 
 
 draw_debug:
