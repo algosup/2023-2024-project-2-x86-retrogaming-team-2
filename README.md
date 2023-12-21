@@ -6,9 +6,25 @@ ALGOSUP gave us the mission to recreate the famous retro game named Pac-Man with
 
 ## The game
 
-The game Dev-Track is available here:
+### Quick start
 
-PLAY GAME
+To start the game, you have to install the lastest version of DosBox virtual machine and run the following commands in the terminal:
+
+```bash
+mount c: /path/to/your/project
+```
+
+```bash
+c:
+```
+
+```bash
+main
+```
+
+### Installation
+
+See [Installation](/Documents/User_manual.md)
 
 ## Project Team
 |        Name        |           Role           |                                                                      Photo                                                                       |             E-mail             |
@@ -21,4 +37,16 @@ PLAY GAME
 |     Paul Nowak     |        Tech lead         |    <a href="https://github.com/PaulNowak36" rel="some text"><img src="https://avatars.githubusercontent.com/u/91249965?v=4" width="50px"></a>    |     paul.nowak@algosup.com     |
 
 ## Documents Link
-To be filled
+
+### Specifications
+- [Functional Specifications](/Documents/Functional_specifications.md)
+- [Technical Specifications](/Documents/Technical_specifications.md)
+
+### Project Management
+- [Key Process Indicators (KPI's)](/Documents/Key_Process_Indicators.md)
+- [Weekly Report](/Documents/Weekly_Report.md)
+
+
+### Quality Assurance
+- [Test Plan](/Documents/Test_plan.md)
+- [Test Cases](/Documents/Test_cases.md)

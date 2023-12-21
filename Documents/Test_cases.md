@@ -1,10 +1,5 @@
 # Test Cases
 
-| Author        | Gaël MALVAR |
-|---------------|------------ |
-| Created       | 12/01/2023  |
-| Last Modified | 12/04/2023  |
-
 ---
 
 In this document we will describe the tests that we will perform and the results obtained
@@ -12,36 +7,36 @@ In this document we will describe the tests that we will perform and the results
 ---
 
 ### Legend : 
-- **Status** : To test, In testing, Tested
-- **Priority** : High, Medium, Low
+- **Status** : To test ⏳, In testing 🚧, Tested ✅
+- **Priority** : High 🔴, Medium 🟡, Low 🔵
 
 
 
-## Test Case 1 :
+## Test Case 1 :    
 
 | Test Case ID | 1 |
 | --- | --- |
 | Name | Start the game |
-| Description | The game starts when the user clicks the start button |
+| Description | The game starts when the user presses the start button |
 | Pre-conditions | The game hasn't started yet |
 | Steps | 1. Click on the start button |
 | Expected Result | The game starts |
 | Actual Result | ------ |
-| Status | To Test |
-| Priority | High |
+| Status | To test ⏳ |
+| Priority | High 🔴 |
 
 ## Test Case 2 :
 
 | Test Case ID | 2 |
 | --- | --- |
 | Name | Exit the game |
-| Description | The game ends when the user clicks the button  |
+| Description | The game ends when the user presses the button  |
 | Pre-conditions | The game has started |
 | Steps | 1. Click on the exit button |
 | Expected Result | The game ends |
 | Actual Result | ------ |
-| Status | To test |
-| Priority | High |
+| Status | To test ⏳ |
+| Priority | High 🔴 |
 
 ## Test Case 3 :
 
@@ -52,9 +47,9 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Press the Q key or left arrow key |
 | Expected Result | The player moves to the left |
-| Actual Result | ------ |
-| Status | To test |
-| Priority | High |
+| Actual Result | When the Q key or left arrow key is pressed, the player moves left |
+| Status | Tested ✅ |
+| Priority | High 🔴 |
 
 ## Test Case 4 :
 
@@ -65,9 +60,9 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Press the D key or right arrow key |
 | Expected Result | The player moves to the right |
-| Actual Result | ------ |
-| Status | To test |
-| Priority | High |
+| Actual Result | When the D key or right arrow key is pressed, the player moves right |
+| Status | Tested ✅ |
+| Priority | High 🔴 |
 
 ## Test Case 5 :
 
@@ -78,9 +73,9 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Press the Z key or up arrow key |
 | Expected Result | The player moves upwards |
-| Actual Result | ------ |
-| Status | To test |
-| Priority | High |
+| Actual Result | When the Z key or up arrow key is pressed, the player moves upwards |
+| Status | Tested ✅ |
+| Priority | High 🔴 |
 
 ## Test Case 6 :
 
@@ -91,35 +86,35 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Press the S key or down arrow key |
 | Expected Result | The player moves down |
-| Actual Result | ------ |
-| Status | To test |
-| Priority | High |
+| Actual Result | When the S key or down arrow key is pressed, the player moves down |
+| Status | Tested ✅ |
+| Priority | High 🔴 |
 
 ## Test Case 7 :
 
 | Test Case ID | 7 |
 | --- | --- |
 | Name | Wall collision |
-| Description | The player and enemies should not be able to walk through walls |
+| Description | The player and enemies should not be able to pass through walls |
 | Pre-conditions | The game has started |
 | Steps | 1. Move the player and enemies toward a wall |
-| Expected Result | The player and enemies are not able to walk through the wall |
-| Actual Result | ------ |
-| Status | To test |
-| Priority | High |
+| Expected Result | The player and enemies are not able to pass through the wall |
+| Actual Result | Player and enemies cannot pass through walls |
+| Status | Tested ✅ |
+| Priority | High 🔴 |
 
 ## Test Case 8 :
 
 | Test Case ID | 8 |
 | --- | --- |
 | Name | Collision between player and enemies |
-| Description | The player should not be able to walk through enemies |
+| Description | The player should not be able to pass through enemies |
 | Pre-conditions | The game has started |
 | Steps | 1. Move the player toward an enemy |
 | Expected Result | The player stops against the enemy and dies |
-| Actual Result | ------ |
-| Status | To test |
-| Priority | High |
+| Actual Result | The player stops against the enemy and dies |
+| Status | Tested ✅ |
+| Priority | High 🔴 |
 
 ## Test Case 9 :
 
@@ -131,8 +126,8 @@ In this document we will describe the tests that we will perform and the results
 | Steps | 1. Wait till two enemies cross each other |
 | Expected Result | Enemies cross each other |
 | Actual Result | ------ |
-| Status | To test |
-| Priority | Medium |
+| Status | To test ⏳ |
+| Priority | Medium 🟡 |
 
 ## Test Case 10 :
 
@@ -143,9 +138,9 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Move the player into a tunnel |
 | Expected Result | The player is teleported to the other side of the tunnel |
-| Actual Result | ------ |
-| Status | To test |
-| Priority | Medium |
+| Actual Result | The player can successfully enter the tunnels and be teleported to the other side |
+| Status | Tested ✅ |
+| Priority | Medium 🟡 |
 
 ## Test Case 11:
 
@@ -156,9 +151,9 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Move the player toward a dot |
 | Expected Result | The dot disappears and the score increase |
-| Actual Result | ------ |
-| Status | To test |
-| Priority | Medium |
+| Actual Result | The dot disappears and the score increase |
+| Status | Tested ✅ |
+| Priority | Medium 🟡 |
 
 ## Test Case 12 :
 
@@ -169,9 +164,9 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Move the player toward a power pellet |
 | Expected Result | The power pellet disappears and enemies become vulnerable to the player |
-| Actual Result | ------ |
-| Status | To test |
-| Priority | High |
+| Actual Result | The power pellet disappears and enemies become vulnerable to the player |
+| Status | Tested ✅ |
+| Priority | High 🔴 |
 
 ## Test Case 13 :
 
@@ -182,9 +177,9 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Move the player with the effect of a power pellet towards an enemy |
 | Expected Result | The enemy is eaten and returns to its spawn point |
-| Actual Result | ------ |
-| Status | To test |
-| Priority | High |
+| Actual Result | The enemy is eaten and returns to its spawn point |
+| Status | Tested ✅ |
+| Priority | High 🔴 |
 
 ## Test Case 14 :
 
@@ -195,9 +190,9 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Eat a dot, a power pellet and an enemy |
 | Expected Result | The score increases accordingly on what was eaten |
-| Actual Result | ------ |
-| Status | To test |
-| Priority | Medium |
+| Actual Result | The score increases accordingly on what was eaten |
+| Status | Tested ✅ |
+| Priority | Medium 🟡 |
 
 ## Test Case 15 :
 
@@ -208,9 +203,9 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Let the enemy eat the player |
 | Expected Result | The player loses a life and returns to the spawn point |
-| Actual Result | ------ |
-| Status | To test |
-| Priority | Medium |
+| Actual Result | The player loses a life and returns to the spawn point |
+| Status | Tested ✅ |
+| Priority | Medium 🟡 |
 
 ## Test Case 16 :
 
@@ -222,8 +217,8 @@ In this document we will describe the tests that we will perform and the results
 | Steps | 1. Reach a score of 10k points |
 | Expected Result | The player gains a life |
 | Actual Result | ------ |
-| Status | To test |
-| Priority | Medium |
+| Status | To test ⏳ |
+| Priority | Medium 🟡 |
 
 ## Test Case 17 :
 
@@ -234,9 +229,9 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Lose all lives |
 | Expected Result | The player loses and a game over screen is displayed |
-| Actual Result | ------ |
-| Status | To test |
-| Priority | High |
+| Actual Result | The player loses and a game over screen is displayed |
+| Status | Tested ✅ |
+| Priority | High 🔴 |
 
 ## Test Case 18 :
 
@@ -248,8 +243,8 @@ In this document we will describe the tests that we will perform and the results
 | Steps | 1. Complete all levels |
 | Expected Result | The game should end when the player wins all levels |
 | Actual Result | ------ |
-| Status | To test |
-| Priority | Low |
+| Status | To test ⏳ |
+| Priority | Low 🔵 |
 
 ## Test Case 19 :
 
@@ -260,6 +255,6 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Eat all dots and pellets |
 | Expected Result | The game goes to the next level |
-| Actual Result | ------ |
-| Status | To test |
-| Priority | Medium |
+| Actual Result | The game goes to the next level |
+| Status | Tested ✅ |
+| Priority | Medium 🟡 |

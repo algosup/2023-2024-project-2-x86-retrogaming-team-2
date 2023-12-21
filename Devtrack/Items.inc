@@ -65,7 +65,6 @@ section .data
     Dots_pos times 270 dw 10
 
 
-
     OldVelocity dw -1
 
 section .text:
@@ -158,6 +157,7 @@ section .text:
         mov es,ax
         
         CheckMarkLoop:
+            cmp di, 0
             mov di,[si]
             push si
             push cx
