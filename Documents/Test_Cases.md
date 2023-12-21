@@ -164,8 +164,8 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Move the player toward a power pellet |
 | Expected Result | The power pellet disappears and enemies become vulnerable to the player |
-| Actual Result | ------ |
-| Status | To test ⏳ |
+| Actual Result | The power pellet disappears and enemies become vulnerable to the player |
+| Status | Tested ✅ |
 | Priority | High 🔴 |
 
 ## Test Case 13 :
@@ -177,8 +177,8 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Move the player with the effect of a power pellet towards an enemy |
 | Expected Result | The enemy is eaten and returns to its spawn point |
-| Actual Result | ------ |
-| Status | To test ⏳ |
+| Actual Result | The enemy is eaten and returns to its spawn point |
+| Status | Tested ✅ |
 | Priority | High 🔴 |
 
 ## Test Case 14 :
@@ -190,8 +190,8 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Eat a dot, a power pellet and an enemy |
 | Expected Result | The score increases accordingly on what was eaten |
-| Actual Result | ------ |
-| Status | To test ⏳ |
+| Actual Result | The score increases accordingly on what was eaten |
+| Status | Tested ✅ |
 | Priority | Medium 🟡 |
 
 ## Test Case 15 :
@@ -229,8 +229,8 @@ In this document we will describe the tests that we will perform and the results
 | Pre-conditions | The game has started |
 | Steps | 1. Lose all lives |
 | Expected Result | The player loses and a game over screen is displayed |
-| Actual Result | ------ |
-| Status | To test ⏳ |
+| Actual Result | The player loses and a game over screen is displayed |
+| Status | Tested ✅ |
 | Priority | High 🔴 |
 
 ## Test Case 18 :
