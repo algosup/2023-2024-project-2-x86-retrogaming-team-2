@@ -59,12 +59,9 @@ section .data
                 dw origin+(18*line)*320+ 168, origin+(18*line)*320+ 176, origin+(18*line)*320+ 184, origin+(18*line)*320+ 192, origin+(18*line)*320+ 200, origin+(18*line)*320+ 208, origin+(18*line)*320+ 216, origin+(18*line)*320+ 224
                 dw origin+(18*line)*320+ 232, origin+(18*line)*320+ 240, origin+(18*line)*320+ 248, origin+(18*line)*320+ 264, origin+(18*line)*320+ 272, origin+(18*line)*320+ 280, origin+(18*line)*320+ 288 
                
-
     checkMarkPos dw origin+(3*line)*320+13-(320*3), origin+(3*line)*320+269-(320*3),origin+(18*line)*320+29-(320*3),origin+(18*line)*320+253-(320*3)
-
     Dots_pos times 270 dw 10
-
-
+    
     OldVelocity dw -1
 
 section .text:
@@ -81,13 +78,9 @@ section .text:
         DrawDotLoop:
         
         cmp di, 0
-        jne .Continue
-        inc cx
-        add si,2
-        mov di,[si]
-        jmp DrawDotLoop
+        je .endLoop
+        
 
-        .Continue:
         mov al, 0x43
         mov [es:di], al
 
@@ -108,7 +101,11 @@ section .text:
 
         ret
 
-
+    .endLoop:
+        inc cx
+        add si,2
+        mov di,[si]
+        jmp DrawDotLoop
 	newLine:
 		add di, window_width
 

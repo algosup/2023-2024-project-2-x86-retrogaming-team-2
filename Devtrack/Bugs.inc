@@ -33,7 +33,7 @@ bug3_YPos dw 0
 bug4_pos dw bug4_default_Pos
 bug4_YPos dw 0
 
-loc0_pos dw sixteenthLine + 21 - (320*7) ; actual location of the spot we need to reach
+loc0_pos dw origin+(15*8)*window_width + 21 - (320*7) ; actual location of the spot we need to reach
 ;sixteenthLine = 50895 -> where should starts the 16th line of the maze
 ;loc0_pos = 48676 -> position X of the Spot
 ;21 = column number -> the column (from 0 to 320) where is located the spot through the line 16 of the maze
@@ -351,7 +351,7 @@ move_bug1:
     .calculateBugLocation:;calculate the column location of the bug
         xor cx, cx; reset cx to 0 to use it properly
         mov cx, [bug1_pos]; cx = 56376
-        sub cx, [nineteenthLine]; cx = 56376 - 58575 = -2199
+        sub cx, [origin+(18*8)*window_width]; cx = 56376 - 58575 = -2199
         neg cx ; cx = -2199 * -1 = 2199
         xor bx, bx; reset bx to 0 to use it properly 
         mov bx, [adjust]; bx = 2240
@@ -361,7 +361,7 @@ move_bug1:
     .calculateSpotLocation:;calculate the column location of the spot
         xor dx, dx; reset dx to 0 to use it properly
         mov dx, [loc0_pos]; dx = 48676
-        sub dx, [sixteenthLine]; cx = 48676 - 50895 = -2219
+        sub dx, [origin+(15*8)*window_width]; cx = 48676 - 50895 = -2219
         neg dx ; cx = -2219 * -1 = 2219
         xor cx, cx; reset cx to 0 to use it properly
         mov cx, [adjust]; cx = 2240
