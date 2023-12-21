@@ -20,7 +20,7 @@
 
 section .data
 
-    Dots_pos    dw firstLine, firstLine+ 8, firstLine+ 16, firstLine+ 24, firstLine+ 32, firstLine+ 40, firstLine+ 48, firstLine+ 56 
+    dotsArray    dw firstLine, firstLine+ 8, firstLine+ 16, firstLine+ 24, firstLine+ 32, firstLine+ 40, firstLine+ 48, firstLine+ 56 
                 dw firstLine+ 64, firstLine+ 72, firstLine+ 80, firstLine+ 88, firstLine+ 96, firstLine+ 104, firstLine+ 112, firstLine+ 120 
                 dw firstLine+ 168, firstLine+ 176, firstLine+ 184, firstLine+ 192, firstLine+ 200, firstLine+ 208, firstLine+ 216, firstLine+ 224
                 dw firstLine+ 232, firstLine+ 240, firstLine+ 248, firstLine+ 256, firstLine+ 264, firstLine+ 272, firstLine+ 280, firstLine+ 288 
@@ -75,9 +75,13 @@ section .data
                 dw nineteenthLine+ 168, nineteenthLine+ 176, nineteenthLine+ 184, nineteenthLine+ 192, nineteenthLine+ 200, nineteenthLine+ 208, nineteenthLine+ 216, nineteenthLine+ 224
                 dw nineteenthLine+ 232, nineteenthLine+ 240, nineteenthLine+ 248, nineteenthLine+ 264, nineteenthLine+ 272, nineteenthLine+ 280, nineteenthLine+ 288 
 
+    removeDot dw 0, 0, 0
+
     checkMarkPos dw fourthLine+13-(320*3), fourthLine+269-(320*3),nineteenthLine+29-(320*3),nineteenthLine+253-(320*3)
 
+    Dots_pos equ dotsArray
 
+    OldVelocity dw -1
 
 section .text:
     drawDot:
@@ -88,32 +92,52 @@ section .text:
         mov di,[si]
         mov al, 0x43
 
+        ; to change color, in case
+
         DrawDotLoop:
         
+        cmp di, 0
+        jne .Continue
+        inc cx
+        add si,2
+        mov di,[si]
+        jmp DrawDotLoop
+
+        .Continue:
+        mov al, 0x43
         mov [es:di], al
 
+        .SecondPoint:
         inc di
+        cmp word [es:di],0x00
+        jne .ThirdPoint
         mov [es:di], al
-        
+        .ThirdPoint:
         call newLine
 
-        add si,2 ; add 2 because idk why index need to be multiplied by 2
+        add si,2 ; add 2 because each element is 2 byte long
         mov di, [si]
 
         inc cx
         cmp cx,270
         jb DrawDotLoop
 
-    jmp _start.spawn_entities
+        ret
 
 
 	newLine:
 		add di, window_width
+
+        cmp word [es:di],0x00
+        jne .FourthPoint
+		mov [es:di], al
+
+        .FourthPoint:
 		add di, -1
 		mov [es:di], al
-		inc di
-		mov [es:di], al
 		ret
+
+	
 
 	
     drawDotWhite:
@@ -149,6 +173,7 @@ section .text:
         mov es,ax
         
         CheckMarkLoop:
+            cmp di, 0
             mov di,[si]
             push si
             push cx
@@ -195,4 +220,53 @@ section .text:
             cmp cx, 4
             jb CheckMarkLoopWhite
         
+        ret
+
+
+erase_candy:
+    ; set the buffer of candies in SI
+    ; set the index at 0
+    mov si, Dots_pos
+    mov bx, 0
+
+    .loop:
+        xor dx, dx
+        add si, bx
+    
+        ; Limit to 60000 to avoid overflow
+        cmp word [si], 60000
+        jae .end
+
+        ; inc the index
+        mov bx, 2
+        mov dx, di
+
+        ; compare actual Velocity with Velocity saved
+        mov ax, [xVelocity]
+        cmp ax, [OldVelocity]
+        je .skipSub
+        
+        
+        sub dx, [xVelocity]
+
+    .skipSub:
+        ; if candy's coords aren't equal to the coords in the buffer we continue to loop
+        cmp word [si], dx
+        jne .loop
+
+        ; set the coords in the buffer to 0 to stop drawing this candy
+        mov word [si], 0
+
+        dec word [candies_remain]
+        
+        push bx
+        mov bx, 10
+        call add_score
+        pop bx
+
+        ; save the Velocity in OldVelocity
+        mov ax, [xVelocity]
+        mov word [OldVelocity], ax
+
+        .end:
         ret

@@ -4,7 +4,7 @@ org 100h
 
 section .data
     old_time equ 0
-
+    firstLine DW 39*window_width+15
 
     charValue db 'X$'
     charNoKey db 'False$'
@@ -45,7 +45,6 @@ _start:
         mov di, [bug4_pos]
         call draw_sprite
 
-
         mov di, [xPos]
         mov si, right_closed
         mov si, right_closed
@@ -60,16 +59,22 @@ game_loop:
     je game_loop
     mov [old_time], dx
 
+    call drawDot
+    call DrawCheckMark
+    mov di, 100
+    mov si, clean
+    call draw_tile
+    ; mov di, firstLine
+    ; mov si, clean
+    ; call draw_tile
     call move_bug1
     ;call move_bug2
     call move_bug3
 
     call update_score
+    
 
     call keyboard_handler
-
-
-
 
 
     .endloop:

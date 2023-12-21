@@ -32,6 +32,13 @@ life_yoffset equ 4
 
 life_count db 3
 
+dot_size dw 270
+check_size dw 4
+
+debug_word dw 0000
+debug_word2 dw 0000
+digits2 db 6 DUP(0) ; Array to store individual digits
+
 %DEFINE score_offset 10
 
 draw_scoreboard:
@@ -62,18 +69,18 @@ update_score:
     ret
 
     .die:
-		mov byte [life_count], 3
-		call drawMazeWhite
-		call drawDotWhite
-		call DrawCheckMarkWithe
+		; mov byte [life_count], 3
+		; call drawMazeWhite
+		; call drawDotWhite
+		; call DrawCheckMarkWithe
         mov si, game_over
         mov di, 31040 + 121 
-        ; call draw_gameover
+        call draw_gameover
 		; jmp update_score
-		mov byte [life_count], 3
-		mov word [score1], 0
-		mov word [score2], 0
-		call mapLoop
+		; mov byte [life_count], 3
+		; mov word [score1], 0
+		; mov word [score2], 0
+		; call mapLoop
 
         mov ah, 4ch
         xor al, al
@@ -99,8 +106,6 @@ mapLoop:
 		mov byte [mapBool], 0
 		; jmp update_score
 		call drawMaze2
-
-
 
 
 draw_score:
@@ -467,15 +472,168 @@ add_score:
 
 end_level:
     mov word [candies_remain], 270
-    mov byte [life_count], 1
 
     mov si, clean
     mov di, [xPos]
     call draw_sprite
-
     mov word [xPos], window_width*80+(window_width-16)/2
-
+    ; cld
+    ; call fill_check
+    ; call fill_dot
     call DrawCheckMark
     call drawDot
 
     jmp _start.spawn_entities
+
+
+; fill_dot: 
+    ; xor si, si 
+    ; xor di, di
+    ; mov si, dotsArrayStock
+    ; mov di, dotsArray
+    ; mov cx, dot_size
+
+    ; .copy_loop:
+    ;     mov al, [si]
+    ;     mov [di], al
+    ;     inc si 
+    ;     inc di
+    ;     dec cx
+    ;     cmp cx, 0
+    ;     je .exit
+    ;     loop .copy_loop
+    ; .exit:
+    ;     ret
+
+; fill_check: 
+    ; xor si, si 
+    ; xor di, di
+    ; mov si, checkMarkPosStock
+    ; mov di, checkMarkPos
+    ; mov cx, check_size
+
+    ; .copy_loop:
+    ;     mov al, [si]
+    ;     mov [di], al
+    ;     inc si 
+    ;     inc di
+    ;     dec cx
+    ;     cmp cx, 0
+    ;     je .exit
+    ;     loop .copy_loop
+    ;     ret
+    ; .exit:
+    ;     ret
+
+
+draw_debug:
+    mov ax, [debug_word]  ; Load the integer into AX
+    mov dx, window_width*24 + highscore_xoffset
+    
+    call get_word
+
+    mov ax, [debug_word2]  ; Load the integer into AX
+    mov dx, window_width*35 + highscore_xoffset
+    
+    call get_word
+
+    mov word [digits_counter], 2
+    ret
+
+get_word:
+    mov cx, 10        ; Set divisor to 1
+    mov si, 0         ; Initialize index for digits array
+    push dx
+    .extract_digits:
+        xor dx, dx        ; Clear DX for the division
+        div cx            ; Divide AX by 10, result in AX, remainder in DX
+
+        add dl, '0'       ; Convert the remainder to ASCII
+        mov [digits2 + si], dl ; Store the digit in the array
+
+        inc si            ; Move to the next index in the array
+
+        test ax, ax       ; Check if quotient is zero
+        jnz .extract_digits ; If not, continue extracting digits
+
+        ; Add a null terminator at the end of the string
+        mov byte [digits2 + 5], 0
+
+        mov si, 0        ; Reset si to index the 'digits' array
+        mov di, 5
+
+        .reverse_digits:
+            cmp si, di
+            jge .done_reversing
+
+            mov al, [digits2 + si]
+            mov ah, [digits2 + di]
+
+            mov [digits2 + si], ah
+            mov [digits2 + di], al
+
+            inc si
+            dec di
+            jmp .reverse_digits
+
+        .done_reversing:
+
+        ; Display each reversed digit
+        mov si, 1         ; set si to index 1 to skip the 0 in the 'digits' array
+
+        pop dx
+        mov bx, 5
+        mov cx, 0
+    .display_digits:
+        mov al, [digits2 + si]
+        push bx
+        push si
+        push dx
+        push cx
+        call get_letter
+        pop cx
+        pop dx
+        mov di, dx
+
+        inc cx
+        cmp cx, [digits_counter]
+        jae .thousand_space
+
+        .regular_space:
+            mov bx, letter_space_size
+            jmp .skip
+        .thousand_space:
+            mov bx, thousand_space_size
+            xor cx, cx
+            cmp word [digits_counter], 1
+            ja .skip
+            mov word [digits_counter], 10
+        .skip:
+            add bx, 7
+    
+        add dx, bx
+        push dx
+        push cx
+        call draw_letter
+        pop cx
+        pop dx
+        pop si
+        pop bx
+
+        inc si
+        dec bx
+        cmp bx, 0
+        jne .display_digits ; Repeat for all digits
+
+        dec word [digits_counter]
+        call reset_digits2
+    ret
+
+reset_digits2:
+    mov si, digits2
+    mov cx, 6
+    .resetting_loop:
+    mov byte [si], 0 ; Set the byte at the current index to zero
+    inc si           ; Move to the next byte
+    loop .resetting_loop
+    ret
