@@ -72,7 +72,7 @@ Increase the score | Done | 12/08/2023 | 6h | 6h | Mathias
 Implementation of the collisions | Done | 12/06/2023 | 9h | 9h | Paul, Clémentine
 Create the clock | Done | 12/07/2023 | 3h | 3h | Mathias
 Implementation of the teleportation | Done | 12/07/2023 | 2h | 2h | Clémentine
-Implementation of the movements of the "Bugs" | In Progress | 12/11/2023 | 3h | 5h | Clémentine
+Implementation of the movements of the "Bugs" | In Progress | 12/18/2023 | 3h | 8h | Clémentine
 Eating the "Dots" | Done | 12/07/2023 | 3h | 3h | Aurélien
 Eating the "Check Marks" | Done | 12/07/2023 | 3h | 3h | Mathias
 Implementation of the "Game Over" | Done | 12/08/2023 | 30min | 10min | Mathias
@@ -80,7 +80,7 @@ Implementation of the level change | Done | 12/08/2023 | 30min | 30min | Mathias
 Creation of the sprites of the menu | Done | 12/07/2023 | 1h | 1h | Laurent
 Creation of the survey for beta testers | Done | 12/08/2023 | 1h | 1h | Laurent
 Installing an Intel Pentium computer under Windows XP SP3 | Done | 12/07/2023 | 3h | 3h | Laurent and Mathias
-Searching for a way to put music in the game | In Progress | 12/08/2023 | 2h | 3h | Paul
+Searching for a way to put music in the game | In Progress | 12/18/2023 | 2h | 8h | Paul
 
 
 
@@ -91,4 +91,34 @@ Searching for a way to put music in the game | In Progress | 12/08/2023 | 2h | 3
 
 
 
+Tasks | Status | Deadline | Time required | Time spent | People involved
+:---: | :---: | :---: | :---: | :---: | :---:
+Make a selection of essential sprites for the game | Done | 12/11/2023 | 1h | 1h | Laurent
+Searching for a way to put music in the game | In Progress | 12/18/2023 | 5h | 8h | Paul
+Implementation of the movements of the "Bugs" | In Progress | 12/18/2023 | 5h | 8h | Clémentine & Mathias
+Correction of the Key Buffer | Done | 12/11/2023 | 1h | 1h | Mathias
+Saving the High Score | In Progress | 12/18/2023 | 1h | 2h | Aurélien
+Create an array of candies to correct an issue | In Progress | 12/19/2023 | 6h | 10h | CLémentine
+Create new sprites for the bugs | Done | 12/15/2023 | 3h | 3h | Laurent
+Create a black & white version of the map | Done | 12/15/2023 | 1h | 1h | Laurent
+Test the game on a real computer | In Progress | 12/18/2023 | 1h | 8h | Gaël
+
+
+
+
+
+
 ## Week 7 : 12/18/2023 - 12/22/2023
+
+| Tasks | Status | Deadline | Time required | Time spent | People involved |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+Implementation of the movements of the "Bugs" | In Progress | 12/18/2023 | 8h | 8h | Paul
+Searching for a way to put music in the game | Stopped | 12/18/2023 | 8h | 8h | Paul
+Create an array of candies to correct an issue | Done | 12/19/2023 | 10h | 10h | Clémentine
+Saving the High Score | Stopped | 12/18/2023 | 2h | 2h | Aurélien
+Checkmark buffer | Done | 12/18/2023 | 1h | 1h | Mathias & Clémentine
+Refactoring of the code | Done | 12/18/2023 | 1h | 1h | Mathias
+Finish the final release | Done | 12/18/2023 | 1h | 1h | All the team
+Create a user manual | Done | 12/18/2023 | 1h | 1h | Laurent
+Create a presentation video | Done | 12/18/2023 | 1h | 1h | Laurent
+
