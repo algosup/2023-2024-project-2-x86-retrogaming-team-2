@@ -4,7 +4,7 @@ org 100h
 
 section .data
     old_time equ 0
-
+    firstLine DW 39*window_width+15
 
     charValue db 'X$'
     charNoKey db 'False$'
@@ -17,6 +17,8 @@ _start:
     mov ah, 00h ; set video mode requirement
     mov al, 13h ; set video mode option 320 x 200 256 colors
     int 10h
+
+    call reset_buffer
 
     mov di, 0
     ; Return to text mode and exit
@@ -60,6 +62,13 @@ game_loop:
     mov [old_time], dx
 
     call drawDot
+    call DrawCheckMark
+    mov di, 100
+    mov si, clean
+    call draw_tile
+    ; mov di, firstLine
+    ; mov si, clean
+    ; call draw_tile
     call move_bug1
     call move_bug3
 
@@ -95,4 +104,3 @@ game_loop:
 %include "Collision.inc"
 %include "Items.inc"
 %include "Bugs.inc"
-%include "Candies.inc"
