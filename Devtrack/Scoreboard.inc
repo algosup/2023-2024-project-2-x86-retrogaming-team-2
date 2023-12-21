@@ -32,6 +32,8 @@ life_yoffset equ 4
 
 life_count db 3
 
+dot_size dw 270
+check_size dw 4
 
 debug_word dw 0000
 debug_word2 dw 0000
@@ -104,8 +106,6 @@ mapLoop:
 		mov byte [mapBool], 0
 		; jmp update_score
 		call drawMaze2
-
-
 
 
 draw_score:
@@ -476,14 +476,54 @@ end_level:
     mov si, clean
     mov di, [xPos]
     call draw_sprite
-
     mov word [xPos], window_width*80+(window_width-16)/2
-
+    ; cld
+    ; call fill_check
+    ; call fill_dot
     call DrawCheckMark
     call drawDot
 
     jmp _start.spawn_entities
 
+
+; fill_dot: 
+    ; xor si, si 
+    ; xor di, di
+    ; mov si, dotsArrayStock
+    ; mov di, dotsArray
+    ; mov cx, dot_size
+
+    ; .copy_loop:
+    ;     mov al, [si]
+    ;     mov [di], al
+    ;     inc si 
+    ;     inc di
+    ;     dec cx
+    ;     cmp cx, 0
+    ;     je .exit
+    ;     loop .copy_loop
+    ; .exit:
+    ;     ret
+
+; fill_check: 
+    ; xor si, si 
+    ; xor di, di
+    ; mov si, checkMarkPosStock
+    ; mov di, checkMarkPos
+    ; mov cx, check_size
+
+    ; .copy_loop:
+    ;     mov al, [si]
+    ;     mov [di], al
+    ;     inc si 
+    ;     inc di
+    ;     dec cx
+    ;     cmp cx, 0
+    ;     je .exit
+    ;     loop .copy_loop
+    ;     ret
+    ; .exit:
+    ;     ret
 
 
 draw_debug:

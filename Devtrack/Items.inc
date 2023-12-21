@@ -75,6 +75,8 @@ section .data
                 dw nineteenthLine+ 168, nineteenthLine+ 176, nineteenthLine+ 184, nineteenthLine+ 192, nineteenthLine+ 200, nineteenthLine+ 208, nineteenthLine+ 216, nineteenthLine+ 224
                 dw nineteenthLine+ 232, nineteenthLine+ 240, nineteenthLine+ 248, nineteenthLine+ 264, nineteenthLine+ 272, nineteenthLine+ 280, nineteenthLine+ 288 
 
+    removeDot dw 0, 0, 0
+
     checkMarkPos dw fourthLine+13-(320*3), fourthLine+269-(320*3),nineteenthLine+29-(320*3),nineteenthLine+253-(320*3)
 
     Dots_pos equ dotsArray
@@ -171,6 +173,7 @@ section .text:
         mov es,ax
         
         CheckMarkLoop:
+            cmp di, 0
             mov di,[si]
             push si
             push cx
