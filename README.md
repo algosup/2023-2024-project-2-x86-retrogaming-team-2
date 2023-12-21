@@ -21,4 +21,16 @@ PLAY GAME
 |     Paul Nowak     |        Tech lead         |    <a href="https://github.com/PaulNowak36" rel="some text"><img src="https://avatars.githubusercontent.com/u/91249965?v=4" width="50px"></a>    |     paul.nowak@algosup.com     |
 
 ## Documents Link
-To be filled
+
+### Specifications
+- [Functional Specifications](/Documents/Functional_specifications.md)
+- [Technical Specifications](/Documents/Technical_specifications.md)
+
+### Project Management
+- [Key Process Indicators (KPI's)](/Documents/Key_Process_Indicators.md)
+- [Weekly Report](/Documents/Weekly_Report.md)
+
+
+### Quality Assurance
+- [Test Plan](/Documents/Test_plan.md)
+- [Test Cases](/Documents/Test_cases.md)
