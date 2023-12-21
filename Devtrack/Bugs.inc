@@ -46,84 +46,10 @@ move_bug1:
         mov dx, ax      
         call getColor 
 
-        cmp bx, 0
-        je .collide
-        
-        add dx, -2
-        add cx, 2
-        call getColor
-        cmp bx, 6
-        je .kill_ranky
+            jmp .moving
 
 
-        
-    .check_right_col_bottom:
-        mov ax, [bug1_pos]
-        mov cx, window_width
-        xor dx, dx
-        div cx
-        mov [bug1_YPos],dx
-        add ax, 15
-        add word [bug1_YPos], 16
-        mov cx, [bug1_YPos]         
-        mov dx, ax      
-        call getColor 
-
-        
-        cmp bx, 0
-        je .collide
-        
-        add dx, -2
-        add cx, 2
-        call getColor
-        cmp bx, 6
-        je .kill_ranky
-
-        jmp .moving
-
-; Left Collisions
-    .check_left_col_top:
-        mov ax, [bug1_pos]
-        mov cx, window_width
-        xor dx, dx
-        div cx
-        mov [bug1_YPos], dx
-        sub word [bug1_YPos], 1
-        mov cx, [bug1_YPos]       
-        mov dx, ax      
-        call getColor 
-
-        cmp bx, 0
-        je .collide
-
-        add dx, -2
-        add cx, 2
-        call getColor
-        cmp bx, 6
-        je .kill_ranky
-
-    .check_left_col_bottom:
-        mov ax, [bug1_pos]
-        mov cx, window_width
-        xor dx, dx
-        div cx
-        mov [bug1_YPos],dx
-        add ax, 15
-        sub word [bug1_YPos], 1
-        mov cx, [bug1_YPos]         
-        mov dx, ax
-        call getColor 
-
-        cmp bx, 0
-        je .collide
-
-        add dx, -2
-        add cx, -2
-        call getColor
-        cmp bx, 6
-        je .kill_ranky
-
-        jmp .moving
+            jmp .moving
 
     ; .telep:
     ;     mov bx, [bug1_pos]
