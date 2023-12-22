@@ -30,14 +30,6 @@ getColor:
     mov ah, 0DH                 ; AH = 0Dh for "Read Dot" function
     int 10h
 
-    ; push ax
-
-    ; mov ah, 0CH               ; draw the points
-    ; mov al, 0DH
-    ; int 10h
-
-    ; pop ax
-
     mov bx, 0
 
     ; color of the pixel in al
@@ -53,13 +45,13 @@ getColor:
     je .check_mark
 
     cmp al, [colorBug1]
-    je .bug
+    je .bug1
     cmp al, [colorBug2]
-    je .bug
+    je .bug2
     cmp al, [colorBug3]
-    je .bug
+    je .bug3
     cmp al, [colorBug4]
-    je .bug
+    je .bug4
 
     cmp al, [colorRanky]
     je .eat_ranky
@@ -73,9 +65,42 @@ getColor:
     .check_mark:
         mov bx, 3
         jmp .end
-    .bug:
-        cmp byte [isFrenzy],1
-        je .frenzy_active
+    .bug1:
+        mov bx, 5
+        mov si, isFrenzy
+        add si, 0
+        cmp word [si],1
+        je .end
+
+        mov bx, 4
+        jmp .end
+    
+    .bug2:
+        mov bx, 7
+        mov si, isFrenzy
+        add si, 2
+        cmp word [si],1
+        je .end
+
+        mov bx, 4
+        jmp .end
+
+    .bug3:
+        mov bx, 8
+        mov si, isFrenzy
+        add si, 4
+        cmp word [si],1
+        je .end
+
+        mov bx, 4
+        jmp .end
+
+    .bug4:
+        mov bx, 9
+        mov si, isFrenzy
+        add si, 6
+        cmp word [si],1
+        je .end
 
         mov bx, 4
         jmp .end
@@ -83,24 +108,6 @@ getColor:
     .eat_ranky:
         mov bx, 6
         jmp .end
-
-    .frenzy_active:
-        mov bx, 5
-
-        cmp al, [colorBug1]
-        je .end
-        
-        mov bx, 7
-        cmp al, [colorBug2]
-        je .end
-
-        mov bx, 8
-        cmp al, [colorBug3]
-        je .end
-
-        mov bx, 9
-        cmp al, [colorBug4]
-        je .end
 
     .end:
         ret

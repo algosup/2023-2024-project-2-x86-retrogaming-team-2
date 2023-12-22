@@ -6,7 +6,7 @@ xPos dw window_width*80+(window_width-16)/2       ; 25 752
 yPos dw 0
 xVelocity dw 1
 
-isFrenzy db 0, 0, 0, 0
+isFrenzy dw 0, 0, 0, 0
 
 oldPos dw 0
 
@@ -15,9 +15,6 @@ telepRight dw window_width*105-16
 telepLeft dw window_width*104
 telepUp dw window_width*24+(window_width-16)/2
 telepBottom dw window_width*185+(window_width-16)/2
-
-truem db '1',13,10,'$'   ; true and false message.
-falsem db '0',13,10,'$'
 
 killStreak dw 1
 
@@ -299,25 +296,29 @@ move_ranky:
 
     .eat_ghost1:
         push bx
-        call move_bug1.eaten
+        mov word [current_bug], 0
+        call move_bug.eaten
         pop bx
         jmp .moving
 
     .eat_ghost2:
         push bx
-        call move_bug2.eaten
+        mov word [current_bug], 2
+        call move_bug.eaten
         pop bx
         jmp .moving
 
     .eat_ghost3:
         push bx
-        call move_bug3.eaten
+        mov word [current_bug], 4
+        call move_bug.eaten
         pop bx
         jmp .moving
 
     .eat_ghost4:
         push bx
-        call move_bug4.eaten
+        mov word [current_bug], 6
+        call move_bug.eaten
         pop bx
         jmp .moving
 
@@ -584,10 +585,10 @@ toggle_frenzy:
         xor bx, bx
 
         .activation_loop:
-            mov byte [si + bx], 1       ; Store the value at the current address
-            inc bx 
+            mov word [si + bx], 1       ; Store the value at the current address
+            add bx, 2
 
-            cmp bx, 4
+            cmp bx, 8
             jl .activation_loop
 
             mov byte [killStreak], 1
@@ -597,10 +598,10 @@ toggle_frenzy:
         mov si, isFrenzy       ; Load the address into si
         xor bx, bx
         .desactivation_loop:
-            mov byte [si + bx], 0       ; Store the value at the current address
-            inc bx
+            mov word [si + bx], 0       ; Store the value at the current address
+            add bx, 2
 
-            cmp bx, 4
+            cmp bx, 8
             jl .desactivation_loop
             mov byte [killStreak], 1
             jmp .end
