@@ -308,7 +308,8 @@ move_bug:
         ; teleport the bug into the house
         mov si, bug_pos
         add si, [current_bug]
-        mov word [si], bugs_area - 5
+        mov bx, [bugs_area]
+        mov word [si], bx
 
         ret
 
