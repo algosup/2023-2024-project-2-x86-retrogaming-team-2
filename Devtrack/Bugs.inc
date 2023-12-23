@@ -36,67 +36,15 @@ get_bug_collision:
     xor si, si
     mov si, bugs_velocity
     add si, [current_bug]
-    cmp word [si], 1
-    je .check_right_col_top
     cmp word [si], -320
     je .check_up_col_left
-    cmp word [si], -1
-    je .check_left_col_top
     cmp word [si], 320
     je .check_down_col_left
+    cmp word [si], -1
+    je .check_left_col_top
+    cmp word [si], 1
+    je .check_right_col_top
     jmp .end
-
-    ; Right Collisions
-        .check_right_col_top:
-            mov ax, [current_bug_pos]
-            mov cx, window_width
-            xor dx, dx
-            div cx
-            mov [bug_XPos], dx
-            add word [bug_XPos], 16
-            mov cx, [bug_XPos]       
-            mov dx, ax      
-            call getColor 
-            
-        .check_right_col_bottom:
-            mov ax, [current_bug_pos]
-            mov cx, window_width
-            xor dx, dx
-            div cx
-            mov [bug_XPos],dx
-            add ax, 15
-            add word [bug_XPos], 16
-            mov cx, [bug_XPos]         
-            mov dx, ax      
-            call getColor 
-
-            jmp .end
-
-    ; Left Collisions
-        .check_left_col_top:
-            mov ax, [current_bug_pos]
-            mov cx, window_width
-            xor dx, dx
-            div cx
-            mov [bug_XPos], dx
-            sub word [bug_XPos], 1
-            mov cx, [bug_XPos]       
-            mov dx, ax      
-            call getColor 
-    
-        .check_left_col_bottom:
-            mov ax, [current_bug_pos]
-            mov cx, window_width
-            xor dx, dx
-            div cx
-            mov [bug_XPos],dx
-            add ax, 15
-            sub word [bug_XPos], 1
-            mov cx, [bug_XPos]         
-            mov dx, ax
-            call getColor 
-
-            jmp .end
 
     ; Up Collisions
         .check_up_col_left:
@@ -124,7 +72,8 @@ get_bug_collision:
             call getColor 
 
             jmp .end
-        
+
+         ; Down Collisions
         .check_down_col_left:
             mov ax, [current_bug_pos]
             mov cx, window_width
@@ -148,6 +97,59 @@ get_bug_collision:
             mov cx, [bug_XPos]         
             mov dx, ax      
             call getColor 
+            jmp .end
+
+        ; Left Collisions
+        .check_left_col_top:
+            mov ax, [current_bug_pos]
+            mov cx, window_width
+            xor dx, dx
+            div cx
+            mov [bug_XPos], dx
+            sub word [bug_XPos], 1
+            mov cx, [bug_XPos]       
+            mov dx, ax      
+            call getColor 
+    
+        .check_left_col_bottom:
+            mov ax, [current_bug_pos]
+            mov cx, window_width
+            xor dx, dx
+            div cx
+            mov [bug_XPos],dx
+            add ax, 15
+            sub word [bug_XPos], 1
+            mov cx, [bug_XPos]         
+            mov dx, ax
+            call getColor 
+
+            jmp .end
+
+        ; Right Collisions
+        .check_right_col_top:
+            mov ax, [current_bug_pos]
+            mov cx, window_width
+            xor dx, dx
+            div cx
+            mov [bug_XPos], dx
+            add word [bug_XPos], 16
+            mov cx, [bug_XPos]       
+            mov dx, ax      
+            call getColor 
+            
+        .check_right_col_bottom:
+            mov ax, [current_bug_pos]
+            mov cx, window_width
+            xor dx, dx
+            div cx
+            mov [bug_XPos],dx
+            add ax, 15
+            add word [bug_XPos], 16
+            mov cx, [bug_XPos]         
+            mov dx, ax      
+            call getColor 
+
+            jmp .end
 
         .end:
             ret

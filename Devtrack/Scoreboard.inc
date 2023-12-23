@@ -468,3 +468,14 @@ end_level:
     call drawDot
 
     jmp _start.spawn_entities
+
+dec_life:
+    dec byte [life_count]
+    mov si, clean
+    mov di, [xPos]
+    call draw_sprite
+    mov word [xPos], window_width*80+(window_width-16)/2
+    mov si, right_closed
+    mov di, [xPos]
+    call draw_sprite
+    ret

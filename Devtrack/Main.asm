@@ -46,9 +46,6 @@ game_loop:
 
     call drawDot
     call DrawCheckMark
-    mov di, 100
-    mov si, clean
-    call draw_tile
     
     cmp word [isDead], 1
     je .skip_drawing
@@ -82,17 +79,13 @@ game_loop:
 		int 21h
 
 
-
-
-
 ; includes
 %include "keyboard.inc"
 %include "Sprites_List.inc"
-%include "Animations/Ranky_Anims.inc"
-%include "Animations/Bugs_Anims.inc"
 %include "Map.inc"
 %include "Sprite.inc"
 %include "Scoreboard.inc"
 %include "Collision.inc"
 %include "Items.inc"
+%include "Ranky.inc"
 %include "Bugs.inc"

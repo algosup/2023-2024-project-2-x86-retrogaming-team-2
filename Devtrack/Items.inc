@@ -1,4 +1,4 @@
-%define origin 39*window_width+15
+%define origin 39*window_width+15 ; 12495
 %define line 8
 
 section .data
@@ -66,7 +66,7 @@ section .data
 
 section .text:
     drawDot:
-        mov ax, 0xA000
+        mov ax, 0xA000  ; address to write
         mov cx,0
         mov si, Dots_pos
         mov es,ax
@@ -77,6 +77,7 @@ section .text:
 
         DrawDotLoop:
         
+        ; don't draw if the dot position is 0
         cmp di, 0
         je .endLoop
         
@@ -118,89 +119,34 @@ section .text:
 		mov [es:di], al
 		ret
 
-	
-
-	
-    drawDotWhite:
-        mov ax, 0xA000
-        mov cx,0
-        mov si, Dots_pos
-        mov es,ax
+DrawCheckMark:
+    mov ax, 0xA000
+    mov cx,4
+    mov si, checkMarkPos
+    mov es,ax
+    
+    .CheckMarkLoop:
         mov di,[si]
-        mov al, 0x0F
 
-        DrawDotLoopWhite:
-        
-        mov [es:di], al
+        ; don't draw if the checkMark position is 0
+        cmp di, 0
+        je .end
 
-        inc di
-        mov [es:di], al
-        
-        call newLine
+        push si
+        push cx
+        push ax
 
-        add si,2 ; add 2 because idk why index need to be multiplied by 2
-        mov di, [si]
+        mov si, check_mark
+        call draw_tile
+    
+        pop ax
+        pop cx
+        pop si
 
-        inc cx
-        cmp cx,270
-        jb DrawDotLoopWhite
-
-
-
-    DrawCheckMark:
-        mov ax, 0xA000
-        mov cx,0
-        mov si, checkMarkPos
-        mov es,ax
-        
-        CheckMarkLoop:
-            cmp di, 0
-            mov di,[si]
-            push si
-            push cx
-            push ax
-
-            mov si, check_mark
-            call draw_tile
-        
-            pop ax
-            pop cx
-            pop si
-
-            inc si
-            inc si
-            inc cx
-            cmp cx, 4
-            jb CheckMarkLoop
-        
-        ret
-
-
-    DrawCheckMarkWithe:
-        mov ax, 0xA000
-        mov cx,0
-        mov si, checkMarkPos
-        mov es,ax
-        
-        CheckMarkLoopWhite:
-            mov di,[si]
-            push si
-            push cx
-            push ax
-
-            mov si, check_mark_white
-            call draw_tile
-        
-            pop ax
-            pop cx
-            pop si
-
-            inc si
-            inc si
-            inc cx
-            cmp cx, 4
-            jb CheckMarkLoopWhite
-        
+        add si, 2
+        loop .CheckMarkLoop
+    
+    .end:
         ret
 
 
@@ -223,6 +169,9 @@ erase_candy:
         mov dx, di
 
         ; compare actual Velocity with Velocity saved
+        cmp word [xVelocity], -320
+        je .skipSub
+
         mov ax, [xVelocity]
         cmp ax, [OldVelocity]
         je .skipSub
@@ -252,9 +201,53 @@ erase_candy:
         .end:
         ret
 
+erase_check_mark:
+    xor dx, dx
+    mov dx, [xPos]
+
+    cmp word [xVelocity], 1
+    je .checkRight
+    cmp word [xVelocity], -1
+    je .checkLeft
+    jmp .end
+
+    .checkRight:
+        add dx, 320*4+16
+        jmp .EraseCheckMark
+        
+    .checkLeft:
+        add dx, 320*4-8
+        jmp .EraseCheckMark
         
 
-    reset_buffer:
+    .EraseCheckMark:  
+
+        mov si, checkMarkPos
+        mov bx, 0
+
+        .loop:
+            add si, bx
+            mov bx, 2
+
+            cmp word [si], dx
+            jne .loop
+            
+        mov word [si], 0
+
+        mov di, dx
+        mov si, clean
+        call draw_tile
+
+        mov bx, 50
+        call add_score
+        mov bx, [xPos]
+
+        call toggle_frenzy.enable_frenzy
+
+    .end:
+        ret
+
+reset_buffer:
     mov si, dotsArray ; Source index
     mov di, Dots_pos   ; Destination index
     mov cx, 540   ; Loop counter
@@ -271,4 +264,87 @@ erase_candy:
         dec cx
         cmp cx,0
         ja .overwrite_loop
+        ret
+        
+
+EraseCandy:
+    ; Velocity determine on which side is the candy
+    cmp word [xVelocity], 320
+    je .EraseCandyBottom
+    cmp word [xVelocity], -320
+    je .EraseCandyTop
+    cmp word [xVelocity], 1
+    je .EraseCandyRight
+    cmp word [xVelocity], -1
+    je .EraseCandyLeft
+    jmp .end
+
+    .EraseCandyRight:
+        mov al,0x00
+        mov di, [xPos]
+        add di,16+320*7
+
+        jmp .EraseCandy
+        
+    .EraseCandyLeft:
+        mov di, [xPos]
+        add di, 320*7-2
+
+
+        jmp .EraseCandy
+    .EraseCandyTop:
+        mov di, [xPos]
+        sub di, 320-7 ; 313 ; ISSUE
+
+        jmp .EraseCandy
+    .EraseCandyBottom:
+        mov di, [xPos]
+        add di,7+320*16
+
+        jmp .EraseCandy
+
+    .EraseCandy:
+        ; DI is the dot on the top-left, position present in the array in item
+        call erase_candy
+        mov al,0x00
+        mov [es:di],al
+        add di,1
+        mov [es:di],al
+        add di,320
+        mov [es:di],al
+        dec di
+        mov [es:di],al
+
+    .end:
+        ret
+
+toggle_frenzy:
+    .enable_frenzy:
+
+        mov si, isFrenzy       ; Load the address into si
+        xor bx, bx
+
+        .activation_loop:
+            mov word [si + bx], 1       ; Store the value at the current address
+            add bx, 2
+
+            cmp bx, 8
+            jl .activation_loop
+
+            mov byte [killStreak], 1
+            jmp .end
+
+    .disable_frenzy:
+        mov si, isFrenzy       ; Load the address into si
+        xor bx, bx
+        .desactivation_loop:
+            mov word [si + bx], 0       ; Store the value at the current address
+            add bx, 2
+
+            cmp bx, 8
+            jl .desactivation_loop
+            mov byte [killStreak], 1
+            jmp .end
+
+    .end:
         ret
