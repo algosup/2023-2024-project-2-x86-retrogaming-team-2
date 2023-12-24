@@ -19,8 +19,6 @@ section .data
     keyPressed dw 0
     newKeyPressed dw 0
 
-    testChar dw "1$"
-
 section .text
 
 keyboard_handler:
@@ -95,6 +93,9 @@ keyboard_handler:
         cmp byte [keyPressed], key_menu
         je .menu
 
+        cmp word [isDead], 1
+        je .end_buffer
+
         ; Key_Up
         cmp byte [keyPressed], key_up
         je .moveUp
@@ -152,10 +153,15 @@ keyboard_handler:
             xor al, al
             int 21h
         .menu:
-            ; Add menu here
-            ; mov ah, 4ch
-            ; xor al, al
-            ; int 21h
+            ;Add menu here
+            cmp word [isDead], 0
+            je .end_buffer
+
+            mov word [score1], 0
+            mov word [score2], 0
+            mov word [isDead], 0
+            mov byte [life_count], 3
+            jmp _start
 
         .end_buffer:
             ret

@@ -4,11 +4,6 @@ org 100h
 
 section .data
     old_time equ 0
-    firstLine DW 39*window_width+15
-
-    charValue db 'X$'
-    charNoKey db 'False$'
-
     
 section .text
     global _start
@@ -30,22 +25,10 @@ _start:
         call drawDot
 
     .spawn_entities:
-
-        mov si, bug1_sprite
-        mov di, [bug1_pos]
-        call draw_sprite
-
-        mov si, bug2_sprite
-        mov di, [bug2_pos]
-        call draw_sprite
-
-        mov si, bug3_sprite
-        mov di, [bug3_pos]
-        call draw_sprite
-
-        mov si, bug4_sprite
-        mov di, [bug4_pos]
-        call draw_sprite
+        mov word [bug_pos + 0], bug1_default_Pos
+        mov word [bug_pos + 2], bug2_default_Pos
+        mov word [bug_pos + 4], bug3_default_Pos
+        mov word [bug_pos + 6], bug4_default_Pos
 
         mov di, [xPos]
         mov si, right_closed
@@ -63,14 +46,20 @@ game_loop:
 
     call drawDot
     call DrawCheckMark
-    mov di, 100
-    mov si, clean
-    call draw_tile
-    ; mov di, firstLine
-    ; mov si, clean
-    ; call draw_tile
-    call move_bug1
-    call move_bug3
+    
+    cmp word [isDead], 1
+    je .skip_drawing
+
+    mov word [current_bug], 0
+    call move_bug
+    mov word [current_bug], 2
+    call move_bug
+    mov word [current_bug], 4
+    call move_bug
+    mov word [current_bug], 6
+    call move_bug
+
+    .skip_drawing:
 
     call update_score
     
@@ -90,17 +79,13 @@ game_loop:
 		int 21h
 
 
-
-
-
 ; includes
 %include "keyboard.inc"
 %include "Sprites_List.inc"
-%include "Animations/Ranky_Anims.inc"
-%include "Animations/Bugs_Anims.inc"
 %include "Map.inc"
 %include "Sprite.inc"
 %include "Scoreboard.inc"
 %include "Collision.inc"
 %include "Items.inc"
+%include "Ranky.inc"
 %include "Bugs.inc"
